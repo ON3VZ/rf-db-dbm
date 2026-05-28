@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H02 · Logaritmen — WLD Cursus</title>
+  <link rel="stylesheet" href="../assets/css/wld.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-logo"><a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><span class="header-logo-wld">WLD</span><div class="header-logo-sep"></div></a><span class="header-logo-title"><span class="lang-block active" data-lang="nl">dB & dBm Cursus</span><span class="lang-block" data-lang="fr">Cours dB & dBm</span><span class="lang-block" data-lang="en">dB & dBm Course</span></span></div>
+  <div class="header-center"><div class="header-progress-wrap"><div class="header-progress-label"><span data-i18n="progress">Voortgang</span><span class="header-progress-done">0 / 30</span></div><div class="header-progress-track"><div class="header-progress-fill" style="width:0%"></div></div></div></div>
+  <div class="header-right"><span class="header-callsign" id="hCallsign">—</span><div class="lang-switcher"><button class="lang-switch-btn active" data-lang="nl">NL</button><button class="lang-switch-btn" data-lang="fr">FR</button><button class="lang-switch-btn" data-lang="en">EN</button></div><button class="menu-toggle" id="menu-toggle">☰</button></div>
+</header>
+<nav class="app-sidebar"></nav>
+<main class="app-main"><div class="main-inner">
+
+<div class="chapter-header">
+  <div class="ch-header-meta">
+    <div class="ch-breadcrumb"><a href="../index.html"><span class="lang-block active" data-lang="nl">Overzicht</span><span class="lang-block" data-lang="fr">Aperçu</span><span class="lang-block" data-lang="en">Overview</span></a><span>›</span><span class="lang-block active" data-lang="nl">Deel I</span><span class="lang-block" data-lang="fr">Partie I</span><span class="lang-block" data-lang="en">Part I</span></div>
+    <span class="ch-badge ch-badge-num">H02</span>
+    <span class="ch-badge ch-badge-level"><span class="lang-block active" data-lang="nl">Beginner</span><span class="lang-block" data-lang="fr">Débutant</span><span class="lang-block" data-lang="en">Beginner</span></span>
+  </div>
+  <h1><span class="lang-block active" data-lang="nl">Logaritmen: de wiskundige ruggengraat van dB</span><span class="lang-block" data-lang="fr">Logarithmes : le fondement mathématique du dB</span><span class="lang-block" data-lang="en">Logarithms: the mathematical backbone of dB</span></h1>
+  <p class="intro"><span class="lang-block active" data-lang="nl">Je hoeft geen wiskundige te zijn. Je hebt enkel drie vuistregels nodig. Dit hoofdstuk bouwt het begrip stap voor stap op — van nul tot gebruiksklaar.</span><span class="lang-block" data-lang="fr">Vous n'avez pas besoin d'être mathématicien. Vous n'avez besoin que de trois règles pratiques. Ce chapitre construit la compréhension étape par étape — de zéro à opérationnel.</span><span class="lang-block" data-lang="en">You don't need to be a mathematician. You only need three rules of thumb. This chapter builds understanding step by step — from zero to ready to use.</span></p>
+  <svg class="ch-header-waves" viewBox="0 0 820 44" preserveAspectRatio="none"><path class="rf-w3" fill="none" stroke="#00B4CC" stroke-width="1" d="M0,28 Q41,34 82,28 Q123,22 164,28 Q205,34 246,28 Q287,22 328,28 Q369,34 410,28 Q451,22 492,28 Q533,34 574,28 Q615,22 656,28 Q697,34 738,28 Q779,22 820,26"/><path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8" d="M0,34 Q20,40 41,34 Q61,28 82,34 Q102,40 123,34 Q143,28 164,34 Q184,40 205,34 Q225,28 246,34 Q266,40 287,34 Q307,28 328,34 Q348,40 369,34 Q389,28 410,34 Q430,40 451,34 Q471,28 492,34 Q512,40 533,34 Q553,28 574,34 Q594,40 615,34 Q635,28 656,34 Q676,40 697,34 Q717,28 738,34 Q758,40 779,34 Q799,28 820,32"/></svg>
+</div>
+
+<div class="chapter-body">
+
+<div class="leerdoelen">
+  <div class="leerdoelen-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="objectives">Na dit hoofdstuk kun je</span></div>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">in woorden uitleggen wat een logaritme is</span><span class="lang-block" data-lang="fr">expliquer en mots ce qu'est un logarithme</span><span class="lang-block" data-lang="en">explain in words what a logarithm is</span></li>
+    <li><span class="lang-block active" data-lang="nl">de drie kernregels van log₁₀ uit het hoofd toepassen</span><span class="lang-block" data-lang="fr">appliquer de mémoire les trois règles fondamentales du log₁₀</span><span class="lang-block" data-lang="en">apply the three core rules of log₁₀ from memory</span></li>
+    <li><span class="lang-block active" data-lang="nl">log₁₀(10), log₁₀(100) en log₁₀(1000) berekenen</span><span class="lang-block" data-lang="fr">calculer log₁₀(10), log₁₀(100) et log₁₀(1000)</span><span class="lang-block" data-lang="en">calculate log₁₀(10), log₁₀(100) and log₁₀(1000)</span></li>
+    <li><span class="lang-block active" data-lang="nl">begrijpen waarom logaritmen grote getallenbereiken comprimeren</span><span class="lang-block" data-lang="fr">comprendre pourquoi les logarithmes compriment les grandes plages de nombres</span><span class="lang-block" data-lang="en">understand why logarithms compress large number ranges</span></li>
+  </ul>
+</div>
+
+<h2><span class="section-num">01</span>
+  <span class="lang-block active" data-lang="nl">De kern in één zin</span>
+  <span class="lang-block" data-lang="fr">L'essentiel en une phrase</span>
+  <span class="lang-block" data-lang="en">The core in one sentence</span>
+</h2>
+
+<div class="callout callout-key">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span data-i18n="key_title">🔑 Kernregel</span></div>
+  <p>
+    <span class="lang-block active" data-lang="nl"><code>log₁₀(x)</code> beantwoordt de vraag: <strong>"Tot welke macht moet ik 10 verheffen om x te krijgen?"</strong><br>log₁₀(1000) = 3, want 10³ = 1000. Dat is alles.</span>
+    <span class="lang-block" data-lang="fr"><code>log₁₀(x)</code> répond à la question : <strong>« À quelle puissance dois-je élever 10 pour obtenir x ? »</strong><br>log₁₀(1000) = 3, car 10³ = 1000. C'est tout.</span>
+    <span class="lang-block" data-lang="en"><code>log₁₀(x)</code> answers the question: <strong>"To what power must I raise 10 to get x?"</strong><br>log₁₀(1000) = 3, because 10³ = 1000. That is all.</span>
+  </p>
+</div>
+
+<div class="lang-block active" data-lang="nl"><p>Stel je voor dat je een grote verzameling vermogenswaarden hebt: 1 W, 10 W, 100 W, 1 000 W, 1 000 000 W. Als je die lineair wilt uitzetten op een schaal, heb je enorm veel ruimte nodig. De logaritme comprimeer dat naar: 0, 1, 2, 3, 6. Handig toch?</p></div>
+<div class="lang-block" data-lang="fr"><p>Imaginez une grande collection de valeurs de puissance : 1 W, 10 W, 100 W, 1 000 W, 1 000 000 W. Pour les représenter sur une échelle linéaire, vous avez besoin d'énormément d'espace. Le logarithme comprime cela en : 0, 1, 2, 3, 6. Pratique, non ?</p></div>
+<div class="lang-block" data-lang="en"><p>Imagine you have a large collection of power values: 1 W, 10 W, 100 W, 1,000 W, 1,000,000 W. To plot these on a linear scale you need enormous space. The logarithm compresses that to: 0, 1, 2, 3, 6. Convenient, right?</p></div>
+
+<h2><span class="section-num">02</span>
+  <span class="lang-block active" data-lang="nl">De drie vuistregels</span>
+  <span class="lang-block" data-lang="fr">Les trois règles pratiques</span>
+  <span class="lang-block" data-lang="en">The three rules of thumb</span>
+</h2>
+
+<div class="lang-block active" data-lang="nl"><p>Voor radioamateurs zijn slechts drie wiskundige eigenschappen echt belangrijk. Leer deze van buiten — alles volgt hieruit.</p></div>
+<div class="lang-block" data-lang="fr"><p>Pour les radioamateurs, seules trois propriétés mathématiques sont vraiment importantes. Apprenez-les par cœur — tout en découle.</p></div>
+<div class="lang-block" data-lang="en"><p>For radio amateurs, only three mathematical properties truly matter. Learn these by heart — everything follows from them.</p></div>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg><span class="lang-block active" data-lang="nl">Regel 1 — Product → Optellen</span><span class="lang-block" data-lang="fr">Règle 1 — Produit → Addition</span><span class="lang-block" data-lang="en">Rule 1 — Product → Addition</span></div>
+  <div class="formula-main">log₁₀<span class="f-op">(</span><span class="f-key">a × b</span><span class="f-op">)</span> <span class="f-op">=</span> log₁₀(a) <span class="f-op">+</span> log₁₀(b)</div>
+  <div class="formula-vars"><div class="formula-var"><code>voorbeeld</code><span class="lang-block active" data-lang="nl">log₁₀(1000) = log₁₀(10 × 100) = log₁₀(10) + log₁₀(100) = 1 + 2 = 3 ✓</span><span class="lang-block" data-lang="fr">log₁₀(1000) = log₁₀(10 × 100) = log₁₀(10) + log₁₀(100) = 1 + 2 = 3 ✓</span><span class="lang-block" data-lang="en">log₁₀(1000) = log₁₀(10 × 100) = log₁₀(10) + log₁₀(100) = 1 + 2 = 3 ✓</span></div></div>
+</div>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg><span class="lang-block active" data-lang="nl">Regel 2 — Deling → Aftrekken</span><span class="lang-block" data-lang="fr">Règle 2 — Division → Soustraction</span><span class="lang-block" data-lang="en">Rule 2 — Division → Subtraction</span></div>
+  <div class="formula-main">log₁₀<span class="f-op">(</span><span class="f-key">a / b</span><span class="f-op">)</span> <span class="f-op">=</span> log₁₀(a) <span class="f-op">−</span> log₁₀(b)</div>
+  <div class="formula-vars"><div class="formula-var"><code>voorbeeld</code><span class="lang-block active" data-lang="nl">log₁₀(100/10) = log₁₀(100) − log₁₀(10) = 2 − 1 = 1 (want 100/10 = 10) ✓</span><span class="lang-block" data-lang="fr">log₁₀(100/10) = log₁₀(100) − log₁₀(10) = 2 − 1 = 1 (car 100/10 = 10) ✓</span><span class="lang-block" data-lang="en">log₁₀(100/10) = log₁₀(100) − log₁₀(10) = 2 − 1 = 1 (since 100/10 = 10) ✓</span></div></div>
+</div>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg><span class="lang-block active" data-lang="nl">Regel 3 — Machtsverheffing → Factor</span><span class="lang-block" data-lang="fr">Règle 3 — Puissance → Facteur</span><span class="lang-block" data-lang="en">Rule 3 — Power → Factor</span></div>
+  <div class="formula-main">log₁₀<span class="f-op">(</span><span class="f-key">aⁿ</span><span class="f-op">)</span> <span class="f-op">=</span> <span class="f-key">n</span> <span class="f-op">·</span> log₁₀(a)</div>
+  <div class="formula-vars"><div class="formula-var"><code>voorbeeld</code><span class="lang-block active" data-lang="nl">log₁₀(10⁵) = 5 · log₁₀(10) = 5 · 1 = 5 (want 10⁵ = 100 000) ✓</span><span class="lang-block" data-lang="fr">log₁₀(10⁵) = 5 · log₁₀(10) = 5 · 1 = 5 (car 10⁵ = 100 000) ✓</span><span class="lang-block" data-lang="en">log₁₀(10⁵) = 5 · log₁₀(10) = 5 · 1 = 5 (since 10⁵ = 100,000) ✓</span></div></div>
+</div>
+
+<h2><span class="section-num">03</span>
+  <span class="lang-block active" data-lang="nl">Vaste waarden die je moet kennen</span>
+  <span class="lang-block" data-lang="fr">Valeurs fixes à connaître</span>
+  <span class="lang-block" data-lang="en">Fixed values you need to know</span>
+</h2>
+
+<div class="table-wrap"><table>
+  <thead><tr><th>x</th><th>log₁₀(x)</th><th><span class="lang-block active" data-lang="nl">Verklaring</span><span class="lang-block" data-lang="fr">Explication</span><span class="lang-block" data-lang="en">Explanation</span></th><th><span class="lang-block active" data-lang="nl">dB-link</span><span class="lang-block" data-lang="fr">Lien dB</span><span class="lang-block" data-lang="en">dB link</span></th></tr></thead>
+  <tbody>
+    <tr><td class="mono">0,001</td><td class="mono">−3</td><td><span class="lang-block active" data-lang="nl">10⁻³ = duizendste</span><span class="lang-block" data-lang="fr">10⁻³ = millième</span><span class="lang-block" data-lang="en">10⁻³ = thousandth</span></td><td class="mono">−30 dB</td></tr>
+    <tr><td class="mono">0,1</td><td class="mono">−1</td><td><span class="lang-block active" data-lang="nl">10⁻¹ = tiende</span><span class="lang-block" data-lang="fr">10⁻¹ = dixième</span><span class="lang-block" data-lang="en">10⁻¹ = tenth</span></td><td class="mono">−10 dB</td></tr>
+    <tr><td class="mono">0,5</td><td class="mono">≈ −0,301</td><td><span class="lang-block active" data-lang="nl">½ → ≈ −3 dB (afronden!)</span><span class="lang-block" data-lang="fr">½ → ≈ −3 dB (arrondir !)</span><span class="lang-block" data-lang="en">½ → ≈ −3 dB (round off!)</span></td><td class="mono">−3 dB</td></tr>
+    <tr><td class="mono">1</td><td class="mono">0</td><td><span class="lang-block active" data-lang="nl">10⁰ = één</span><span class="lang-block" data-lang="fr">10⁰ = un</span><span class="lang-block" data-lang="en">10⁰ = one</span></td><td class="mono">0 dB</td></tr>
+    <tr><td class="mono">2</td><td class="mono">≈ 0,301</td><td><span class="lang-block active" data-lang="nl">Dubbel → ≈ +3 dB</span><span class="lang-block" data-lang="fr">Double → ≈ +3 dB</span><span class="lang-block" data-lang="en">Double → ≈ +3 dB</span></td><td class="mono">+3 dB</td></tr>
+    <tr><td class="mono">5</td><td class="mono">≈ 0,699</td><td><span class="lang-block active" data-lang="nl">≈ 10/2 → log(10)−log(2) ≈ +7 dB</span><span class="lang-block" data-lang="fr">≈ 10/2 → log(10)−log(2) ≈ +7 dB</span><span class="lang-block" data-lang="en">≈ 10/2 → log(10)−log(2) ≈ +7 dB</span></td><td class="mono">+7 dB</td></tr>
+    <tr><td class="mono">10</td><td class="mono">1</td><td><span class="lang-block active" data-lang="nl">10¹ = tien</span><span class="lang-block" data-lang="fr">10¹ = dix</span><span class="lang-block" data-lang="en">10¹ = ten</span></td><td class="mono">+10 dB</td></tr>
+    <tr><td class="mono">100</td><td class="mono">2</td><td><span class="lang-block active" data-lang="nl">10² = honderd</span><span class="lang-block" data-lang="fr">10² = cent</span><span class="lang-block" data-lang="en">10² = one hundred</span></td><td class="mono">+20 dB</td></tr>
+    <tr><td class="mono">1 000</td><td class="mono">3</td><td><span class="lang-block active" data-lang="nl">10³ = duizend</span><span class="lang-block" data-lang="fr">10³ = mille</span><span class="lang-block" data-lang="en">10³ = one thousand</span></td><td class="mono">+30 dB</td></tr>
+    <tr><td class="mono">10⁶</td><td class="mono">6</td><td><span class="lang-block active" data-lang="nl">Miljoen</span><span class="lang-block" data-lang="fr">Million</span><span class="lang-block" data-lang="en">Million</span></td><td class="mono">+60 dB</td></tr>
+  </tbody>
+</table></div>
+
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span data-i18n="tip_title">💡 Tip</span></div>
+  <p><span class="lang-block active" data-lang="nl">Heb je een calculator nodig? Enkel voor tussenwaarden zoals log₁₀(3) = 0,477 of log₁₀(7) = 0,845. Voor alle machten van 10 en de factoren 2 en 5 heb je <strong>geen calculator nodig</strong>.</span><span class="lang-block" data-lang="fr">Avez-vous besoin d'une calculatrice ? Seulement pour les valeurs intermédiaires comme log₁₀(3) = 0,477 ou log₁₀(7) = 0,845. Pour toutes les puissances de 10 et les facteurs 2 et 5, vous <strong>n'avez pas besoin de calculatrice</strong>.</span><span class="lang-block" data-lang="en">Do you need a calculator? Only for intermediate values like log₁₀(3) = 0.477 or log₁₀(7) = 0.845. For all powers of 10 and factors 2 and 5, you <strong>need no calculator</strong>.</span></p>
+</div>
+
+<h2><span class="section-num">04</span>
+  <span class="lang-block active" data-lang="nl">Waarom dit in de praktijk werkt</span>
+  <span class="lang-block" data-lang="fr">Pourquoi cela fonctionne en pratique</span>
+  <span class="lang-block" data-lang="en">Why this works in practice</span>
+</h2>
+
+<div class="example-block">
+  <div class="example-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span class="lang-block active" data-lang="nl">Versterker: factor 400 — zonder calculator</span><span class="lang-block" data-lang="fr">Amplificateur : facteur 400 — sans calculatrice</span><span class="lang-block" data-lang="en">Amplifier: factor 400 — without calculator</span></div>
+  <ol class="example-steps">
+    <li><span class="lang-block active" data-lang="nl">Splits 400 in bekende factoren: 400 = 4 × 100 = 2 × 2 × 100</span><span class="lang-block" data-lang="fr">Décomposez 400 en facteurs connus : 400 = 4 × 100 = 2 × 2 × 100</span><span class="lang-block" data-lang="en">Split 400 into known factors: 400 = 4 × 100 = 2 × 2 × 100</span></li>
+    <li><span class="lang-block active" data-lang="nl">Regel 1: log₁₀(400) = log₁₀(4) + log₁₀(100)</span><span class="lang-block" data-lang="fr">Règle 1 : log₁₀(400) = log₁₀(4) + log₁₀(100)</span><span class="lang-block" data-lang="en">Rule 1: log₁₀(400) = log₁₀(4) + log₁₀(100)</span></li>
+    <li><span class="lang-block active" data-lang="nl">log₁₀(4) = log₁₀(2²) = 2 · log₁₀(2) ≈ 2 · 0,301 ≈ 0,602</span><span class="lang-block" data-lang="fr">log₁₀(4) = log₁₀(2²) = 2 · log₁₀(2) ≈ 2 · 0,301 ≈ 0,602</span><span class="lang-block" data-lang="en">log₁₀(4) = log₁₀(2²) = 2 · log₁₀(2) ≈ 2 × 0.301 ≈ 0.602</span></li>
+    <li><span class="lang-block active" data-lang="nl">log₁₀(100) = 2 (exact)</span><span class="lang-block" data-lang="fr">log₁₀(100) = 2 (exact)</span><span class="lang-block" data-lang="en">log₁₀(100) = 2 (exact)</span></li>
+    <li><span class="lang-block active" data-lang="nl">10 · (0,602 + 2) = 10 · 2,602 ≈ <strong>26 dB</strong> — en factor 400 in vermogen = 26 dB ✓</span><span class="lang-block" data-lang="fr">10 · (0,602 + 2) = 10 · 2,602 ≈ <strong>26 dB</strong> — et facteur 400 en puissance = 26 dB ✓</span><span class="lang-block" data-lang="en">10 · (0.602 + 2) = 10 · 2.602 ≈ <strong>26 dB</strong> — and factor 400 in power = 26 dB ✓</span></li>
+  </ol>
+</div>
+
+<div class="callout callout-shack">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L22 4"/><path d="M12 4H22V14"/><rect x="2" y="14" width="8" height="6"/></svg><span data-i18n="shack_title">📻 In de shack</span></div>
+  <p><span class="lang-block active" data-lang="nl">De kracht van logaritmen in de shack: een keten van versterker (+20 dB), kabel (−3 dB) en antenne (+6 dBi) wordt gewoon <code>+20 − 3 + 6 = +23 dB</code>. Vermenigvuldigingen worden optellingen. Dat is de essentie van dB-berekeningen.</span><span class="lang-block" data-lang="fr">La puissance des logarithmes en station : une chaîne amplificateur (+20 dB), câble (−3 dB) et antenne (+6 dBi) devient simplement <code>+20 − 3 + 6 = +23 dB</code>. Les multiplications deviennent des additions. C'est l'essence des calculs dB.</span><span class="lang-block" data-lang="en">The power of logarithms in the shack: a chain of amplifier (+20 dB), cable (−3 dB) and antenna (+6 dBi) simply becomes <code>+20 − 3 + 6 = +23 dB</code>. Multiplications become additions. That is the essence of dB calculations.</span></p>
+</div>
+
+<!-- OEFENINGEN -->
+<hr class="section-divider">
+<div class="exercise-section">
+  <div class="exercise-section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span data-i18n="exercises_title">Oefeningen</span></div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">2.1</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question"><span class="lang-block active" data-lang="nl">Bereken zonder calculator: log₁₀(10 000), log₁₀(0,01), log₁₀(1)</span><span class="lang-block" data-lang="fr">Calculez sans calculatrice : log₁₀(10 000), log₁₀(0,01), log₁₀(1)</span><span class="lang-block" data-lang="en">Calculate without calculator: log₁₀(10,000), log₁₀(0.01), log₁₀(1)</span></div>
+    <button class="solution-btn" data-target="s2-1"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s2-1">
+      <span class="lang-block active" data-lang="nl">log₁₀(10 000) = log₁₀(10⁴) = <strong>4</strong><br>log₁₀(0,01) = log₁₀(10⁻²) = <strong>−2</strong><br>log₁₀(1) = log₁₀(10⁰) = <strong>0</strong></span>
+      <span class="lang-block" data-lang="fr">log₁₀(10 000) = log₁₀(10⁴) = <strong>4</strong><br>log₁₀(0,01) = log₁₀(10⁻²) = <strong>−2</strong><br>log₁₀(1) = log₁₀(10⁰) = <strong>0</strong></span>
+      <span class="lang-block" data-lang="en">log₁₀(10,000) = log₁₀(10⁴) = <strong>4</strong><br>log₁₀(0.01) = log₁₀(10⁻²) = <strong>−2</strong><br>log₁₀(1) = log₁₀(10⁰) = <strong>0</strong></span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">2.2</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question"><span class="lang-block active" data-lang="nl">Gebruik alleen log₁₀(2) ≈ 0,3 om te schatten: log₁₀(8). Toon de stap.</span><span class="lang-block" data-lang="fr">Utilisez uniquement log₁₀(2) ≈ 0,3 pour estimer : log₁₀(8). Montrez l'étape.</span><span class="lang-block" data-lang="en">Using only log₁₀(2) ≈ 0.3, estimate: log₁₀(8). Show the step.</span></div>
+    <button class="solution-btn" data-target="s2-2"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s2-2">
+      <span class="lang-block active" data-lang="nl">8 = 2³ → log₁₀(8) = 3 · log₁₀(2) ≈ 3 · 0,3 = <strong>0,9</strong><br><br>Controle: 10^0,9 ≈ 7,94 ≈ 8 ✓<br>In dB: 10 · 0,9 = 9 dB (factor 8 ≈ +9 dB)</span>
+      <span class="lang-block" data-lang="fr">8 = 2³ → log₁₀(8) = 3 · log₁₀(2) ≈ 3 · 0,3 = <strong>0,9</strong><br><br>Vérification : 10^0,9 ≈ 7,94 ≈ 8 ✓<br>En dB : 10 · 0,9 = 9 dB (facteur 8 ≈ +9 dB)</span>
+      <span class="lang-block" data-lang="en">8 = 2³ → log₁₀(8) = 3 · log₁₀(2) ≈ 3 · 0.3 = <strong>0.9</strong><br><br>Check: 10^0.9 ≈ 7.94 ≈ 8 ✓<br>In dB: 10 · 0.9 = 9 dB (factor 8 ≈ +9 dB)</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">2.3</span><div class="ex-diff"><span class="lit">●</span><span class="lit">●</span><span>●</span></div></div>
+    <div class="ex-question"><span class="lang-block active" data-lang="nl">Drie stadia in een RF-keten: ×100, ×0,5, ×10. Bereken de totale versterkingsfactor en de dB-waarde. Doe dit met logaritmen.</span><span class="lang-block" data-lang="fr">Trois étages dans une chaîne RF : ×100, ×0,5, ×10. Calculez le facteur de gain total et la valeur en dB. Faites-le avec des logarithmes.</span><span class="lang-block" data-lang="en">Three stages in an RF chain: ×100, ×0.5, ×10. Calculate the total gain factor and dB value. Use logarithms.</span></div>
+    <button class="solution-btn" data-target="s2-3"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s2-3">
+      <span class="lang-block active" data-lang="nl"><strong>Lineaire methode:</strong> 100 × 0,5 × 10 = 500 → N = 10 · log₁₀(500) ≈ 10 · 2,7 = 27 dB<br><br><strong>dB-methode (eenvoudiger!):</strong><br>×100 = +20 dB · ×0,5 = −3 dB · ×10 = +10 dB<br>Totaal: 20 − 3 + 10 = <strong>+27 dB</strong> ✓<br><br>Zie je de kracht? In dB gewoon optellen — geen grote vermenigvuldigingen nodig.</span>
+      <span class="lang-block" data-lang="fr"><strong>Méthode linéaire :</strong> 100 × 0,5 × 10 = 500 → N = 10 · log₁₀(500) ≈ 10 · 2,7 = 27 dB<br><br><strong>Méthode dB (plus simple !) :</strong><br>×100 = +20 dB · ×0,5 = −3 dB · ×10 = +10 dB<br>Total : 20 − 3 + 10 = <strong>+27 dB</strong> ✓<br><br>Vous voyez la puissance ? En dB, simplement additionner — pas besoin de grandes multiplications.</span>
+      <span class="lang-block" data-lang="en"><strong>Linear method:</strong> 100 × 0.5 × 10 = 500 → N = 10 · log₁₀(500) ≈ 10 · 2.7 = 27 dB<br><br><strong>dB method (simpler!):</strong><br>×100 = +20 dB · ×0.5 = −3 dB · ×10 = +10 dB<br>Total: 20 − 3 + 10 = <strong>+27 dB</strong> ✓<br><br>See the power? In dB just add — no large multiplications needed.</span>
+    </div>
+  </div>
+</div>
+
+<div class="summary-box">
+  <h3 data-i18n="summary_title">Samenvatting</h3>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">log₁₀(x) = <strong>de exponent van 10</strong> die x geeft: 10^? = x</span><span class="lang-block" data-lang="fr">log₁₀(x) = <strong>l'exposant de 10</strong> qui donne x : 10^? = x</span><span class="lang-block" data-lang="en">log₁₀(x) = <strong>the exponent of 10</strong> that gives x: 10^? = x</span></li>
+    <li><span class="lang-block active" data-lang="nl"><strong>Regel 1:</strong> log(a×b) = log(a)+log(b) — vermenigvuldigen = optellen</span><span class="lang-block" data-lang="fr"><strong>Règle 1 :</strong> log(a×b) = log(a)+log(b) — multiplication = addition</span><span class="lang-block" data-lang="en"><strong>Rule 1:</strong> log(a×b) = log(a)+log(b) — multiply = add</span></li>
+    <li><span class="lang-block active" data-lang="nl"><strong>Regel 2:</strong> log(a/b) = log(a)−log(b) — delen = aftrekken</span><span class="lang-block" data-lang="fr"><strong>Règle 2 :</strong> log(a/b) = log(a)−log(b) — division = soustraction</span><span class="lang-block" data-lang="en"><strong>Rule 2:</strong> log(a/b) = log(a)−log(b) — divide = subtract</span></li>
+    <li><span class="lang-block active" data-lang="nl"><strong>Regel 3:</strong> log(aⁿ) = n·log(a) — machtsverheffing = factor</span><span class="lang-block" data-lang="fr"><strong>Règle 3 :</strong> log(aⁿ) = n·log(a) — puissance = facteur</span><span class="lang-block" data-lang="en"><strong>Rule 3:</strong> log(aⁿ) = n·log(a) — power = factor</span></li>
+    <li><span class="lang-block active" data-lang="nl">Kernwaarden: log(1)=0 · log(2)≈0,3 · log(10)=1 · log(100)=2</span><span class="lang-block" data-lang="fr">Valeurs clés : log(1)=0 · log(2)≈0,3 · log(10)=1 · log(100)=2</span><span class="lang-block" data-lang="en">Key values: log(1)=0 · log(2)≈0.3 · log(10)=1 · log(100)=2</span></li>
+  </ul>
+</div>
+
+<div class="memory-box">
+  <div class="memory-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg><span data-i18n="memory_title">🧠 Onthoud dit</span></div>
+  <div class="memory-content">
+    <span class="lang-block active" data-lang="nl">log(<span>10</span>) = 1 &nbsp;·&nbsp; log(<span>100</span>) = 2 &nbsp;·&nbsp; log(<span>1000</span>) = 3<br>log(<span>2</span>) ≈ 0,3 &nbsp;·&nbsp; ×vermenigvuldig = <span>+ optellen</span></span>
+    <span class="lang-block" data-lang="fr">log(<span>10</span>) = 1 &nbsp;·&nbsp; log(<span>100</span>) = 2 &nbsp;·&nbsp; log(<span>1000</span>) = 3<br>log(<span>2</span>) ≈ 0,3 &nbsp;·&nbsp; ×multiplier = <span>+ additionner</span></span>
+    <span class="lang-block" data-lang="en">log(<span>10</span>) = 1 &nbsp;·&nbsp; log(<span>100</span>) = 2 &nbsp;·&nbsp; log(<span>1000</span>) = 3<br>log(<span>2</span>) ≈ 0.3 &nbsp;·&nbsp; ×multiply = <span>+ add</span></span>
+  </div>
+</div>
+
+<div class="complete-area">
+  <p><span class="lang-block active" data-lang="nl">Klaar met dit hoofdstuk?</span><span class="lang-block" data-lang="fr">Chapitre terminé ?</span><span class="lang-block" data-lang="en">Finished this chapter?</span></p>
+  <button class="btn-complete" id="btn-complete" data-chid="h02"><span data-i18n="mark_done">✓ Markeer als voltooid</span></button>
+</div>
+<div class="chapter-nav-footer">
+  <a href="h01-verhoudingen.html" class="ch-nav-btn"><span class="dir">← Vorige / Précédent / Previous</span><span class="name">H01 · Verhoudingen</span></a>
+  <a href="h03-logaritmische-schaal.html" class="ch-nav-btn right"><span class="dir">Volgende / Suivant / Next →</span><span class="name">H03 · Logaritmische schaal</span></a>
+</div>
+
+</div></div></main>
+<footer class="app-footer"><div class="footer-logo-row"><span class="footer-wld">WLD</span><div class="footer-sep"></div><div class="footer-info">ON6WL · <a href="https://on6wl.be">on6wl.be</a></div></div><div class="footer-right">H02</div></footer>
+<script src="../assets/js/app.js"></script><script src="../assets/js/sidebar.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{try{const s=JSON.parse(localStorage.getItem('wld_dbcursus'));if(s?.callsign)document.getElementById('hCallsign').textContent=s.callsign;if(!s?.callsign)window.location.href='../login.html';}catch{}renderSidebar('h02');});</script>
+</body></html>

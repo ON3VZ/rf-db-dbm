@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H21 · Ontvangst: gevoeligheid en S-niveaus — WLD Cursus</title>
+  <link rel="stylesheet" href="../assets/css/wld.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-logo"><a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><span class="header-logo-wld">WLD</span><div class="header-logo-sep"></div></a><span class="header-logo-title"><span class="lang-block active" data-lang="nl">dB & dBm Cursus</span><span class="lang-block" data-lang="fr">Cours dB & dBm</span><span class="lang-block" data-lang="en">dB & dBm Course</span></span></div>
+  <div class="header-center"><div class="header-progress-wrap"><div class="header-progress-label"><span data-i18n="progress">Voortgang</span><span class="header-progress-done">0 / 30</span></div><div class="header-progress-track"><div class="header-progress-fill" style="width:0%"></div></div></div></div>
+  <div class="header-right"><span class="header-callsign" id="hCallsign">—</span><div class="lang-switcher"><button class="lang-switch-btn active" data-lang="nl">NL</button><button class="lang-switch-btn" data-lang="fr">FR</button><button class="lang-switch-btn" data-lang="en">EN</button></div><button class="menu-toggle" id="menu-toggle">☰</button></div>
+</header>
+<nav class="app-sidebar"></nav>
+<main class="app-main"><div class="main-inner">
+
+<div class="chapter-header">
+  <div class="ch-header-meta"><div class="ch-breadcrumb"><a href="../index.html"><span class="lang-block active" data-lang="nl">Overzicht</span><span class="lang-block" data-lang="fr">Aperçu</span><span class="lang-block" data-lang="en">Overview</span></a><span>›</span><span>Deel 5</span></div><span class="ch-badge ch-badge-num">H21</span></div>
+  <h1><span class="lang-block active" data-lang="nl">Ontvangst: gevoeligheid en S-niveaus</span><span class="lang-block" data-lang="fr">Réception : sensibilité et niveaux S</span><span class="lang-block" data-lang="en">Reception: sensitivity and S-levels</span></h1>
+  <svg class="ch-header-waves" viewBox="0 0 820 44" preserveAspectRatio="none"><path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8" d="M0,34 Q20,40 41,34 Q61,28 82,34 Q102,40 123,34 Q143,28 164,34 Q184,40 205,34 Q225,28 246,34 Q266,40 287,34 Q307,28 328,34 Q348,40 369,34 Q389,28 410,34 Q430,40 451,34 Q471,28 492,34 Q512,40 533,34 Q553,28 574,34 Q594,40 615,34 Q635,28 656,34 Q676,40 697,34 Q717,28 738,34 Q758,40 779,34 Q799,28 820,32"/></svg>
+</div>
+<div class="chapter-body">
+
+<div class="leerdoelen">
+  <div class="leerdoelen-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="objectives">Na dit hoofdstuk kun je</span></div>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">S9 = −73 dBm (HF) en S9 = −93 dBm (VHF) correct citeren</span><span class="lang-block" data-lang="fr">Citer correctement S9 = −73 dBm (HF) et S9 = −93 dBm (VHF)</span><span class="lang-block" data-lang="en">Correctly quote S9 = −73 dBm (HF) and S9 = −93 dBm (VHF)</span></li>
+    <li><span class="lang-block active" data-lang="nl">verklaren waarom 1 S-eenheid = 6 dB = ×4 vermogen</span><span class="lang-block" data-lang="fr">Expliquer pourquoi 1 unité S = 6 dB = ×4 puissance</span><span class="lang-block" data-lang="en">Explain why 1 S-unit = 6 dB = ×4 power</span></li>
+    <li><span class="lang-block active" data-lang="nl">de beperkingen van S-meters in de praktijk benoemen</span><span class="lang-block" data-lang="fr">Nommer les limites des S-mètres en pratique</span><span class="lang-block" data-lang="en">Name the limitations of S-meters in practice</span></li>
+  </ul>
+</div>
+
+<h2><span class="section-num">01</span>
+  <span class="lang-block active" data-lang="nl">De IARU-definitie</span>
+  <span class="lang-block" data-lang="fr">La définition IARU</span>
+  <span class="lang-block" data-lang="en">The IARU definition</span>
+</h2>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>IARU Region 1 — Recommendation R.1 (1981)</div>
+  <div class="formula-main">
+    <span class="f-key">S9 (HF, &lt;30 MHz)</span> <span class="f-op">=</span> −73 dBm <span class="f-op">=</span> 50 µV / 50 Ω
+  </div>
+  <div class="formula-vars">
+    <div class="formula-var"><code>S9 VHF/UHF</code> <span class="lang-block active" data-lang="nl">= −93 dBm = 5 µV / 50 Ω (20 dB lager dan HF!)</span><span class="lang-block" data-lang="fr">= −93 dBm = 5 µV / 50 Ω (20 dB plus bas que HF !)</span><span class="lang-block" data-lang="en">= −93 dBm = 5 µV / 50 Ω (20 dB lower than HF!)</span></div>
+    <div class="formula-var"><code>1 S-eenheid</code> <span class="lang-block active" data-lang="nl">= 6 dB = ×4 vermogen = ×2 spanning</span><span class="lang-block" data-lang="fr">= 6 dB = ×4 puissance = ×2 tension</span><span class="lang-block" data-lang="en">= 6 dB = ×4 power = ×2 voltage</span></div>
+    <div class="formula-var"><code>Boven S9</code> <span class="lang-block active" data-lang="nl">stappen van 10 dB: S9+10, S9+20, S9+30…</span><span class="lang-block" data-lang="fr">pas de 10 dB : S9+10, S9+20, S9+30…</span><span class="lang-block" data-lang="en">steps of 10 dB: S9+10, S9+20, S9+30…</span></div>
+  </div>
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Let op!</span></div>
+  <p>
+    <span class="lang-block active" data-lang="nl">S9 op HF ≠ S9 op VHF! Het verschil is <strong>20 dB = factor 100 in vermogen</strong>. Meld altijd op welk frequentiegebied je een signaalrapport geeft.</span>
+    <span class="lang-block" data-lang="fr">S9 sur HF ≠ S9 sur VHF ! La différence est <strong>20 dB = facteur 100 en puissance</strong>. Précisez toujours la bande de fréquences lors d'un rapport de signal.</span>
+    <span class="lang-block" data-lang="en">S9 on HF ≠ S9 on VHF! The difference is <strong>20 dB = factor 100 in power</strong>. Always specify the frequency band when giving a signal report.</span>
+  </p>
+</div>
+
+<h2><span class="section-num">02</span><span class="lang-block active" data-lang="nl">Volledige S-metertabel HF</span><span class="lang-block" data-lang="fr">Tableau S-mètre HF complet</span><span class="lang-block" data-lang="en">Complete S-meter table HF</span></h2>
+
+<div class="table-wrap"><table>
+  <thead><tr><th>S</th><th>dBm (HF)</th><th>µV/50Ω</th><th>pW</th><th><span class="lang-block active" data-lang="nl">Beschrijving</span><span class="lang-block" data-lang="fr">Description</span><span class="lang-block" data-lang="en">Description</span></th></tr></thead>
+  <tbody>
+    <tr><td class="mono">S1</td><td class="mono">−121 dBm</td><td>0,20</td><td>0,08</td><td><span class="lang-block active" data-lang="nl">Nauwelijks hoorbaar</span><span class="lang-block" data-lang="fr">À peine audible</span><span class="lang-block" data-lang="en">Barely audible</span></td></tr>
+    <tr><td class="mono">S3</td><td class="mono">−109 dBm</td><td>0,79</td><td>1,26</td><td><span class="lang-block active" data-lang="nl">Zwak</span><span class="lang-block" data-lang="fr">Faible</span><span class="lang-block" data-lang="en">Weak</span></td></tr>
+    <tr><td class="mono">S5</td><td class="mono">−97 dBm</td><td>3,16</td><td>20</td><td><span class="lang-block active" data-lang="nl">Redelijk</span><span class="lang-block" data-lang="fr">Correct</span><span class="lang-block" data-lang="en">Fair</span></td></tr>
+    <tr><td class="mono">S7</td><td class="mono">−85 dBm</td><td>12,6</td><td>316</td><td><span class="lang-block active" data-lang="nl">Sterk</span><span class="lang-block" data-lang="fr">Fort</span><span class="lang-block" data-lang="en">Strong</span></td></tr>
+    <tr style="background:var(--teal-dim)"><td class="mono" style="font-weight:800;color:var(--teal)">S9</td><td class="mono" style="font-weight:800;color:var(--teal)">−73 dBm</td><td><strong>50</strong></td><td>5 000</td><td><strong><span class="lang-block active" data-lang="nl">IARU referentie</span><span class="lang-block" data-lang="fr">Référence IARU</span><span class="lang-block" data-lang="en">IARU reference</span></strong></td></tr>
+    <tr><td class="mono">S9+10</td><td class="mono">−63 dBm</td><td>158</td><td>50 000</td><td><span class="lang-block active" data-lang="nl">Uitstekend</span><span class="lang-block" data-lang="fr">Excellent</span><span class="lang-block" data-lang="en">Excellent</span></td></tr>
+    <tr><td class="mono">S9+20</td><td class="mono">−53 dBm</td><td>500</td><td>500 000</td><td><span class="lang-block active" data-lang="nl">Extreem sterk</span><span class="lang-block" data-lang="fr">Extrêmement fort</span><span class="lang-block" data-lang="en">Extremely strong</span></td></tr>
+    <tr><td class="mono">S9+30</td><td class="mono">−43 dBm</td><td>1 580</td><td>5 000 000</td><td><span class="lang-block active" data-lang="nl">Lokale nabijstation</span><span class="lang-block" data-lang="fr">Station locale proche</span><span class="lang-block" data-lang="en">Local nearby station</span></td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="section-num">03</span><span class="lang-block active" data-lang="nl">Waarom 6 dB per S-eenheid?</span><span class="lang-block" data-lang="fr">Pourquoi 6 dB par unité S ?</span><span class="lang-block" data-lang="en">Why 6 dB per S-unit?</span></h2>
+
+<div class="formula-block">
+  <div class="formula-label">6 dB per S-eenheid — afleiding</div>
+  <div class="formula-main">6 dB <span class="f-op">=</span> 10 · log₁₀(<span class="f-key">4</span>) <span class="f-op">=</span> 20 · log₁₀(<span class="f-key">2</span>)</div>
+  <div class="formula-vars">
+    <div class="formula-var"><code>×4 vermogen</code> <span class="lang-block active" data-lang="nl">= ×2 spanning (√4 = 2) = 1 S-eenheid hoger</span><span class="lang-block" data-lang="fr">= ×2 tension (√4 = 2) = 1 unité S plus haut</span><span class="lang-block" data-lang="en">= ×2 voltage (√4 = 2) = 1 S-unit higher</span></div>
+  </div>
+</div>
+
+<div class="callout callout-shack">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L22 4"/><path d="M12 4H22V14"/><rect x="2" y="14" width="8" height="6"/></svg><span data-i18n="shack_title">📻 In de shack</span></div>
+  <p>
+    <span class="lang-block active" data-lang="nl">Om <strong>één S-eenheid winst</strong> te halen op de ontvangstzijde, moet je zendvermogen viervoudig stijgen. Van 100 W naar 400 W is maar 1 S-eenheid. Antenne-upgrades zijn vaak efficiënter dan meer vermogen.</span>
+    <span class="lang-block" data-lang="fr">Pour gagner <strong>une unité S</strong> côté réception, votre puissance d'émission doit quadrupler. Passer de 100 W à 400 W ne représente qu'1 unité S. Les améliorations d'antenne sont souvent plus efficaces que plus de puissance.</span>
+    <span class="lang-block" data-lang="en">To gain <strong>one S-unit</strong> on the receiving end, your transmit power must quadruple. Going from 100 W to 400 W is only 1 S-unit. Antenna upgrades are often more efficient than more power.</span>
+  </p>
+</div>
+
+<h2><span class="section-num">04</span><span class="lang-block active" data-lang="nl">Beperkingen van S-meters</span><span class="lang-block" data-lang="fr">Limites des S-mètres</span><span class="lang-block" data-lang="en">Limitations of S-meters</span></h2>
+
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Belangrijk!</span></div>
+  <p>
+    <span class="lang-block active" data-lang="nl">De meeste transceivers zijn enkel gekalibreerd op het S9-punt. Onder S9 kunnen afwijkingen van 3–10 dB bestaan. Gebruik S-meters voor <strong>relatieve vergelijkingen</strong> (bijv. antenne A vs. B), niet als absolute precisie-instrument.</span>
+    <span class="lang-block" data-lang="fr">La plupart des émetteurs-récepteurs ne sont étalonnés qu'au point S9. En dessous de S9, des écarts de 3 à 10 dB sont possibles. Utilisez les S-mètres pour des <strong>comparaisons relatives</strong> (ex. antenne A vs. B), pas comme instrument de précision absolu.</span>
+    <span class="lang-block" data-lang="en">Most transceivers are only calibrated at the S9 point. Below S9, deviations of 3–10 dB can occur. Use S-meters for <strong>relative comparisons</strong> (e.g. antenna A vs. B), not as an absolute precision instrument.</span>
+  </p>
+</div>
+
+<!-- OEFENINGEN -->
+<hr class="section-divider">
+<div class="exercise-section">
+  <div class="exercise-section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span data-i18n="exercises_title">Oefeningen</span></div>
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">21.1</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">De S-meter toont S7 op HF. Wat is het vermogen in dBm? En wat is het verschil met S9?</span>
+      <span class="lang-block" data-lang="fr">Le S-mètre indique S7 sur HF. Quelle est la puissance en dBm ? Et quelle est la différence avec S9 ?</span>
+      <span class="lang-block" data-lang="en">The S-meter reads S7 on HF. What is the power in dBm? And what is the difference from S9?</span>
+    </div>
+    <button class="solution-btn" data-target="s21-1"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s21-1">
+      <span class="lang-block active" data-lang="nl">S9 = −73 dBm. S7 = S9 − 2 S-eenheden = −73 − (2×6) = −73 − 12 = <strong>−85 dBm</strong><br><br>Verschil met S9: 12 dB = factor 10^(12/10) ≈ 16× minder vermogen.<br><br>In W: 10^(−85/10)/1000 ≈ 3,2×10⁻¹² W = <strong>3,2 pW</strong></span>
+      <span class="lang-block" data-lang="fr">S9 = −73 dBm. S7 = S9 − 2 unités S = −73 − (2×6) = −73 − 12 = <strong>−85 dBm</strong><br><br>Différence avec S9 : 12 dB = facteur ≈ 16× moins de puissance.<br><br>En W : ≈ 3,2×10⁻¹² W = <strong>3,2 pW</strong></span>
+      <span class="lang-block" data-lang="en">S9 = −73 dBm. S7 = S9 − 2 S-units = −73 − (2×6) = −73 − 12 = <strong>−85 dBm</strong><br><br>Difference from S9: 12 dB = factor ≈ 16× less power.<br><br>In W: ≈ 3.2×10⁻¹² W = <strong>3.2 pW</strong></span>
+    </div>
+  </div>
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">21.2</span><div class="ex-diff"><span class="lit">●</span><span class="lit">●</span><span>●</span></div></div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Je verviervoudigt je zendvermogen van 50 W naar 200 W. Hoeveel S-eenheden winst verwacht je?</span>
+      <span class="lang-block" data-lang="fr">Vous quadruplez votre puissance d'émission de 50 W à 200 W. Combien d'unités S de gain attendez-vous ?</span>
+      <span class="lang-block" data-lang="en">You quadruple your transmit power from 50 W to 200 W. How many S-units of gain do you expect?</span>
+    </div>
+    <button class="solution-btn" data-target="s21-2"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s21-2">
+      <span class="lang-block active" data-lang="nl">200 W / 50 W = 4 = factor 4 → 10·log₁₀(4) = 6 dB<br>6 dB / 6 dB per S-eenheid = <strong>1 S-eenheid</strong><br><br>Van 50 W naar 200 W geeft slechts 1 S-eenheid winst. Dat is de realiteit van de logaritmische schaal.</span>
+      <span class="lang-block" data-lang="fr">200 W / 50 W = 4 → 10·log₁₀(4) = 6 dB<br>6 dB / 6 dB par unité S = <strong>1 unité S</strong><br><br>Passer de 50 W à 200 W ne donne qu'1 unité S de gain. C'est la réalité de l'échelle logarithmique.</span>
+      <span class="lang-block" data-lang="en">200 W / 50 W = 4 → 10·log₁₀(4) = 6 dB<br>6 dB / 6 dB per S-unit = <strong>1 S-unit</strong><br><br>Going from 50 W to 200 W gives only 1 S-unit gain. That is the reality of the logarithmic scale.</span>
+    </div>
+  </div>
+</div>
+
+<div class="summary-box">
+  <h3 data-i18n="summary_title">Samenvatting</h3>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl"><strong>S9 (HF) = −73 dBm</strong> · S9 (VHF/UHF) = −93 dBm · verschil = 20 dB</span><span class="lang-block" data-lang="fr"><strong>S9 (HF) = −73 dBm</strong> · S9 (VHF/UHF) = −93 dBm · différence = 20 dB</span><span class="lang-block" data-lang="en"><strong>S9 (HF) = −73 dBm</strong> · S9 (VHF/UHF) = −93 dBm · difference = 20 dB</span></li>
+    <li><span class="lang-block active" data-lang="nl">1 S-eenheid = 6 dB = ×4 vermogen = ×2 spanning</span><span class="lang-block" data-lang="fr">1 unité S = 6 dB = ×4 puissance = ×2 tension</span><span class="lang-block" data-lang="en">1 S-unit = 6 dB = ×4 power = ×2 voltage</span></li>
+    <li><span class="lang-block active" data-lang="nl">Boven S9: stappen van 10 dB · S-meters zijn indicatief, niet precisie</span><span class="lang-block" data-lang="fr">Au-dessus de S9 : pas de 10 dB · Les S-mètres sont indicatifs, pas précis</span><span class="lang-block" data-lang="en">Above S9: steps of 10 dB · S-meters are indicative, not precise</span></li>
+  </ul>
+</div>
+<div class="memory-box">
+  <div class="memory-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg><span data-i18n="memory_title">🧠 Onthoud</span></div>
+  <div class="memory-content">
+    <span class="lang-block active" data-lang="nl"><span>S9 HF</span> = −73 dBm &nbsp;·&nbsp; <span>S9 VHF</span> = −93 dBm<br>1 S = <span>6 dB</span> = factor <span>4</span> in vermogen</span>
+    <span class="lang-block" data-lang="fr"><span>S9 HF</span> = −73 dBm &nbsp;·&nbsp; <span>S9 VHF</span> = −93 dBm<br>1 S = <span>6 dB</span> = facteur <span>4</span> en puissance</span>
+    <span class="lang-block" data-lang="en"><span>S9 HF</span> = −73 dBm &nbsp;·&nbsp; <span>S9 VHF</span> = −93 dBm<br>1 S = <span>6 dB</span> = factor <span>4</span> in power</span>
+  </div>
+</div>
+
+<div class="complete-area">
+  <p><span class="lang-block active" data-lang="nl">Klaar?</span><span class="lang-block" data-lang="fr">Terminé ?</span><span class="lang-block" data-lang="en">Done?</span></p>
+  <button class="btn-complete" id="btn-complete" data-chid="h21"><span data-i18n="mark_done">✓ Markeer als voltooid</span></button>
+</div>
+<div class="chapter-nav-footer">
+  <a href="h20-rf-ketens.html" class="ch-nav-btn"><span class="dir">← Vorige / Précédent / Previous</span><span class="name">H20</span></a>
+  <a href="h22-link-budget.html" class="ch-nav-btn right"><span class="dir">Volgende / Suivant / Next →</span><span class="name">H22</span></a>
+</div>
+</div></div></main>
+<footer class="app-footer"><div class="footer-logo-row"><span class="footer-wld">WLD</span><div class="footer-sep"></div><div class="footer-info">ON6WL · <a href="https://on6wl.be">on6wl.be</a></div></div><div class="footer-right">H21</div></footer>
+<script src="../assets/js/app.js"></script><script src="../assets/js/sidebar.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => {
+  try { const s = JSON.parse(localStorage.getItem('wld_dbcursus')); if (s?.callsign) document.getElementById('hCallsign').textContent = s.callsign; if (!s?.callsign) window.location.href = '../login.html'; } catch {}
+  renderSidebar('h21');
+});
+</script>
+</body></html>

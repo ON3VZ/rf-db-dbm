@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H10 · dBm — WLD dB & dBm Cursus</title>
+  <link rel="stylesheet" href="../assets/css/wld.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-logo">
+    <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span class="header-logo-wld">WLD</span><div class="header-logo-sep"></div>
+    </a>
+    <span class="header-logo-title">
+      <span class="lang-block active" data-lang="nl">dB & dBm Cursus</span>
+      <span class="lang-block" data-lang="fr">Cours dB & dBm</span>
+      <span class="lang-block" data-lang="en">dB & dBm Course</span>
+    </span>
+  </div>
+  <div class="header-center">
+    <div class="header-progress-wrap">
+      <div class="header-progress-label"><span data-i18n="progress">Voortgang</span><span class="header-progress-done">0 / 30</span></div>
+      <div class="header-progress-track"><div class="header-progress-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-callsign" id="hCallsign">—</span>
+    <div class="lang-switcher">
+      <button class="lang-switch-btn active" data-lang="nl">NL</button>
+      <button class="lang-switch-btn" data-lang="fr">FR</button>
+      <button class="lang-switch-btn" data-lang="en">EN</button>
+    </div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+  </div>
+</header>
+<nav class="app-sidebar"></nav>
+<main class="app-main">
+<div class="main-inner">
+
+<div class="chapter-header">
+  <div class="ch-header-meta">
+    <div class="ch-breadcrumb">
+      <a href="../index.html"><span class="lang-block active" data-lang="nl">Overzicht</span><span class="lang-block" data-lang="fr">Aperçu</span><span class="lang-block" data-lang="en">Overview</span></a>
+      <span>›</span>
+      <span class="lang-block active" data-lang="nl">Deel III</span><span class="lang-block" data-lang="fr">Partie III</span><span class="lang-block" data-lang="en">Part III</span>
+    </div>
+    <span class="ch-badge ch-badge-num">H10</span>
+    <span class="ch-badge ch-badge-level"><span class="lang-block active" data-lang="nl">Beginner</span><span class="lang-block" data-lang="fr">Débutant</span><span class="lang-block" data-lang="en">Beginner</span></span>
+  </div>
+  <h1>
+    <span class="lang-block active" data-lang="nl">dBm: een anker in de werkelijkheid</span>
+    <span class="lang-block" data-lang="fr">dBm : une ancre dans la réalité</span>
+    <span class="lang-block" data-lang="en">dBm: an anchor in reality</span>
+  </h1>
+  <p class="intro">
+    <span class="lang-block active" data-lang="nl">dB was altijd relatief. dBm lost dat op: het koppelt de schaal aan een vaste referentie van 1 milliwatt. Zo wordt een abstract logaritmisch getal een concreet vermogensniveau.</span>
+    <span class="lang-block" data-lang="fr">dB était toujours relatif. dBm résout ce problème : il ancre l'échelle à une référence fixe de 1 milliwatt. Un nombre logarithmique abstrait devient ainsi un niveau de puissance concret.</span>
+    <span class="lang-block" data-lang="en">dB was always relative. dBm solves that: it anchors the scale to a fixed reference of 1 milliwatt. An abstract logarithmic number becomes a concrete power level.</span>
+  </p>
+  <svg class="ch-header-waves" viewBox="0 0 820 44" preserveAspectRatio="none">
+    <path class="rf-w3" fill="none" stroke="#00B4CC" stroke-width="1" d="M0,28 Q41,34 82,28 Q123,22 164,28 Q205,34 246,28 Q287,22 328,28 Q369,34 410,28 Q451,22 492,28 Q533,34 574,28 Q615,22 656,28 Q697,34 738,28 Q779,22 820,26"/>
+    <path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8" d="M0,34 Q20,40 41,34 Q61,28 82,34 Q102,40 123,34 Q143,28 164,34 Q184,40 205,34 Q225,28 246,34 Q266,40 287,34 Q307,28 328,34 Q348,40 369,34 Q389,28 410,34 Q430,40 451,34 Q471,28 492,34 Q512,40 533,34 Q553,28 574,34 Q594,40 615,34 Q635,28 656,34 Q676,40 697,34 Q717,28 738,34 Q758,40 779,34 Q799,28 820,32"/>
+  </svg>
+</div>
+
+<div class="chapter-body">
+
+<div class="leerdoelen">
+  <div class="leerdoelen-header"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="objectives">Na dit hoofdstuk kun je</span></div>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">de formele definitie van dBm geven en toepassen</span><span class="lang-block" data-lang="fr">donner et appliquer la définition formelle du dBm</span><span class="lang-block" data-lang="en">give and apply the formal definition of dBm</span></li>
+    <li><span class="lang-block active" data-lang="nl">uitleggen waarom de referentie juist 1 mW is</span><span class="lang-block" data-lang="fr">expliquer pourquoi la référence est exactement 1 mW</span><span class="lang-block" data-lang="en">explain why the reference is exactly 1 mW</span></li>
+    <li><span class="lang-block active" data-lang="nl">het fundamentele verschil tussen dB en dBm beschrijven</span><span class="lang-block" data-lang="fr">décrire la différence fondamentale entre dB et dBm</span><span class="lang-block" data-lang="en">describe the fundamental difference between dB and dBm</span></li>
+    <li><span class="lang-block active" data-lang="nl">de ankerpunten 0 dBm = 1 mW en 30 dBm = 1 W beheersen</span><span class="lang-block" data-lang="fr">maîtriser les points d'ancrage 0 dBm = 1 mW et 30 dBm = 1 W</span><span class="lang-block" data-lang="en">master the anchor points 0 dBm = 1 mW and 30 dBm = 1 W</span></li>
+    <li><span class="lang-block active" data-lang="nl">de rekenregel dBm + dB = dBm correct toepassen</span><span class="lang-block" data-lang="fr">appliquer correctement la règle dBm + dB = dBm</span><span class="lang-block" data-lang="en">correctly apply the rule dBm + dB = dBm</span></li>
+  </ul>
+</div>
+
+<h2><span class="section-num">01</span>
+  <span class="lang-block active" data-lang="nl">Het probleem dat dBm oplost</span>
+  <span class="lang-block" data-lang="fr">Le problème que dBm résout</span>
+  <span class="lang-block" data-lang="en">The problem dBm solves</span>
+</h2>
+
+<div class="lang-block active" data-lang="nl">
+  <p>dB beschrijft verhoudingen uitstekend, maar heeft één beperking: het is altijd relatief. Als je wil zeggen "mijn transceiver zendt 100 W uit", heb je een absolute manier nodig. Je wil niet zeggen "mijn zendvermogen is 26 dB ten opzichte van 0,25 W" — dat is onpraktisch.</p>
+  <p>De oplossing: spreek <em>eens en voor altijd</em> af dat de referentie <strong>1 milliwatt</strong> is. Dan kan iedereen vermogensniveaus vergelijken zonder telkens de referentie te moeten vermelden. Het suffix "m" in dBm staat voor milliwatt.</p>
+</div>
+<div class="lang-block" data-lang="fr">
+  <p>dB décrit excellemment les rapports, mais a une limitation : il est toujours relatif. Si vous voulez dire "mon émetteur émet 100 W", vous avez besoin d'une façon absolue de l'exprimer. Dire "ma puissance est 26 dB par rapport à 0,25 W" est impraticable.</p>
+  <p>La solution : convenir <em>une fois pour toutes</em> que la référence est <strong>1 milliwatt</strong>. Ainsi, chacun peut comparer les niveaux de puissance sans préciser la référence à chaque fois. Le suffixe "m" dans dBm signifie milliwatt.</p>
+</div>
+<div class="lang-block" data-lang="en">
+  <p>dB describes ratios excellently but has one limitation: it is always relative. If you want to say "my transceiver transmits 100 W", you need an absolute way to express it. Saying "my transmit power is 26 dB relative to 0.25 W" is impractical.</p>
+  <p>The solution: agree <em>once and for all</em> that the reference is <strong>1 milliwatt</strong>. Then everyone can compare power levels without stating the reference every time. The suffix "m" in dBm stands for milliwatt.</p>
+</div>
+
+<h2><span class="section-num">02</span>
+  <span class="lang-block active" data-lang="nl">Formele definitie</span>
+  <span class="lang-block" data-lang="fr">Définition formelle</span>
+  <span class="lang-block" data-lang="en">Formal definition</span>
+</h2>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+    <span class="lang-block active" data-lang="nl">Definitie dBm</span><span class="lang-block" data-lang="fr">Définition dBm</span><span class="lang-block" data-lang="en">dBm definition</span>
+  </div>
+  <div class="formula-main">
+    <span class="f-key">P (dBm)</span> <span class="f-op">=</span> 10 <span class="f-op">·</span> log₁₀ <span class="f-op">(</span><span class="f-key">P (mW)</span> <span class="f-op">/</span> 1 mW<span class="f-op">)</span>
+  </div>
+  <div class="formula-vars">
+    <div class="formula-var"><code>P (mW)</code> <span class="lang-block active" data-lang="nl">het vermogen uitgedrukt in milliwatt — <strong>altijd naar mW omzetten!</strong></span><span class="lang-block" data-lang="fr">la puissance exprimée en milliwatts — <strong>toujours convertir en mW !</strong></span><span class="lang-block" data-lang="en">the power expressed in milliwatts — <strong>always convert to mW first!</strong></span></div>
+    <div class="formula-var"><code>1 mW</code> <span class="lang-block active" data-lang="nl">de vaste referentie — ingebakken in de definitie van dBm</span><span class="lang-block" data-lang="fr">la référence fixe — intégrée dans la définition du dBm</span><span class="lang-block" data-lang="en">the fixed reference — built into the definition of dBm</span></div>
+    <div class="formula-var"><code>Vereenvoudigd</code> <span class="lang-block active" data-lang="nl">P(dBm) = 10 · log₁₀(P in mW) — de noemer "1" valt weg als getal</span><span class="lang-block" data-lang="fr">P(dBm) = 10 · log₁₀(P en mW) — le dénominateur "1" disparaît comme nombre</span><span class="lang-block" data-lang="en">P(dBm) = 10 · log₁₀(P in mW) — the denominator "1" drops out as a number</span></div>
+  </div>
+</div>
+
+<h2><span class="section-num">03</span>
+  <span class="lang-block active" data-lang="nl">De onmisbare ankerpunten</span>
+  <span class="lang-block" data-lang="fr">Les points d'ancrage indispensables</span>
+  <span class="lang-block" data-lang="en">The essential anchor points</span>
+</h2>
+
+<div class="callout callout-key">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span data-i18n="key_title">🔑 Kernregel</span></div>
+  <p>
+    <span class="lang-block active" data-lang="nl"><strong>0 dBm = 1 mW</strong> — de referentie zelf. &nbsp;&nbsp; <strong>30 dBm = 1 W</strong> — het meest gebruikte ankerpunt.<br>Elke +10 dB = ×10. Elke +3 dB ≈ ×2. Combineer deze regels voor snel hoofdrekenen.</span>
+    <span class="lang-block" data-lang="fr"><strong>0 dBm = 1 mW</strong> — la référence elle-même. &nbsp;&nbsp; <strong>30 dBm = 1 W</strong> — le point d'ancrage le plus utilisé.<br>Chaque +10 dB = ×10. Chaque +3 dB ≈ ×2. Combinez ces règles pour calculer rapidement.</span>
+    <span class="lang-block" data-lang="en"><strong>0 dBm = 1 mW</strong> — the reference itself. &nbsp;&nbsp; <strong>30 dBm = 1 W</strong> — the most used anchor point.<br>Every +10 dB = ×10. Every +3 dB ≈ ×2. Combine these rules for quick mental calculation.</span>
+  </p>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>dBm</th>
+        <th>mW</th>
+        <th>W</th>
+        <th><span class="lang-block active" data-lang="nl">Context</span><span class="lang-block" data-lang="fr">Contexte</span><span class="lang-block" data-lang="en">Context</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">−73 dBm</td><td>0,00005 mW</td><td>50 pW</td><td><span class="lang-block active" data-lang="nl">S9 op HF (IARU-norm)</span><span class="lang-block" data-lang="fr">S9 HF (norme IARU)</span><span class="lang-block" data-lang="en">S9 on HF (IARU standard)</span></td></tr>
+      <tr><td class="mono">−30 dBm</td><td>0,001 mW = 1 µW</td><td>1 µW</td><td><span class="lang-block active" data-lang="nl">Sterk ontvangen signaal</span><span class="lang-block" data-lang="fr">Signal reçu fort</span><span class="lang-block" data-lang="en">Strong received signal</span></td></tr>
+      <tr style="background:var(--teal-dim)"><td class="mono" style="color:var(--teal);font-weight:800">0 dBm</td><td><strong>1 mW</strong></td><td>0,001 W</td><td><strong><span class="lang-block active" data-lang="nl">Referentie (definitie dBm)</span><span class="lang-block" data-lang="fr">Référence (définition dBm)</span><span class="lang-block" data-lang="en">Reference (dBm definition)</span></strong></td></tr>
+      <tr><td class="mono">+10 dBm</td><td>10 mW</td><td>0,01 W</td><td><span class="lang-block active" data-lang="nl">Typisch WiFi-maximum</span><span class="lang-block" data-lang="fr">Maximum WiFi typique</span><span class="lang-block" data-lang="en">Typical WiFi maximum</span></td></tr>
+      <tr><td class="mono">+20 dBm</td><td>100 mW</td><td>0,1 W</td><td><span class="lang-block active" data-lang="nl">Typisch ISM-band</span><span class="lang-block" data-lang="fr">Typique bande ISM</span><span class="lang-block" data-lang="en">Typical ISM band</span></td></tr>
+      <tr><td class="mono">+27 dBm</td><td>500 mW</td><td>0,5 W</td><td><span class="lang-block active" data-lang="nl">Halve watt</span><span class="lang-block" data-lang="fr">Un demi-watt</span><span class="lang-block" data-lang="en">Half a watt</span></td></tr>
+      <tr style="background:var(--teal-dim)"><td class="mono" style="color:var(--teal);font-weight:800">+30 dBm</td><td>1 000 mW</td><td><strong>1 W</strong></td><td><strong><span class="lang-block active" data-lang="nl">Sleutelankerpunt: 1 W</span><span class="lang-block" data-lang="fr">Point d'ancrage clé : 1 W</span><span class="lang-block" data-lang="en">Key anchor point: 1 W</span></strong></td></tr>
+      <tr><td class="mono">+37 dBm</td><td>5 000 mW</td><td>5 W</td><td>QRP</td></tr>
+      <tr><td class="mono">+40 dBm</td><td>10 000 mW</td><td>10 W</td><td>10 W</td></tr>
+      <tr><td class="mono">+50 dBm</td><td>100 000 mW</td><td>100 W</td><td><span class="lang-block active" data-lang="nl">Typisch HF-transceiver</span><span class="lang-block" data-lang="fr">Émetteur HF typique</span><span class="lang-block" data-lang="en">Typical HF transceiver</span></td></tr>
+      <tr><td class="mono">+56 dBm</td><td>400 000 mW</td><td>400 W</td><td><span class="lang-block active" data-lang="nl">Belgisch/NL legaal max. HF</span><span class="lang-block" data-lang="fr">Max légal BE/NL HF</span><span class="lang-block" data-lang="en">Belgian/NL legal max HF</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2><span class="section-num">04</span>
+  <span class="lang-block active" data-lang="nl">dB vs. dBm — het fundamentele onderscheid</span>
+  <span class="lang-block" data-lang="fr">dB vs. dBm — la distinction fondamentale</span>
+  <span class="lang-block" data-lang="en">dB vs. dBm — the fundamental distinction</span>
+</h2>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th><span class="lang-block active" data-lang="nl">Eigenschap</span><span class="lang-block" data-lang="fr">Propriété</span><span class="lang-block" data-lang="en">Property</span></th>
+        <th>dB</th>
+        <th>dBm</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="lang-block active" data-lang="nl">Type</span><span class="lang-block" data-lang="fr">Type</span><span class="lang-block" data-lang="en">Type</span></td><td><span class="lang-block active" data-lang="nl">Relatief (verhouding)</span><span class="lang-block" data-lang="fr">Relatif (rapport)</span><span class="lang-block" data-lang="en">Relative (ratio)</span></td><td><span class="lang-block active" data-lang="nl">Absoluut (vermogensniveau)</span><span class="lang-block" data-lang="fr">Absolu (niveau de puissance)</span><span class="lang-block" data-lang="en">Absolute (power level)</span></td></tr>
+      <tr><td><span class="lang-block active" data-lang="nl">Referentie</span><span class="lang-block" data-lang="fr">Référence</span><span class="lang-block" data-lang="en">Reference</span></td><td><span class="lang-block active" data-lang="nl">Geen vaste referentie</span><span class="lang-block" data-lang="fr">Pas de référence fixe</span><span class="lang-block" data-lang="en">No fixed reference</span></td><td>Altijd / Toujours / Always: 1 mW</td></tr>
+      <tr><td><span class="lang-block active" data-lang="nl">Gebruik</span><span class="lang-block" data-lang="fr">Utilisation</span><span class="lang-block" data-lang="en">Use</span></td><td><span class="lang-block active" data-lang="nl">Versterking, verlies, verschil</span><span class="lang-block" data-lang="fr">Gain, perte, différence</span><span class="lang-block" data-lang="en">Gain, loss, difference</span></td><td><span class="lang-block active" data-lang="nl">Signaalniveau, zendvermogen</span><span class="lang-block" data-lang="fr">Niveau signal, puissance émise</span><span class="lang-block" data-lang="en">Signal level, transmit power</span></td></tr>
+      <tr><td><span class="lang-block active" data-lang="nl">0-waarde</span><span class="lang-block" data-lang="fr">Valeur 0</span><span class="lang-block" data-lang="en">Zero value</span></td><td><span class="lang-block active" data-lang="nl">Verhouding = 1 (gelijk)</span><span class="lang-block" data-lang="fr">Rapport = 1 (égal)</span><span class="lang-block" data-lang="en">Ratio = 1 (equal)</span></td><td><span class="lang-block active" data-lang="nl">Vermogen = 1 mW</span><span class="lang-block" data-lang="fr">Puissance = 1 mW</span><span class="lang-block" data-lang="en">Power = 1 mW</span></td></tr>
+      <tr><td><span class="lang-block active" data-lang="nl">Optellen?</span><span class="lang-block" data-lang="fr">Addition ?</span><span class="lang-block" data-lang="en">Adding?</span></td><td class="green">dB + dB = dB ✓</td><td class="orange">dBm + dBm = FOUT ✗</td></tr>
+      <tr><td><span class="lang-block active" data-lang="nl">Combineren</span><span class="lang-block" data-lang="fr">Combiner</span><span class="lang-block" data-lang="en">Combine</span></td><td class="green">dBm + dB = dBm ✓</td><td class="green">dBm − dBm = dB ✓</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span data-i18n="warning_title">⚠️ Let op!</span></div>
+  <p>
+    <span class="lang-block active" data-lang="nl">Twee zenders van elk 0 dBm (= 1 mW) combineren geeft <strong>niet</strong> 0 dBm maar 3 dBm (= 2 mW). Je moet altijd eerst naar mW omzetten, optellen, en daarna terug naar dBm. <strong>dBm + dBm = fundamentele rekenfout.</strong></span>
+    <span class="lang-block" data-lang="fr">Combiner deux émetteurs de 0 dBm (= 1 mW) chacun ne donne <strong>pas</strong> 0 dBm mais 3 dBm (= 2 mW). Il faut toujours convertir d'abord en mW, additionner, puis reconvertir en dBm. <strong>dBm + dBm = erreur de calcul fondamentale.</strong></span>
+    <span class="lang-block" data-lang="en">Combining two transmitters of 0 dBm (= 1 mW) each gives <strong>not</strong> 0 dBm but 3 dBm (= 2 mW). You must always convert to mW first, add, then convert back to dBm. <strong>dBm + dBm = fundamental calculation error.</strong></span>
+  </p>
+</div>
+
+<div class="callout callout-shack">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L22 4"/><path d="M12 4H22V14"/><rect x="2" y="14" width="8" height="6"/></svg><span data-i18n="shack_title">📻 In de shack</span></div>
+  <p>
+    <span class="lang-block active" data-lang="nl">Als jouw spectrum analyzer −73 dBm aangeeft op een frequentie, dan is dat 50 picowatt vermogen aan de ingang. Dat is 0,000 000 000 050 W. Zonder dBm zou je dat moeten schrijven — nu zeg je gewoon −73 dBm. Dat is precies de kracht van deze notatie.</span>
+    <span class="lang-block" data-lang="fr">Si votre analyseur de spectre indique −73 dBm sur une fréquence, c'est 50 picowatts de puissance à l'entrée. Soit 0,000 000 000 050 W. Sans dBm, vous devriez l'écrire ainsi — maintenant vous dites simplement −73 dBm. C'est précisément la puissance de cette notation.</span>
+    <span class="lang-block" data-lang="en">If your spectrum analyser reads −73 dBm on a frequency, that is 50 picowatts of power at the input. That is 0.000 000 000 050 W. Without dBm you would have to write that out — now you simply say −73 dBm. That is exactly the power of this notation.</span>
+  </p>
+</div>
+
+<!-- OEFENINGEN -->
+<hr class="section-divider">
+<div class="exercise-section">
+  <div class="exercise-section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span data-i18n="exercises_title">Oefeningen</span></div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">10.1</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Bereken de dBm-waarde van 10 mW. Gebruik de formule en controleer met het ankerpunt.</span>
+      <span class="lang-block" data-lang="fr">Calculez la valeur dBm de 10 mW. Utilisez la formule et vérifiez avec le point d'ancrage.</span>
+      <span class="lang-block" data-lang="en">Calculate the dBm value of 10 mW. Use the formula and verify with the anchor point.</span>
+    </div>
+    <button class="solution-btn" data-target="s10-1"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s10-1">
+      <span class="lang-block active" data-lang="nl">P(dBm) = 10 · log₁₀(10 mW / 1 mW) = 10 · log₁₀(10) = 10 · 1 = <strong>10 dBm</strong><br><br>Controle via ankerpunt: 0 dBm = 1 mW, dan +10 dB (×10) → 10 mW = 10 dBm ✓</span>
+      <span class="lang-block" data-lang="fr">P(dBm) = 10 · log₁₀(10 mW / 1 mW) = 10 · log₁₀(10) = 10 · 1 = <strong>10 dBm</strong><br><br>Vérification par point d'ancrage : 0 dBm = 1 mW, puis +10 dB (×10) → 10 mW = 10 dBm ✓</span>
+      <span class="lang-block" data-lang="en">P(dBm) = 10 · log₁₀(10 mW / 1 mW) = 10 · log₁₀(10) = 10 · 1 = <strong>10 dBm</strong><br><br>Verify via anchor: 0 dBm = 1 mW, then +10 dB (×10) → 10 mW = 10 dBm ✓</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">10.2</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Jouw HF-transceiver zendt 100 W uit. Bereken het zendvermogen in dBm.</span>
+      <span class="lang-block" data-lang="fr">Votre émetteur HF émet 100 W. Calculez la puissance émise en dBm.</span>
+      <span class="lang-block" data-lang="en">Your HF transceiver transmits 100 W. Calculate the transmit power in dBm.</span>
+    </div>
+    <button class="solution-btn" data-target="s10-2"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s10-2">
+      <span class="lang-block active" data-lang="nl">Stap 1: 100 W = 100 000 mW<br>Stap 2: P(dBm) = 10 · log₁₀(100 000) = 10 · 5 = <strong>50 dBm</strong><br><br>Via ankerpunt: 30 dBm = 1 W. 100 W = 1 W × 100 = +20 dB boven 30 dBm → 50 dBm ✓</span>
+      <span class="lang-block" data-lang="fr">Étape 1 : 100 W = 100 000 mW<br>Étape 2 : P(dBm) = 10 · log₁₀(100 000) = 10 · 5 = <strong>50 dBm</strong><br><br>Via ancrage : 30 dBm = 1 W. 100 W = 1 W × 100 = +20 dB au-dessus de 30 dBm → 50 dBm ✓</span>
+      <span class="lang-block" data-lang="en">Step 1: 100 W = 100,000 mW<br>Step 2: P(dBm) = 10 · log₁₀(100,000) = 10 · 5 = <strong>50 dBm</strong><br><br>Via anchor: 30 dBm = 1 W. 100 W = 1 W × 100 = +20 dB above 30 dBm → 50 dBm ✓</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">10.3</span><div class="ex-diff"><span class="lit">●</span><span class="lit">●</span><span>●</span></div></div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Transceiver: 100 W (+50 dBm). Kabelverlies: 3 dB. Antenneversterking: 6 dBi. Wat is het effectieve uitgestraalde vermogen in dBm en in W?</span>
+      <span class="lang-block" data-lang="fr">Émetteur : 100 W (+50 dBm). Perte câble : 3 dB. Gain antenne : 6 dBi. Quelle est la puissance effective rayonnée en dBm et en W ?</span>
+      <span class="lang-block" data-lang="en">Transceiver: 100 W (+50 dBm). Cable loss: 3 dB. Antenna gain: 6 dBi. What is the effective radiated power in dBm and in W?</span>
+    </div>
+    <button class="solution-btn" data-target="s10-3"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s10-3">
+      <span class="lang-block active" data-lang="nl">ERP = +50 dBm − 3 dB + 6 dB = <strong>+53 dBm</strong><br><br>Terug naar W: 53 dBm = 30 dBm + 23 dB = 1 W × 200 = <strong>200 W ERP</strong><br>(23 dB = 20 dB + 3 dB = ×100 × ×2 = ×200)<br><br>Dit is de kracht van de dB-keten: gewoon optellen!</span>
+      <span class="lang-block" data-lang="fr">ERP = +50 dBm − 3 dB + 6 dB = <strong>+53 dBm</strong><br><br>Reconversion en W : 53 dBm = 30 dBm + 23 dB = 1 W × 200 = <strong>200 W ERP</strong><br>(23 dB = 20 dB + 3 dB = ×100 × ×2 = ×200)<br><br>C'est la puissance de la chaîne dB : simplement additionner !</span>
+      <span class="lang-block" data-lang="en">ERP = +50 dBm − 3 dB + 6 dB = <strong>+53 dBm</strong><br><br>Back to W: 53 dBm = 30 dBm + 23 dB = 1 W × 200 = <strong>200 W ERP</strong><br>(23 dB = 20 dB + 3 dB = ×100 × ×2 = ×200)<br><br>This is the power of the dB chain: simply add!</span>
+    </div>
+  </div>
+</div>
+
+<!-- SAMENVATTING -->
+<div class="summary-box">
+  <h3 data-i18n="summary_title">Samenvatting</h3>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">dBm = dB ten opzichte van <strong>1 milliwatt</strong> — absoluut vermogensniveau</span><span class="lang-block" data-lang="fr">dBm = dB par rapport à <strong>1 milliwatt</strong> — niveau de puissance absolu</span><span class="lang-block" data-lang="en">dBm = dB relative to <strong>1 milliwatt</strong> — absolute power level</span></li>
+    <li><span class="lang-block active" data-lang="nl">Formule: P(dBm) = 10 · log₁₀(P in mW)</span><span class="lang-block" data-lang="fr">Formule : P(dBm) = 10 · log₁₀(P en mW)</span><span class="lang-block" data-lang="en">Formula: P(dBm) = 10 · log₁₀(P in mW)</span></li>
+    <li><span class="lang-block active" data-lang="nl"><strong>0 dBm = 1 mW</strong> · <strong>30 dBm = 1 W</strong> · +10 dB = ×10 · +3 dB ≈ ×2</span><span class="lang-block" data-lang="fr"><strong>0 dBm = 1 mW</strong> · <strong>30 dBm = 1 W</strong> · +10 dB = ×10 · +3 dB ≈ ×2</span><span class="lang-block" data-lang="en"><strong>0 dBm = 1 mW</strong> · <strong>30 dBm = 1 W</strong> · +10 dB = ×10 · +3 dB ≈ ×2</span></li>
+    <li><span class="lang-block active" data-lang="nl">dBm + dB = dBm ✓ · dBm − dBm = dB ✓ · dBm + dBm = FOUT ✗</span><span class="lang-block" data-lang="fr">dBm + dB = dBm ✓ · dBm − dBm = dB ✓ · dBm + dBm = ERREUR ✗</span><span class="lang-block" data-lang="en">dBm + dB = dBm ✓ · dBm − dBm = dB ✓ · dBm + dBm = ERROR ✗</span></li>
+  </ul>
+</div>
+
+<div class="memory-box">
+  <div class="memory-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg><span data-i18n="memory_title">🧠 Onthoud dit</span></div>
+  <div class="memory-content">
+    <span class="lang-block active" data-lang="nl"><span>0 dBm</span> = 1 mW &nbsp;·&nbsp; <span>30 dBm</span> = 1 W &nbsp;·&nbsp; <span>50 dBm</span> = 100 W<br>Elke 10 dB hoger = 10× meer vermogen</span>
+    <span class="lang-block" data-lang="fr"><span>0 dBm</span> = 1 mW &nbsp;·&nbsp; <span>30 dBm</span> = 1 W &nbsp;·&nbsp; <span>50 dBm</span> = 100 W<br>Chaque 10 dB de plus = 10× plus de puissance</span>
+    <span class="lang-block" data-lang="en"><span>0 dBm</span> = 1 mW &nbsp;·&nbsp; <span>30 dBm</span> = 1 W &nbsp;·&nbsp; <span>50 dBm</span> = 100 W<br>Every 10 dB higher = 10× more power</span>
+  </div>
+</div>
+
+<div class="complete-area">
+  <p><span class="lang-block active" data-lang="nl">Klaar met dit hoofdstuk?</span><span class="lang-block" data-lang="fr">Chapitre terminé ?</span><span class="lang-block" data-lang="en">Finished this chapter?</span></p>
+  <button class="btn-complete" id="btn-complete" data-chid="h10"><span data-i18n="mark_done">✓ Markeer als voltooid</span></button>
+</div>
+<div class="chapter-nav-footer">
+  <a href="h09-mentaal-rekenen.html" class="ch-nav-btn"><span class="dir"><span class="lang-block active" data-lang="nl">← Vorige</span><span class="lang-block" data-lang="fr">← Précédent</span><span class="lang-block" data-lang="en">← Previous</span></span><span class="name">H09</span></a>
+  <a href="h11-omrekenen.html" class="ch-nav-btn right"><span class="dir"><span class="lang-block active" data-lang="nl">Volgende →</span><span class="lang-block" data-lang="fr">Suivant →</span><span class="lang-block" data-lang="en">Next →</span></span><span class="name">H11 · <span class="lang-block active" data-lang="nl">Omrekenen</span><span class="lang-block" data-lang="fr">Conversion</span><span class="lang-block" data-lang="en">Converting</span></span></a>
+</div>
+
+</div>
+</div>
+</main>
+<footer class="app-footer">
+  <div class="footer-logo-row"><span class="footer-wld">WLD</span><div class="footer-sep"></div><div class="footer-info">ON6WL · <a href="https://on6wl.be">on6wl.be</a></div></div>
+  <div class="footer-right">dB & dBm Cursus · H10</div>
+</footer>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  try { const s = JSON.parse(localStorage.getItem('wld_dbcursus')); if (s?.callsign) document.getElementById('hCallsign').textContent = s.callsign; if (!s?.callsign) window.location.href = '../login.html'; } catch {}
+  renderSidebar('h10');
+});
+</script>
+</body>
+</html>

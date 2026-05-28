@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H04 · Wat is dB? — WLD dB & dBm Cursus</title>
+  <link rel="stylesheet" href="../assets/css/wld.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-logo">
+    <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span class="header-logo-wld">WLD</span>
+      <div class="header-logo-sep"></div>
+    </a>
+    <span class="header-logo-title">
+      <span class="lang-block active" data-lang="nl">dB & dBm Cursus</span>
+      <span class="lang-block" data-lang="fr">Cours dB & dBm</span>
+      <span class="lang-block" data-lang="en">dB & dBm Course</span>
+    </span>
+  </div>
+  <div class="header-center">
+    <div class="header-progress-wrap">
+      <div class="header-progress-label"><span data-i18n="progress">Voortgang</span><span class="header-progress-done">0 / 30</span></div>
+      <div class="header-progress-track"><div class="header-progress-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-callsign" id="hCallsign">—</span>
+    <div class="lang-switcher">
+      <button class="lang-switch-btn active" data-lang="nl">NL</button>
+      <button class="lang-switch-btn" data-lang="fr">FR</button>
+      <button class="lang-switch-btn" data-lang="en">EN</button>
+    </div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+  </div>
+</header>
+
+<nav class="app-sidebar"></nav>
+
+<main class="app-main">
+<div class="main-inner">
+
+<div class="chapter-header">
+  <div class="ch-header-meta">
+    <div class="ch-breadcrumb">
+      <a href="../index.html"><span class="lang-block active" data-lang="nl">Overzicht</span><span class="lang-block" data-lang="fr">Aperçu</span><span class="lang-block" data-lang="en">Overview</span></a>
+      <span>›</span>
+      <span class="lang-block active" data-lang="nl">Deel II</span><span class="lang-block" data-lang="fr">Partie II</span><span class="lang-block" data-lang="en">Part II</span>
+    </div>
+    <span class="ch-badge ch-badge-num">H04</span>
+    <span class="ch-badge ch-badge-level"><span class="lang-block active" data-lang="nl">Beginner</span><span class="lang-block" data-lang="fr">Débutant</span><span class="lang-block" data-lang="en">Beginner</span></span>
+  </div>
+  <h1>
+    <span class="lang-block active" data-lang="nl">Wat is dB? Definitie en begripsafbakening</span>
+    <span class="lang-block" data-lang="fr">Qu'est-ce que le dB ? Définition et délimitation</span>
+    <span class="lang-block" data-lang="en">What is dB? Definition and scope</span>
+  </h1>
+  <p class="intro">
+    <span class="lang-block active" data-lang="nl">De decibel is het meest gebruikte — en meest misverstane — begrip in RF. Dit hoofdstuk legt de formele definitie vast, toont wat dB wél en niet is, en benoemt een schrijffout die overal in populaire bronnen te vinden is.</span>
+    <span class="lang-block" data-lang="fr">Le décibel est le concept le plus utilisé — et le plus mal compris — en RF. Ce chapitre pose la définition formelle, montre ce que dB est et n'est pas, et signale une erreur d'écriture présente partout dans les sources populaires.</span>
+    <span class="lang-block" data-lang="en">The decibel is the most used — and most misunderstood — concept in RF. This chapter establishes the formal definition, shows what dB is and is not, and identifies a writing error found everywhere in popular sources.</span>
+  </p>
+  <svg class="ch-header-waves" viewBox="0 0 820 44" preserveAspectRatio="none">
+    <path class="rf-w3" fill="none" stroke="#00B4CC" stroke-width="1" d="M0,28 Q41,34 82,28 Q123,22 164,28 Q205,34 246,28 Q287,22 328,28 Q369,34 410,28 Q451,22 492,28 Q533,34 574,28 Q615,22 656,28 Q697,34 738,28 Q779,22 820,26"/>
+    <path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8" d="M0,34 Q20,40 41,34 Q61,28 82,34 Q102,40 123,34 Q143,28 164,34 Q184,40 205,34 Q225,28 246,34 Q266,40 287,34 Q307,28 328,34 Q348,40 369,34 Q389,28 410,34 Q430,40 451,34 Q471,28 492,34 Q512,40 533,34 Q553,28 574,34 Q594,40 615,34 Q635,28 656,34 Q676,40 697,34 Q717,28 738,34 Q758,40 779,34 Q799,28 820,32"/>
+  </svg>
+</div>
+
+<div class="chapter-body">
+
+<div class="leerdoelen">
+  <div class="leerdoelen-header">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <span data-i18n="objectives">Na dit hoofdstuk kun je</span>
+  </div>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">de formele definitie van de decibel geven</span><span class="lang-block" data-lang="fr">donner la définition formelle du décibel</span><span class="lang-block" data-lang="en">give the formal definition of the decibel</span></li>
+    <li><span class="lang-block active" data-lang="nl">uitleggen waarom dB altijd relatief is</span><span class="lang-block" data-lang="fr">expliquer pourquoi dB est toujours relatif</span><span class="lang-block" data-lang="en">explain why dB is always relative</span></li>
+    <li><span class="lang-block active" data-lang="nl">de formule N(dB) = 10·log₁₀(P₁/P₂) correct toepassen</span><span class="lang-block" data-lang="fr">appliquer correctement la formule N(dB) = 10·log₁₀(P₁/P₂)</span><span class="lang-block" data-lang="en">correctly apply the formula N(dB) = 10·log₁₀(P₁/P₂)</span></li>
+    <li><span class="lang-block active" data-lang="nl">het verschil tussen dB en dBm in één zin beschrijven</span><span class="lang-block" data-lang="fr">décrire en une phrase la différence entre dB et dBm</span><span class="lang-block" data-lang="en">describe the difference between dB and dBm in one sentence</span></li>
+    <li><span class="lang-block active" data-lang="nl">een veelgemaakte schrijffout in de dB-formule herkennen</span><span class="lang-block" data-lang="fr">reconnaître une erreur d'écriture courante dans la formule dB</span><span class="lang-block" data-lang="en">recognise a common writing error in the dB formula</span></li>
+  </ul>
+</div>
+
+<h2><span class="section-num">01</span>
+  <span class="lang-block active" data-lang="nl">Herkomst van de naam</span>
+  <span class="lang-block" data-lang="fr">Origine du nom</span>
+  <span class="lang-block" data-lang="en">Origin of the name</span>
+</h2>
+
+<div class="lang-block active" data-lang="nl">
+  <p>"Decibel" is samengesteld uit <strong>deci-</strong> (tiende) en <strong>bel</strong> — vernoemd naar Alexander Graham Bell, de uitvinder van de telefoon. De bel (B) was de oorspronkelijke eenheid, maar bleek te groot voor praktisch gebruik. Één decibel = 1/10 bel. Het symbool schrijf je altijd als <code>dB</code> — kleine d, hoofdletter B.</p>
+</div>
+<div class="lang-block" data-lang="fr">
+  <p>« Décibel » est composé de <strong>déci-</strong> (dixième) et <strong>bel</strong> — nommé d'après Alexander Graham Bell, l'inventeur du téléphone. Le bel (B) était l'unité originale, mais s'est avéré trop grand pour un usage pratique. Un décibel = 1/10 bel. Le symbole s'écrit toujours <code>dB</code> — d minuscule, B majuscule.</p>
+</div>
+<div class="lang-block" data-lang="en">
+  <p>"Decibel" is composed of <strong>deci-</strong> (tenth) and <strong>bel</strong> — named after Alexander Graham Bell, the inventor of the telephone. The bel (B) was the original unit but proved too large for practical use. One decibel = 1/10 bel. The symbol is always written as <code>dB</code> — lowercase d, uppercase B.</p>
+</div>
+
+<h2><span class="section-num">02</span>
+  <span class="lang-block active" data-lang="nl">De formele definitie</span>
+  <span class="lang-block" data-lang="fr">La définition formelle</span>
+  <span class="lang-block" data-lang="en">The formal definition</span>
+</h2>
+
+<div class="formula-block">
+  <div class="formula-label">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+    <span class="lang-block active" data-lang="nl">Definitie decibel — vermogen</span>
+    <span class="lang-block" data-lang="fr">Définition décibel — puissance</span>
+    <span class="lang-block" data-lang="en">Decibel definition — power</span>
+  </div>
+  <div class="formula-main">
+    <span class="f-key">N (dB)</span> <span class="f-op">=</span> 10 <span class="f-op">·</span> log₁₀ <span class="f-op">(</span><span class="f-key">P₁</span> <span class="f-op">/</span> <span class="f-key">P₂</span><span class="f-op">)</span>
+  </div>
+  <div class="formula-vars">
+    <div class="formula-var"><code>N</code> <span class="lang-block active" data-lang="nl">het aantal decibel — het resultaat</span><span class="lang-block" data-lang="fr">le nombre de décibels — le résultat</span><span class="lang-block" data-lang="en">the number of decibels — the result</span></div>
+    <div class="formula-var"><code>P₁</code> <span class="lang-block active" data-lang="nl">het te beschrijven vermogen (bijv. uitgang)</span><span class="lang-block" data-lang="fr">la puissance à décrire (ex. sortie)</span><span class="lang-block" data-lang="en">the power being described (e.g. output)</span></div>
+    <div class="formula-var"><code>P₂</code> <span class="lang-block active" data-lang="nl">het referentievermogen (bijv. ingang) — <strong>zelfde eenheid als P₁!</strong></span><span class="lang-block" data-lang="fr">la puissance de référence (ex. entrée) — <strong>même unité que P₁ !</strong></span><span class="lang-block" data-lang="en">the reference power (e.g. input) — <strong>same unit as P₁!</strong></span></div>
+    <div class="formula-var"><code>log₁₀</code> <span class="lang-block active" data-lang="nl">de basis-10 logaritme (ook geschreven als lg, log of log₁₀)</span><span class="lang-block" data-lang="fr">le logarithme en base 10 (aussi écrit lg, log ou log₁₀)</span><span class="lang-block" data-lang="en">the base-10 logarithm (also written lg, log or log₁₀)</span></div>
+  </div>
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span data-i18n="warning_title">⚠️ Let op!</span>
+  </div>
+  <p>
+    <span class="lang-block active" data-lang="nl">In veel populaire bronnen staat: <code>dB = 10 · log₁₀(P)</code> — zónder de noemer P₂. Dit is een <strong>onvolledige schrijfwijze</strong>. dB is per definitie een verhouding van twee grootheden. Schrijf altijd beide: <code>10 · log₁₀(P₁ / P₂)</code>.</span>
+    <span class="lang-block" data-lang="fr">Dans de nombreuses sources populaires, on trouve : <code>dB = 10 · log₁₀(P)</code> — sans le dénominateur P₂. C'est une <strong>notation incomplète</strong>. dB est par définition un rapport entre deux grandeurs. Écrivez toujours les deux : <code>10 · log₁₀(P₁ / P₂)</code>.</span>
+    <span class="lang-block" data-lang="en">Many popular sources write: <code>dB = 10 · log₁₀(P)</code> — without the denominator P₂. This is an <strong>incomplete notation</strong>. dB is by definition a ratio of two quantities. Always write both: <code>10 · log₁₀(P₁ / P₂)</code>.</span>
+  </p>
+</div>
+
+<h2><span class="section-num">03</span>
+  <span class="lang-block active" data-lang="nl">dB is altijd relatief</span>
+  <span class="lang-block" data-lang="fr">Le dB est toujours relatif</span>
+  <span class="lang-block" data-lang="en">dB is always relative</span>
+</h2>
+
+<div class="lang-block active" data-lang="nl"><p>Dit is het meest cruciale punt. dB beschrijft een <strong>verhouding</strong>, nooit een absolute waarde. "Een signaal van 20 dB" heeft geen betekenis — 20 dB ten opzichte van wat? Pas wanneer de referentie vaststaat, krijgt de waarde absolute betekenis.</p></div>
+<div class="lang-block" data-lang="fr"><p>C'est le point le plus crucial. dB décrit un <strong>rapport</strong>, jamais une valeur absolue. « Un signal de 20 dB » n'a aucun sens — 20 dB par rapport à quoi ? C'est seulement quand la référence est fixée que la valeur prend un sens absolu.</p></div>
+<div class="lang-block" data-lang="en"><p>This is the most crucial point. dB describes a <strong>ratio</strong>, never an absolute value. "A signal of 20 dB" has no meaning — 20 dB relative to what? Only when the reference is fixed does the value gain absolute meaning.</p></div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th><span class="lang-block active" data-lang="nl">Uitdrukking</span><span class="lang-block" data-lang="fr">Expression</span><span class="lang-block" data-lang="en">Expression</span></th>
+        <th><span class="lang-block active" data-lang="nl">Referentie</span><span class="lang-block" data-lang="fr">Référence</span><span class="lang-block" data-lang="en">Reference</span></th>
+        <th><span class="lang-block active" data-lang="nl">Type</span><span class="lang-block" data-lang="fr">Type</span><span class="lang-block" data-lang="en">Type</span></th>
+        <th><span class="lang-block active" data-lang="nl">Correct?</span><span class="lang-block" data-lang="fr">Correct ?</span><span class="lang-block" data-lang="en">Correct?</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="lang-block active" data-lang="nl">Versterking van 20 dB</span><span class="lang-block" data-lang="fr">Gain de 20 dB</span><span class="lang-block" data-lang="en">Gain of 20 dB</span></td><td><span class="lang-block active" data-lang="nl">Ingang van versterker</span><span class="lang-block" data-lang="fr">Entrée de l'ampli</span><span class="lang-block" data-lang="en">Amplifier input</span></td><td><span class="lang-block active" data-lang="nl">Relatief</span><span class="lang-block" data-lang="fr">Relatif</span><span class="lang-block" data-lang="en">Relative</span></td><td class="check">✓</td></tr>
+      <tr><td><span class="lang-block active" data-lang="nl">Verlies van 3 dB</span><span class="lang-block" data-lang="fr">Perte de 3 dB</span><span class="lang-block" data-lang="en">Loss of 3 dB</span></td><td><span class="lang-block active" data-lang="nl">Ingangssignaal kabel</span><span class="lang-block" data-lang="fr">Signal d'entrée câble</span><span class="lang-block" data-lang="en">Cable input signal</span></td><td><span class="lang-block active" data-lang="nl">Relatief</span><span class="lang-block" data-lang="fr">Relatif</span><span class="lang-block" data-lang="en">Relative</span></td><td class="check">✓</td></tr>
+      <tr><td>30 dBm</td><td>1 mW (vastgelegd)</td><td><span class="lang-block active" data-lang="nl">Absoluut</span><span class="lang-block" data-lang="fr">Absolu</span><span class="lang-block" data-lang="en">Absolute</span></td><td class="check">✓</td></tr>
+      <tr><td><span class="lang-block active" data-lang="nl">Signaal van 20 dB</span><span class="lang-block" data-lang="fr">Signal de 20 dB</span><span class="lang-block" data-lang="en">Signal of 20 dB</span></td><td><span class="lang-block active" data-lang="nl">Niet gespecificeerd</span><span class="lang-block" data-lang="fr">Non spécifié</span><span class="lang-block" data-lang="en">Not specified</span></td><td><span class="lang-block active" data-lang="nl">Onvolledig</span><span class="lang-block" data-lang="fr">Incomplet</span><span class="lang-block" data-lang="en">Incomplete</span></td><td class="cross">✗</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2><span class="section-num">04</span>
+  <span class="lang-block active" data-lang="nl">Praktische sleutelwaarden</span>
+  <span class="lang-block" data-lang="fr">Valeurs clés pratiques</span>
+  <span class="lang-block" data-lang="en">Practical key values</span>
+</h2>
+
+<div class="db-scale">
+  <div class="db-scale-head">
+    <span>dB</span>
+    <span><span class="lang-block active" data-lang="nl">Visueel</span><span class="lang-block" data-lang="fr">Visuel</span><span class="lang-block" data-lang="en">Visual</span></span>
+    <span><span class="lang-block active" data-lang="nl">Verhouding vermogen</span><span class="lang-block" data-lang="fr">Rapport de puissance</span><span class="lang-block" data-lang="en">Power ratio</span></span>
+  </div>
+  <div class="db-scale-row"><span class="db-val neg">−20 dB</span><div class="db-bar"><div class="db-bar-fill neg" style="width:90%"></div></div><span class="db-ratio">÷100</span></div>
+  <div class="db-scale-row"><span class="db-val neg">−10 dB</span><div class="db-bar"><div class="db-bar-fill neg" style="width:60%"></div></div><span class="db-ratio">÷10</span></div>
+  <div class="db-scale-row"><span class="db-val neg">−6 dB</span><div class="db-bar"><div class="db-bar-fill neg" style="width:42%"></div></div><span class="db-ratio">÷4</span></div>
+  <div class="db-scale-row"><span class="db-val neg">−3 dB</span><div class="db-bar"><div class="db-bar-fill neg" style="width:22%"></div></div><span class="db-ratio">÷2 <span class="lang-block active" data-lang="nl">(halvering)</span><span class="lang-block" data-lang="fr">(moitié)</span><span class="lang-block" data-lang="en">(halved)</span></span></div>
+  <div class="db-scale-row"><span class="db-val zero">0 dB</span><div class="db-bar"><div class="db-bar-fill" style="width:2%;background:var(--slate-light)"></div></div><span class="db-ratio">×1 <span class="lang-block active" data-lang="nl">(gelijk)</span><span class="lang-block" data-lang="fr">(égal)</span><span class="lang-block" data-lang="en">(equal)</span></span></div>
+  <div class="db-scale-row"><span class="db-val pos">+3 dB</span><div class="db-bar"><div class="db-bar-fill pos" style="width:22%"></div></div><span class="db-ratio">×2 <span class="lang-block active" data-lang="nl">(verdubbeling)</span><span class="lang-block" data-lang="fr">(doublement)</span><span class="lang-block" data-lang="en">(doubled)</span></span></div>
+  <div class="db-scale-row"><span class="db-val pos">+6 dB</span><div class="db-bar"><div class="db-bar-fill pos" style="width:42%"></div></div><span class="db-ratio">×4</span></div>
+  <div class="db-scale-row"><span class="db-val pos">+10 dB</span><div class="db-bar"><div class="db-bar-fill pos" style="width:60%"></div></div><span class="db-ratio">×10</span></div>
+  <div class="db-scale-row"><span class="db-val pos">+20 dB</span><div class="db-bar"><div class="db-bar-fill pos" style="width:90%"></div></div><span class="db-ratio">×100</span></div>
+</div>
+
+<div class="callout callout-shack">
+  <div class="callout-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L22 4"/><path d="M12 4H22V14"/><rect x="2" y="14" width="8" height="6"/></svg>
+    <span data-i18n="shack_title">📻 In de shack</span>
+  </div>
+  <p>
+    <span class="lang-block active" data-lang="nl">Als je zegt "mijn kabel heeft 3 dB verlies", betekent dat de helft van je vermogen als warmte in de kabel verdwijnt. Bij 100 W ingang kom je uit op 50 W aan de antenne. Drie kleine dB — maar de helft van je vermogen kwijt!</span>
+    <span class="lang-block" data-lang="fr">Quand vous dites « mon câble a une perte de 3 dB », cela signifie que la moitié de votre puissance se dissipe en chaleur dans le câble. Avec 100 W en entrée, vous obtenez 50 W à l'antenne. Seulement trois petits dB — mais la moitié de votre puissance perdue !</span>
+    <span class="lang-block" data-lang="en">When you say "my cable has 3 dB loss", it means half your power is lost as heat in the cable. With 100 W input, you get 50 W at the antenna. Just three small dB — but half your power gone!</span>
+  </p>
+</div>
+
+<!-- OEFENINGEN -->
+<hr class="section-divider">
+<div class="exercise-section">
+  <div class="exercise-section-title">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    <span data-i18n="exercises_title">Oefeningen</span>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">4.1</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Een versterker heeft vermogen ingang P₁ = 5 W en uitgang P₂ = 50 W. Bereken de versterking in dB.</span>
+      <span class="lang-block" data-lang="fr">Un amplificateur a une puissance d'entrée P₁ = 5 W et de sortie P₂ = 50 W. Calculez le gain en dB.</span>
+      <span class="lang-block" data-lang="en">An amplifier has input power P₁ = 5 W and output power P₂ = 50 W. Calculate the gain in dB.</span>
+    </div>
+    <button class="solution-btn" data-target="s4-1"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s4-1">
+      <span class="lang-block active" data-lang="nl">N = 10 · log₁₀(50 W / 5 W) = 10 · log₁₀(10) = 10 · 1 = <strong>10 dB</strong><br><br>De verhouding is 10 (tienvoud) → log₁₀(10) = 1 → ×10 = +10 dB. ✓</span>
+      <span class="lang-block" data-lang="fr">N = 10 · log₁₀(50 W / 5 W) = 10 · log₁₀(10) = 10 · 1 = <strong>10 dB</strong><br><br>Le rapport est 10 (décuple) → log₁₀(10) = 1 → ×10 = +10 dB. ✓</span>
+      <span class="lang-block" data-lang="en">N = 10 · log₁₀(50 W / 5 W) = 10 · log₁₀(10) = 10 · 1 = <strong>10 dB</strong><br><br>The ratio is 10 (tenfold) → log₁₀(10) = 1 → ×10 = +10 dB. ✓</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">4.2</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Wat is het vermogen bij 0 dB versterking? Wat betekent dat fysiek?</span>
+      <span class="lang-block" data-lang="fr">Quelle est la puissance avec un gain de 0 dB ? Qu'est-ce que cela signifie physiquement ?</span>
+      <span class="lang-block" data-lang="en">What is the power at 0 dB gain? What does that mean physically?</span>
+    </div>
+    <button class="solution-btn" data-target="s4-2"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s4-2">
+      <span class="lang-block active" data-lang="nl">0 dB = 10 · log₁₀(P_uit / P_in) = 0 → log₁₀(P_uit / P_in) = 0 → P_uit / P_in = 10⁰ = <strong>1</strong><br><br>P_uitgang = P_ingang. Geen versterking, geen verlies. Signaal ongewijzigd doorgegeven.<br><br>⚠️ 0 dB ≠ geen vermogen! 0 dB betekent: gelijke niveaus.</span>
+      <span class="lang-block" data-lang="fr">0 dB = 10 · log₁₀(P_out / P_in) = 0 → log₁₀(P_out / P_in) = 0 → P_out / P_in = 10⁰ = <strong>1</strong><br><br>P_sortie = P_entrée. Pas de gain, pas de perte. Signal transmis sans modification.<br><br>⚠️ 0 dB ≠ pas de puissance ! 0 dB signifie : niveaux égaux.</span>
+      <span class="lang-block" data-lang="en">0 dB = 10 · log₁₀(P_out / P_in) = 0 → log₁₀(P_out / P_in) = 0 → P_out / P_in = 10⁰ = <strong>1</strong><br><br>P_output = P_input. No gain, no loss. Signal passed through unchanged.<br><br>⚠️ 0 dB ≠ no power! 0 dB means: equal levels.</span>
+    </div>
+  </div>
+</div>
+
+<!-- SAMENVATTING -->
+<div class="summary-box">
+  <h3 data-i18n="summary_title">Samenvatting</h3>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">dB = <strong>decibel</strong> = 1/10 bel, vernoemd naar Alexander Graham Bell</span><span class="lang-block" data-lang="fr">dB = <strong>décibel</strong> = 1/10 bel, nommé d'après Alexander Graham Bell</span><span class="lang-block" data-lang="en">dB = <strong>decibel</strong> = 1/10 bel, named after Alexander Graham Bell</span></li>
+    <li><span class="lang-block active" data-lang="nl">Formule: <strong>N(dB) = 10 · log₁₀(P₁ / P₂)</strong> — altijd met teller én noemer</span><span class="lang-block" data-lang="fr">Formule : <strong>N(dB) = 10 · log₁₀(P₁ / P₂)</strong> — toujours avec numérateur et dénominateur</span><span class="lang-block" data-lang="en">Formula: <strong>N(dB) = 10 · log₁₀(P₁ / P₂)</strong> — always with numerator and denominator</span></li>
+    <li><span class="lang-block active" data-lang="nl">dB is altijd <strong>relatief</strong> — een vergelijking, nooit een absolute waarde</span><span class="lang-block" data-lang="fr">dB est toujours <strong>relatif</strong> — une comparaison, jamais une valeur absolue</span><span class="lang-block" data-lang="en">dB is always <strong>relative</strong> — a comparison, never an absolute value</span></li>
+    <li><span class="lang-block active" data-lang="nl"><strong>0 dB</strong> = verhouding 1 (gelijk) · <strong>+3 dB</strong> ≈ ×2 · <strong>+10 dB</strong> = ×10</span><span class="lang-block" data-lang="fr"><strong>0 dB</strong> = rapport 1 (égal) · <strong>+3 dB</strong> ≈ ×2 · <strong>+10 dB</strong> = ×10</span><span class="lang-block" data-lang="en"><strong>0 dB</strong> = ratio 1 (equal) · <strong>+3 dB</strong> ≈ ×2 · <strong>+10 dB</strong> = ×10</span></li>
+    <li><span class="lang-block active" data-lang="nl">dBm = dB mét vaste referentie (1 mW) → absoluut vermogensniveau</span><span class="lang-block" data-lang="fr">dBm = dB avec référence fixe (1 mW) → niveau de puissance absolu</span><span class="lang-block" data-lang="en">dBm = dB with fixed reference (1 mW) → absolute power level</span></li>
+  </ul>
+</div>
+
+<div class="memory-box">
+  <div class="memory-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg>
+    <span data-i18n="memory_title">🧠 Onthoud dit</span>
+  </div>
+  <div class="memory-content">
+    <span class="lang-block active" data-lang="nl"><span>0 dB</span> = gelijk &nbsp;|&nbsp; <span>+3 dB</span> ≈ ×2 &nbsp;|&nbsp; <span>+10 dB</span> = ×10<br><span>−3 dB</span> = helft &nbsp;|&nbsp; <span>−10 dB</span> = tiende deel</span>
+    <span class="lang-block" data-lang="fr"><span>0 dB</span> = égal &nbsp;|&nbsp; <span>+3 dB</span> ≈ ×2 &nbsp;|&nbsp; <span>+10 dB</span> = ×10<br><span>−3 dB</span> = moitié &nbsp;|&nbsp; <span>−10 dB</span> = dixième</span>
+    <span class="lang-block" data-lang="en"><span>0 dB</span> = equal &nbsp;|&nbsp; <span>+3 dB</span> ≈ ×2 &nbsp;|&nbsp; <span>+10 dB</span> = ×10<br><span>−3 dB</span> = half &nbsp;|&nbsp; <span>−10 dB</span> = one tenth</span>
+  </div>
+</div>
+
+<div class="complete-area">
+  <p><span class="lang-block active" data-lang="nl">Klaar met dit hoofdstuk?</span><span class="lang-block" data-lang="fr">Chapitre terminé ?</span><span class="lang-block" data-lang="en">Finished this chapter?</span></p>
+  <button class="btn-complete" id="btn-complete" data-chid="h04"><span data-i18n="mark_done">✓ Markeer als voltooid</span></button>
+</div>
+
+<div class="chapter-nav-footer">
+  <a href="h03-logaritmische-schaal.html" class="ch-nav-btn">
+    <span class="dir"><span class="lang-block active" data-lang="nl">← Vorige</span><span class="lang-block" data-lang="fr">← Précédent</span><span class="lang-block" data-lang="en">← Previous</span></span>
+    <span class="name">H03</span>
+  </a>
+  <a href="h05-vermogensverhouding.html" class="ch-nav-btn right">
+    <span class="dir"><span class="lang-block active" data-lang="nl">Volgende →</span><span class="lang-block" data-lang="fr">Suivant →</span><span class="lang-block" data-lang="en">Next →</span></span>
+    <span class="name">H05 · <span class="lang-block active" data-lang="nl">Vermogensverhouding</span><span class="lang-block" data-lang="fr">Rapport de puissance</span><span class="lang-block" data-lang="en">Power ratio</span></span>
+  </a>
+</div>
+
+</div>
+</div>
+</main>
+
+<footer class="app-footer">
+  <div class="footer-logo-row"><span class="footer-wld">WLD</span><div class="footer-sep"></div><div class="footer-info">ON6WL · <a href="https://on6wl.be">on6wl.be</a></div></div>
+  <div class="footer-right">dB & dBm Cursus · H04</div>
+</footer>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const s = JSON.parse(localStorage.getItem('wld_dbcursus'));
+    if (s?.callsign) document.getElementById('hCallsign').textContent = s.callsign;
+    if (!s?.callsign) window.location.href = '../login.html';
+  } catch {}
+  renderSidebar('h04');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practicum — Spectrum-analyse VHF/UHF portable — WLD ON6WL</title>
+  <link rel="stylesheet" href="../assets/css/wld.css">
+  <style>
+    /* ── Practicum-specifieke stijlen ───────────────────────── */
+    .prac-hero{background:var(--navy);border-radius:var(--r-lg);padding:36px 44px 0;margin-bottom:28px;overflow:hidden;position:relative}
+    .prac-hero-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--orange);margin-bottom:10px}
+    .prac-hero h1{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:var(--white);line-height:1.15;margin-bottom:12px}
+    .prac-hero h1 span{color:var(--teal)}
+    .prac-hero-sub{font-size:.95rem;color:var(--slate-light);max-width:560px;line-height:1.65;margin-bottom:28px}
+    .prac-hero-waves{display:block;width:100%;height:44px}
+
+    /* Stappennummering groot */
+    .step-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--teal);color:var(--white);font-family:var(--mono);font-size:.88rem;font-weight:700;border-radius:50%;flex-shrink:0;margin-right:12px}
+    .step-header{display:flex;align-items:center;margin-bottom:14px}
+    .step-header h2{margin:0;border:none;padding:0;font-size:1.15rem}
+
+    /* Invulkaart */
+    .input-card{background:var(--white);border:1.5px dashed rgba(0,180,204,.45);border-radius:var(--r-md);padding:22px 26px;margin:16px 0}
+    .input-card-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--teal);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    .input-grid{display:grid;gap:12px}
+    .input-row{display:grid;grid-template-columns:1fr 140px 140px;gap:10px;align-items:center;font-size:.88rem}
+    .input-row.wide{grid-template-columns:1fr 200px}
+    .input-row label{color:var(--text-dark);font-weight:500}
+    .input-field{border:1.5px solid var(--line);border-radius:var(--r-sm);padding:8px 12px;font-family:var(--mono);font-size:.95rem;font-weight:700;color:var(--text-dark);outline:none;transition:border-color .2s;background:var(--bg-light);width:100%}
+    .input-field:focus{border-color:var(--teal);background:var(--white)}
+    .input-field.calc{background:#f0fbfc;border-color:rgba(0,180,204,.3)}
+    .field-unit{font-size:.78rem;color:var(--slate);font-family:var(--mono);white-space:nowrap;align-self:center}
+
+    /* Mettabel */
+    .meas-table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+    .meas-table th{background:var(--navy);color:var(--teal);padding:9px 12px;text-align:left;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em}
+    .meas-table td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+    .meas-table tr:nth-child(even) td{background:var(--bg-light)}
+    .meas-table input[type=text]{border:1.5px solid rgba(0,180,204,.3);border-radius:3px;padding:5px 8px;font-family:var(--mono);font-size:.9rem;width:100%;background:#f0fbfc;outline:none}
+    .meas-table input[type=text]:focus{border-color:var(--teal)}
+    .meas-table .norm-cell{font-family:var(--mono);color:var(--slate);font-size:.82rem}
+    .meas-table select{border:1.5px solid rgba(0,180,204,.3);border-radius:3px;padding:5px 8px;font-size:.88rem;background:#f0fbfc;outline:none;width:100%}
+    .meas-table select:focus{border-color:var(--teal)}
+
+    /* Waarschuwingskader meetveiligheid */
+    .safety-box{background:linear-gradient(135deg,#3d0f00,#5c1500);border:2px solid var(--orange);border-radius:var(--r-lg);padding:24px 28px;margin:24px 0}
+    .safety-box-header{display:flex;align-items:center;gap:10px;font-size:1.05rem;font-weight:700;color:var(--orange);margin-bottom:14px}
+    .safety-box p{color:#ffd6c0;font-size:.92rem;line-height:1.65;margin-bottom:10px}
+    .safety-box p:last-child{margin-bottom:0}
+    .safety-box strong{color:var(--white)}
+    .safety-box .calc-example{font-family:var(--mono);background:rgba(0,0,0,.3);border-radius:4px;padding:10px 14px;color:#ffd6c0;font-size:.88rem;margin-top:10px;line-height:1.9}
+
+    /* Blokdiagram (keten) */
+    .chain-diagram{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin:20px 0;overflow-x:auto}
+    .chain-block{background:var(--white);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;text-align:center;min-width:110px;flex-shrink:0}
+    .chain-block.source{border-color:var(--teal);border-width:2px}
+    .chain-block.atten{background:rgba(255,107,53,.08);border-color:var(--orange)}
+    .chain-block.analyzer{background:var(--teal-dim);border-color:var(--teal);border-width:2px}
+    .chain-block .cb-title{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--slate);margin-bottom:4px}
+    .chain-block .cb-val{font-family:var(--mono);font-size:.9rem;font-weight:700;color:var(--text-dark)}
+    .chain-block .cb-sub{font-size:.72rem;color:var(--slate);margin-top:3px}
+    .chain-arrow{display:flex;align-items:center;padding:0 8px;color:var(--slate);font-size:1.2rem;flex-shrink:0}
+    .chain-db{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--orange);background:rgba(255,107,53,.12);border-radius:100px;padding:2px 8px;margin-top:4px;display:inline-block}
+
+    /* Interpretatiescherm simulator */
+    .screen-sim{background:#0a1a0a;border:2px solid #334;border-radius:var(--r-md);padding:20px;margin:16px 0;font-family:var(--mono)}
+    .screen-grid{display:grid;grid-template-columns:40px 1fr;gap:4px;align-items:center;margin-bottom:8px}
+    .screen-y-label{font-size:.65rem;color:#6a8;text-align:right;padding-right:6px}
+    .screen-bar-area{height:6px;border-bottom:1px dashed rgba(100,200,100,.15)}
+    .screen-bar-area.ref{border-bottom:1px solid rgba(100,200,100,.4)}
+    .screen-freqs{display:flex;justify-content:space-between;font-size:.65rem;color:#6a8;margin-top:8px;padding-left:44px}
+    .screen-params{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;padding-top:10px;border-top:1px solid rgba(100,200,100,.2)}
+    .sp{font-size:.72rem;color:#8a8}
+    .sp span{color:#adc}
+    .marker-line{position:relative;display:inline-block}
+    .marker-tag{font-size:.65rem;color:#fd0;white-space:nowrap}
+
+    /* Resultaattabel geformatteerd */
+    .result-box{background:var(--navy);border-radius:var(--r-md);padding:20px 24px;margin:16px 0}
+    .result-box-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:14px}
+    .result-formula{font-family:var(--mono);font-size:1rem;color:var(--white);line-height:2;background:rgba(0,180,204,.08);border-radius:var(--r-sm);padding:12px 16px;margin:10px 0}
+    .result-formula .f-teal{color:var(--teal)}
+    .result-formula .f-orange{color:var(--orange)}
+    .result-formula .f-inp{color:#ffd;border-bottom:1px dashed rgba(0,180,204,.5);min-width:60px;display:inline-block}
+
+    /* Normvergelijking */
+    .norm-check{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--r-sm);margin:8px 0;font-size:.9rem}
+    .norm-check.ok{background:var(--green-dim);border:1px solid rgba(34,197,94,.3)}
+    .norm-check.warn{background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.3)}
+    .norm-check.fail{background:var(--red-dim);border:1px solid rgba(255,107,53,.35)}
+    .norm-icon{font-size:1.2rem;flex-shrink:0}
+    .norm-text{color:var(--text-dark);font-size:.88rem;line-height:1.5}
+
+    /* Invulgebied conclusie */
+    .textarea-wrap{margin:12px 0}
+    .textarea-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--slate);margin-bottom:6px;display:block}
+    textarea.prac-textarea{width:100%;min-height:90px;border:1.5px dashed rgba(0,180,204,.4);border-radius:var(--r-sm);padding:12px;font-family:var(--font);font-size:.9rem;color:var(--text-dark);background:var(--bg-light);resize:vertical;outline:none;transition:border-color .2s;line-height:1.6}
+    textarea.prac-textarea:focus{border-color:var(--teal);background:var(--white)}
+    textarea.prac-textarea::placeholder{color:var(--slate-light)}
+
+    /* Progress stepper */
+    .prac-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+    .prac-nav-btn{padding:6px 14px;border:1px solid var(--line);border-radius:100px;font-size:.78rem;font-weight:600;color:var(--slate);cursor:pointer;background:var(--white);transition:all .15s;text-decoration:none}
+    .prac-nav-btn:hover,.prac-nav-btn.active{background:var(--teal-dim);border-color:var(--teal);color:var(--teal)}
+
+    /* Tip-kaarten in practicum */
+    .prac-tip{background:rgba(122,183,221,.1);border:1px solid rgba(122,183,221,.3);border-radius:var(--r-sm);padding:12px 16px;margin:12px 0;font-size:.88rem;color:var(--text-dark);line-height:1.6}
+    .prac-tip strong{color:#1d4ed8}
+
+    /* Inhoudsopgave practicum */
+    .prac-toc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 22px;margin-bottom:24px}
+    .prac-toc ol{padding-left:22px;display:flex;flex-direction:column;gap:5px}
+    .prac-toc li{font-size:.88rem;color:var(--text-dark)}
+    .prac-toc a{color:var(--teal);font-weight:500;font-size:.88rem}
+
+    /* Print */
+    @media print{
+      .app-header,.app-sidebar,.prac-nav,.no-print{display:none!important}
+      .app-main{margin-left:0}
+      .input-field,.prac-textarea,.meas-table input[type=text],.meas-table select{border:1px solid #999;background:#fff}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────── -->
+<header class="app-header">
+  <div class="header-logo">
+    <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span class="header-logo-wld">WLD</span><div class="header-logo-sep"></div>
+    </a>
+    <span class="header-logo-title">
+      <span class="lang-block active" data-lang="nl">dB & dBm Cursus</span>
+      <span class="lang-block" data-lang="fr">Cours dB & dBm</span>
+      <span class="lang-block" data-lang="en">dB & dBm Course</span>
+    </span>
+  </div>
+  <div class="header-center">
+    <div class="header-progress-wrap">
+      <div class="header-progress-label"><span data-i18n="progress">Voortgang</span><span class="header-progress-done">0 / 30</span></div>
+      <div class="header-progress-track"><div class="header-progress-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-callsign" id="hCallsign">—</span>
+    <div class="lang-switcher">
+      <button class="lang-switch-btn active" data-lang="nl">NL</button>
+      <button class="lang-switch-btn" data-lang="fr">FR</button>
+      <button class="lang-switch-btn" data-lang="en">EN</button>
+    </div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+  </div>
+</header>
+
+<nav class="app-sidebar"></nav>
+
+<main class="app-main">
+<div class="main-inner">
+
+<!-- ─── HERO ───────────────────────────────────────────── -->
+<div class="prac-hero">
+  <div class="prac-hero-label">📡 WLD ON6WL · PRACTICUM · SPECTRUM-ANALYSE</div>
+  <h1>Jouw portable onder het mes:<br><span>Spectrum-analyse VHF/UHF handportable</span></h1>
+  <p class="prac-hero-sub">
+    Een geleid invulpracticum van meetopstelling tot interpretatie tot conclusie. 
+    Je leest een spectrum analyzer af, bereken dBc-waarden, vergelijkt met de Europese norm en leert 
+    wat harmonischen zeggen over de spectraalzuiverheid van jouw zender.
+  </p>
+  <svg class="prac-hero-waves" viewBox="0 0 820 44" preserveAspectRatio="none">
+    <path class="rf-w3" fill="none" stroke="#00B4CC" stroke-width="1" d="M0,28 Q41,34 82,28 Q123,22 164,28 Q205,34 246,28 Q287,22 328,28 Q369,34 410,28 Q451,22 492,28 Q533,34 574,28 Q615,22 656,28 Q697,34 738,28 Q779,22 820,26"/>
+    <path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8" d="M0,34 Q20,40 41,34 Q61,28 82,34 Q102,40 123,34 Q143,28 164,34 Q184,40 205,34 Q225,28 246,34 Q266,40 287,34 Q307,28 328,34 Q348,40 369,34 Q389,28 410,34 Q430,40 451,34 Q471,28 492,34 Q512,40 533,34 Q553,28 574,34 Q594,40 615,34 Q635,28 656,34 Q676,40 697,34 Q717,28 738,34 Q758,40 779,34 Q799,28 820,32"/>
+  </svg>
+</div>
+
+<!-- META-INFO -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:28px">
+  <div style="background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 18px">
+    <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:6px">Niveau</div>
+    <div style="font-size:.95rem;font-weight:700;color:var(--text-dark)">Gevorderd beginner</div>
+    <div style="font-size:.78rem;color:var(--slate)">Na H01–H11 &amp; H26</div>
+  </div>
+  <div style="background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 18px">
+    <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:6px">Benodigdheden</div>
+    <div style="font-size:.88rem;font-weight:600;color:var(--text-dark)">Spectrum analyzer</div>
+    <div style="font-size:.78rem;color:var(--slate)">Attenuator(s) · VHF/UHF portable</div>
+  </div>
+  <div style="background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 18px">
+    <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:6px">Duur</div>
+    <div style="font-size:.95rem;font-weight:700;color:var(--text-dark)">± 2 uur</div>
+    <div style="font-size:.78rem;color:var(--slate)">Theorie + meting + verwerking</div>
+  </div>
+</div>
+
+<!-- INHOUDSOPGAVE -->
+<div class="prac-toc">
+  <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--slate);margin-bottom:10px">Inhoud van dit practicum</div>
+  <ol>
+    <li><a href="#deel1">Theorievoorbereiding — spectrum analyzer, attenuatoren, harmonischen</a></li>
+    <li><a href="#deel2">Veiligheidsprotocol — de gouden regel vóór elke meting</a></li>
+    <li><a href="#deel3">Meetopstelling — opstelling, verbindingen, instellingen</a></li>
+    <li><a href="#deel4">Het scherm lezen — parameters, assen, markers</a></li>
+    <li><a href="#deel5">Meting &amp; invul — jouw meetwaarden noteren</a></li>
+    <li><a href="#deel6">Berekeningen — dBm, dBc, attenuatorcorrectie</a></li>
+    <li><a href="#deel7">Normtoetsing — vergelijking met ITU-R SM.329 / EN 301 783</a></li>
+    <li><a href="#deel8">Trend &amp; vergelijking — meerdere toestellen of vermogens</a></li>
+    <li><a href="#deel9">Conclusie &amp; evaluatie — jouw bevindingen</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 1 — THEORIEVOORBEREIDING                          -->
+<!-- ════════════════════════════════════════════════════════ -->
+<div id="deel1">
+<div class="step-header">
+  <span class="step-num">1</span>
+  <h2>Theorievoorbereiding</h2>
+</div>
+
+<h3>1.1 Spectrum analyzer vs. oscilloscoop</h3>
+<p>Een <strong>oscilloscoop</strong> toont een signaal in het <em>tijddomein</em>: horizontale as = tijd, verticale as = spanning (V). Je ziet hoe het signaal golft door de tijd.</p>
+<p>Een <strong>spectrum analyzer</strong> toont datzelfde signaal in het <em>frequentiedomein</em>: horizontale as = frequentie (Hz of MHz), verticale as = vermogen (dBm). Elke frequentiecomponent verschijnt als een afzonderlijke piek met zijn eigen sterkte. De wiskundige brug is de <strong>Fourier-transformatie</strong>.</p>
+
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Eigenschap</th><th>Oscilloscoop</th><th>Spectrum analyzer</th></tr></thead>
+    <tbody>
+      <tr><td>Domein</td><td>Tijddomein</td><td>Frequentiedomein</td></tr>
+      <tr><td>Horizontale as</td><td>Tijd (s, ms, µs)</td><td>Frequentie (Hz, MHz)</td></tr>
+      <tr><td>Verticale as</td><td>Spanning (V)</td><td>Vermogen (dBm)</td></tr>
+      <tr><td>Toont</td><td>Golfvorm, faseverschuiving</td><td>Frequentie-inhoud, harmonischen, spuri</td></tr>
+      <tr><td>Typisch gebruik</td><td>Signaalvorm, timing</td><td>Harmonischen, EMC, spectrale zuiverheid</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>1.2 Harmonischen — de onvermijdelijke bijproducten</h3>
+<p>Een ideale zender produceert één zuivere sinusgolf op frequentie f₀ (de <strong>grondtoon</strong> of <strong>draaggolf</strong>). In de werkelijkheid zijn transistors, versterkertrappen en andere componenten niet perfect lineair — ze vervormen het signaal een klein beetje. Die niet-lineariteit heeft een wiskundig voorspelbaar gevolg: er ontstaan <strong>harmonischen</strong>, bijkomende sinusgolven op exacte veelvouden van de grondfrequentie.</p>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>Harmonischen — frequenties</div>
+  <div class="formula-main">
+    f<sub>n</sub> <span class="f-op">=</span> <span class="f-key">n</span> <span class="f-op">×</span> f₀
+  </div>
+  <div class="formula-vars">
+    <div class="formula-var"><code>f₀</code>grondfrequentie (draaggolf) — de gewenste uitzendfrequentie</div>
+    <div class="formula-var"><code>n</code>harmonischorde: 2, 3, 4, ... (alleen positieve gehele getallen)</div>
+    <div class="formula-var"><code>voorbeeld</code>f₀ = 145,500 MHz → 2e harm. = 291,000 MHz · 3e harm. = 436,500 MHz</div>
+    <div class="formula-var"><code>LET OP</code>De 3e harmonische van 2m (144–146 MHz) valt in de 70cm-band (430–440 MHz)!</div>
+  </div>
+</div>
+
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>💡 Analogie</div>
+  <p>Een akoestische gitaar produceert ook boventonen: naast de grondtoon klinken er hogere frequenties mee die de klankkleur bepalen. Bij een zender wil je die boventonen (harmonischen) zo zwak mogelijk houden, omdat ze andere diensten kunnen storen.</p>
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>⚠️ Spurious emissies ≠ echte harmonischen</div>
+  <p>Naast echte harmonischen (exact op n×f₀) kan een zender ook <strong>spurious emissies</strong> produceren op andere frequenties: afkomstig van de interne PLL/VCO-synthesizer, mengproducten of intermodulatie. Een piek op een afwijkende frequentie (meer dan enkele kHz van de verwachte harmonische) is vermoedelijk een spurious emissie. Beide worden door de norm beperkt.</p>
+</div>
+
+<h3>1.3 Wat meet je precies met dBm en dBc?</h3>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>dBm — absoluut vermogen (t.o.v. 1 mW)</div>
+  <div class="formula-main"><span class="f-key">P (dBm)</span> <span class="f-op">=</span> 10 · log₁₀ <span class="f-op">(</span><span class="f-key">P (mW)</span> / 1 mW<span class="f-op">)</span></div>
+  <div class="formula-vars">
+    <div class="formula-var"><code>0 dBm</code>= 1 mW · <code>30 dBm</code>= 1 W · <code>37 dBm</code>≈ 5 W · <code>50 dBm</code>= 100 W</div>
+    <div class="formula-var"><code>P(mW)</code>terugrekenen: P(mW) = 10 ^ (dBm / 10)</div>
+  </div>
+</div>
+
+<div class="formula-block">
+  <div class="formula-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>dBc — relatief t.o.v. de draaggolf (carrier)</div>
+  <div class="formula-main"><span class="f-key">P (dBc)</span> <span class="f-op">=</span> P_spurious <span class="f-op">(dBm)</span> <span class="f-op">−</span> P_draaggolf <span class="f-op">(dBm)</span></div>
+  <div class="formula-vars">
+    <div class="formula-var"><code>altijd negatief</code>een harmonische is altijd zwakker dan de draaggolf</div>
+    <div class="formula-var"><code>voorbeeld</code>Draaggolf: −37,73 dBm · 2e harm.: −93,10 dBm → dBc = −93,10 − (−37,73) = −55,37 dBc</div>
+    <div class="formula-var"><code>intuïtie</code>−55,37 dBc = de harmonische is 344.000× zwakker dan de draaggolf in vermogen</div>
+  </div>
+</div>
+
+<div class="callout callout-key">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>🔑 Waarom dBc onveranderd blijft doorheen een attenuator</div>
+  <p>Een attenuator verzwakt <em>alle</em> frequentiecomponenten met exact dezelfde factor. Als de draaggolf 40 dB verzwakt wordt, wordt de harmonische ook 40 dB verzwakt — de onderlinge verhouding (dBc) blijft dus identiek. Dit is de reden waarom je met attenuatoren correct kunt meten: <strong>dBc = constant ongeacht de attenuatie</strong>.</p>
+</div>
+
+<h3>1.4 De regelgeving: van ITU tot CE</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Niveau</th><th>Document</th><th>Grens (2m, ≤25W)</th></tr></thead>
+    <tbody>
+      <tr><td>Internationaal</td><td>ITU-R SM.329 — Category B</td><td>Spurious domain: &lt; −60 dBc</td></tr>
+      <tr><td>Europees (CEPT)</td><td>CEPT/ERC Rec. 74-01</td><td>Implementeert ITU-R SM.329 Cat. B</td></tr>
+      <tr><td>Europese norm</td><td>ETSI EN 301 783</td><td>&lt; −60 dBc voor alle spurious</td></tr>
+      <tr><td>EU-richtlijn</td><td>RED 2014/53/EU</td><td>EN 301 783 is ondersteunende norm</td></tr>
+      <tr><td>Certif.</td><td>CE-markering op toestel</td><td>Conformiteitsverklaring fabrikant</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="text-muted text-sm">Samengevat: alle ongewenste emissies (harmonischen én spurious) moeten voor amateurradio-apparatuur ≤ 25 W minstens <strong>60 dB zwakker</strong> zijn dan de draaggolf.</p>
+
+<!-- Checkboxes begripscontrole -->
+<div class="input-card" style="border-style:solid;border-color:rgba(0,180,204,.25)">
+  <div class="input-card-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg>Begripscheck — vink aan wat je begrijpt</div>
+  <div style="display:flex;flex-direction:column;gap:8px;font-size:.88rem">
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik weet wat een spectrum analyzer toont en hoe die verschilt van een oscilloscoop</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik kan de frequentie van de 2e en 3e harmonische berekenen gegeven f₀</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik begrijp het verschil tussen dBm (absoluut) en dBc (relatief t.o.v. draaggolf)</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik weet waarom dBc onveranderd blijft doorheen een attenuator</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik ken de Europese norm: harmonischen/spurious ≤ −60 dBc (ITU-R SM.329 / ETSI EN 301 783)</label>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 2 — VEILIGHEID                                    -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel2">
+<div class="step-header">
+  <span class="step-num">2</span>
+  <h2>Veiligheidsprotocol</h2>
+</div>
+
+<div class="safety-box">
+  <div class="safety-box-header">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    ⚠️ GOUDEN REGEL — Lees dit vóór elke meting
+  </div>
+  <p><strong>Sluit nooit een zender rechtstreeks aan op een spectrum analyzer!</strong></p>
+  <p>De maximale toegelaten ingang van een typische spectrum analyzer (zoals de Siglent SSA3021X) is <strong>+20 dBm = 100 mW</strong> continu. Dit geldt ook voor piekwaarden. Overschrijd je dit niveau, dan beschadigt de gevoelige ingangs-FET of het ingangsfilter onmiddellijk en <strong>permanent</strong> — dit is niet repareerbaar in het veld en de schade kost honderden tot duizenden euro.</p>
+  <p>Een VHF/UHF handportable heeft een zendvermogen van 1 W tot 5 W (+30 tot +37 dBm). Dat is <strong>10 tot 50× het maximum toegelaten ingangsvermogen</strong>.</p>
+  <div class="calc-example">Voorbeeld: Yaesu FT-65, Low Power (nominaal ~500 mW = +27 dBm)
+Analyzer max. ingang:          +20 dBm
+Verplichte minimale attenuatie: +27 − (+20) = 7 dB → gebruik minstens 10–20 dB marge
+Veilige keuze bij twijfel:    2× 20 dB attenuator in serie = 40 dB totaal
+
+Controle: +27 dBm − 40 dB = −13 dBm ← ruim onder het maximum ✓</div>
+  <p><strong>Procedure vóór elke meting:</strong><br>
+  1. Bereken het verwachte ingangsvermogen (zendvermogen − attenuatie in dB)<br>
+  2. Verifieer dat dit minstens 10 dB onder het analyzer-maximum ligt<br>
+  3. Verbind de attenuatorketen EERST, zender DAARNA<br>
+  4. Stel de zender in op het LAAGSTE beschikbare vermogen bij de eerste test</p>
+</div>
+
+<h3>Attenuatoren (verzwakkers): hoe werken ze?</h3>
+<p>Een <strong>attenuator</strong> (verzwakker) is een passief weerstandsnetwerk dat het vermogen met een exacte, gekende factor vermindert — zonder de frequentie-inhoud of de onderlinge verhoudingen tussen signaalcomponenten te wijzigen. Attenuatoren zijn gecalibreerd en thermisch stabiel.</p>
+
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Attenuatie</th><th>Factor (vermogen)</th><th>Typische uitvoering</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">10 dB</td><td>÷10</td><td>N-type of SMA, compact</td></tr>
+      <tr><td class="mono">20 dB</td><td>÷100</td><td>N-type (Microlab, JFW, ...), BNC</td></tr>
+      <tr><td class="mono">30 dB</td><td>÷1 000</td><td>N-type, hogere belasting</td></tr>
+      <tr><td class="mono">2× 20 dB (serie)</td><td>÷10 000 (= 40 dB)</td><td>Combinatie, meest gebruikte opstelling bij 5W</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>💡 Rekenen met attenuatoren in dB</div>
+  <p>Attenuatoren in serie worden gewoon opgeteld: 20 dB + 20 dB = 40 dB totaal. In het lineaire domein zou je vermenigvuldigen: ×100 × ×100 = ×10.000. Het is precies dit gemak waarvoor de dB-schaal bedacht is.</p>
+</div>
+
+<!-- Invulvak veiligheidsberekening -->
+<div class="input-card">
+  <div class="input-card-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Invul — Veiligheidsberekening voor jouw opstelling</div>
+  <div class="input-grid">
+    <div class="input-row wide">
+      <label>Type spectrum analyzer</label>
+      <input class="input-field" type="text" placeholder="bijv. Siglent SSA3021X">
+    </div>
+    <div class="input-row">
+      <label>Max. ingangsvermogen analyzer (spec)</label>
+      <input class="input-field" type="text" id="v_maxin" placeholder="+20">
+      <span class="field-unit">dBm</span>
+    </div>
+    <div class="input-row">
+      <label>Verwacht zendvermogen te meten toestel</label>
+      <input class="input-field" type="text" id="v_txpwr" placeholder="+37">
+      <span class="field-unit">dBm</span>
+    </div>
+    <div class="input-row">
+      <label>Totale attenuatie in keten</label>
+      <input class="input-field" type="text" id="v_att" placeholder="40">
+      <span class="field-unit">dB</span>
+    </div>
+    <div class="input-row">
+      <label>Berekend ingangsvermogen (= zend − att)</label>
+      <input class="input-field calc" type="text" id="v_inp" placeholder="−3" readonly>
+      <span class="field-unit">dBm</span>
+    </div>
+    <div class="input-row">
+      <label>Marge t.o.v. analyzer-maximum</label>
+      <input class="input-field calc" type="text" id="v_margin" placeholder="23" readonly>
+      <span class="field-unit">dB (min. 10 dB!)</span>
+    </div>
+    <div id="v_verdict" style="grid-column:1/-1;padding:10px 14px;border-radius:var(--r-sm);font-size:.88rem;font-weight:600;display:none"></div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 3 — MEETOPSTELLING                                -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel3">
+<div class="step-header">
+  <span class="step-num">3</span>
+  <h2>Meetopstelling</h2>
+</div>
+
+<h3>Signaalketen — blokdiagram</h3>
+<div class="chain-diagram">
+  <div class="chain-block source">
+    <div class="cb-title">Zender (DUT)</div>
+    <div class="cb-val">VHF/UHF portable</div>
+    <div class="cb-sub">Ant. poort</div>
+  </div>
+  <div class="chain-arrow">
+    <div style="text-align:center">
+      <div>→</div>
+      <div class="chain-db">coax</div>
+    </div>
+  </div>
+  <div class="chain-block atten">
+    <div class="cb-title">Attenuator 1</div>
+    <div class="cb-val">−20 dB</div>
+    <div class="cb-sub">N-type of BNC</div>
+  </div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-block atten">
+    <div class="cb-title">Attenuator 2</div>
+    <div class="cb-val">−20 dB</div>
+    <div class="cb-sub">N-type of BNC</div>
+  </div>
+  <div class="chain-arrow">
+    <div style="text-align:center">
+      <div>→</div>
+      <div class="chain-db">coax</div>
+    </div>
+  </div>
+  <div class="chain-block analyzer">
+    <div class="cb-title">Spectrum analyzer</div>
+    <div class="cb-val">RF INPUT</div>
+    <div class="cb-sub">50 Ω · max +20 dBm</div>
+  </div>
+</div>
+
+<div class="prac-tip">
+  <strong>Impedantie:</strong> Alle componenten in de keten moeten <strong>50 Ω</strong> zijn. De meeste professionele spectrum analyzers, attenuatoren en handportable antenne-aansluitingen zijn 50 Ω. Controleer dit voor onbekende adapters — een impedantiemismatch veroorzaakt reflecties en meetfouten.
+</div>
+
+<h3>Aanbevolen instellingen voor VHF 2m + 70cm span</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Parameter</th><th>Aanbevolen waarde</th><th>Reden</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Span</strong></td><td>120 MHz – 450 MHz</td><td>Dekt draaggolf (2m) + 2e harm. (~291 MHz) + 3e harm./spur (~434 MHz)</td></tr>
+      <tr><td><strong>Reference level</strong></td><td>−30 tot −40 dBm</td><td>Aanpassen zodat draaggolftop net onder de bovenrand valt</td></tr>
+      <tr><td><strong>Scale</strong></td><td>8–10 dB/divisie (LOG)</td><td>Goed dynamisch bereik zichtbaar</td></tr>
+      <tr><td><strong>RBW</strong></td><td>100–300 kHz</td><td>Compromis: smal genoeg om pieken te scheiden, niet zo smal dat sweep te traag wordt</td></tr>
+      <tr><td><strong>VBW</strong></td><td>10 kHz (≈ RBW/10)</td><td>Ruisvloer glad maken zonder signaaldetails te verliezen</td></tr>
+      <tr><td><strong>Detector</strong></td><td>Peak of RMS</td><td>Peak voor piekwaarden; RMS voor gemiddeld vermogen</td></tr>
+      <tr><td><strong>Interne attenuator</strong></td><td>0 dB (= uit)</td><td>Externe attenuatoren worden gebruikt; interne att. interfereert met berekening</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>⚠️ Let op: RBW beïnvloedt dBc-nauwkeurigheid bij FM</div>
+  <p>Een FM-zender heeft een bepaalde bandbreedte door de modulatie (typisch 8–16 kHz voor smalbandige FM). Als de RBW groter is dan de FM-bandbreedte, vang je meer van het FM-spectrum op in één meetfilter, wat de gemeten draaggolfpiek iets hoger (beter) lijkt. Met een brede RBW (bijv. 1 MHz) kunnen de dBc-waarden voor harmonischen daardoor iets <em>slechter</em> lijken dan de werkelijkheid. Gebruik een RBW van 100–300 kHz als compromis voor VHF metingen.</p>
+</div>
+
+<!-- Invulvak meetopstelling -->
+<div class="input-card">
+  <div class="input-card-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Invul — Jouw meetopstelling documenteren</div>
+  <div class="input-grid">
+    <div class="input-row wide"><label>Datum en tijdstip meting</label><input class="input-field" type="text" placeholder="bijv. 15 mei 2026 · 20:30"></div>
+    <div class="input-row wide"><label>Locatie</label><input class="input-field" type="text" placeholder="bijv. WLD Clubhuis Sinaai"></div>
+    <div class="input-row wide"><label>Roepletters operator</label><input class="input-field" type="text" placeholder="bijv. ON3XYZ" style="font-family:var(--mono);text-transform:uppercase"></div>
+    <div class="input-row wide"><label>Spectrum analyzer (merk/model)</label><input class="input-field" type="text" placeholder="bijv. Siglent SSA3021X"></div>
+    <div class="input-row wide"><label>Gemeten toestel (DUT) — merk/model</label><input class="input-field" type="text" placeholder="bijv. Yaesu FT-65"></div>
+    <div class="input-row wide"><label>Attenuator 1 (type, attenuatie, connector)</label><input class="input-field" type="text" placeholder="bijv. 20 dB, N-type, Microlab"></div>
+    <div class="input-row wide"><label>Attenuator 2 (indien gebruikt)</label><input class="input-field" type="text" placeholder="bijv. 20 dB, BNC"></div>
+    <div class="input-row"><label>Totale attenuatie keten</label><input class="input-field calc" type="text" placeholder="40"><span class="field-unit">dB</span></div>
+    <div class="input-row wide"><label>Adapter(s) gebruikt (type)</label><input class="input-field" type="text" placeholder="bijv. N-vrouw→BNC-man"></div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 4 — HET SCHERM LEZEN                              -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel4">
+<div class="step-header">
+  <span class="step-num">4</span>
+  <h2>Het analyzerscherm lezen</h2>
+</div>
+
+<h3>Parameters op het scherm — wat betekent wat?</h3>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Label op scherm</th><th>Betekenis</th><th>Typische waarde</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">Ref −40,00 dBm</td><td>Referentieniveau = bovenkant Y-as. Pas aan zodat draaggolf net eronder valt.</td><td>−30 tot −40 dBm</td></tr>
+      <tr><td class="mono">LOG 8 dB</td><td>Verticale schaalverdeling per rasterrij. Bij 8 dB/div en 10 rijen: 80 dB totaal zichtbaar.</td><td>8–10 dB/divisie</td></tr>
+      <tr><td class="mono">Att 0,00 dB</td><td>Interne attenuatie van de analyzer. Houd op 0 dB als je externe attenuatoren gebruikt.</td><td>0 dB</td></tr>
+      <tr><td class="mono">RBW 300 kHz</td><td>Resolution Bandwidth: breedte van het interne meetfilter. Bepaalt frequentieresolutie en meetsnelheid.</td><td>100–300 kHz</td></tr>
+      <tr><td class="mono">VBW 10 kHz</td><td>Video Bandwidth: bepaalt de smoothing van de ruisvloer. Lagere VBW = stillere, gemiddeldere weergave.</td><td>10–30 kHz</td></tr>
+      <tr><td class="mono">Start / Stop</td><td>Begin- en eindfrequentie van de weergave (span).</td><td>120 – 450 MHz</td></tr>
+      <tr><td class="mono">SWT</td><td>Sweep Time: tijd voor één volledige scan. Automatisch bepaald door RBW/VBW/span.</td><td>0,5 – 2 s</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Markeersystemen: absoluut vs. delta</h3>
+<p>De meeste spectrum analyzers bieden twee soorten markers:</p>
+<ul>
+  <li><strong>Absolute marker (M1, M2, ...):</strong> toont de absolute frequentie (MHz) en het absolute vermogensniveau (dBm) van de aangewezen piek.</li>
+  <li><strong>Delta marker (ΔM1, 2Δ1, ...):</strong> toont het <em>verschil</em> in frequentie (MHz) en vermogen (dB) ten opzichte van een referentiemarker. Dit is ideaal voor dBc-metingen: zet de referentiemarker op de draaggolf, dan toont ΔM automatisch de dBc-waarde van elke harmonische.</li>
+</ul>
+
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>💡 dBc rechtstreeks aflezen via delta-marker</div>
+  <p>Zet Marker 1 op de draaggolftop. Activeer Marker 2 als delta (2Δ1) en beweeg hem naar de 2e harmonische piek. Het delta-vermogen dat verschijnt is rechtstreeks de dBc-waarde. Controleer: dit getal moet negatief zijn (harmonische is zwakker dan draaggolf). Een positieve waarde betekent dat je markers fout geplaatst zijn.</p>
+</div>
+
+<!-- Invulvak schermparameters -->
+<div class="input-card">
+  <div class="input-card-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Invul — Schermparameters noteren</div>
+  <div class="input-grid">
+    <div class="input-row"><label>Reference level (Ref)</label><input class="input-field" type="text" placeholder="−40"><span class="field-unit">dBm</span></div>
+    <div class="input-row"><label>Schaalverdeling (LOG)</label><input class="input-field" type="text" placeholder="8"><span class="field-unit">dB/divisie</span></div>
+    <div class="input-row"><label>Interne attenuator (Att)</label><input class="input-field" type="text" placeholder="0"><span class="field-unit">dB</span></div>
+    <div class="input-row"><label>Resolution Bandwidth (RBW)</label><input class="input-field" type="text" placeholder="300"><span class="field-unit">kHz</span></div>
+    <div class="input-row"><label>Video Bandwidth (VBW)</label><input class="input-field" type="text" placeholder="10"><span class="field-unit">kHz</span></div>
+    <div class="input-row"><label>Startfrequentie</label><input class="input-field" type="text" placeholder="120"><span class="field-unit">MHz</span></div>
+    <div class="input-row"><label>Stopfrequentie</label><input class="input-field" type="text" placeholder="450"><span class="field-unit">MHz</span></div>
+    <div class="input-row"><label>Sweep time (SWT)</label><input class="input-field" type="text" placeholder="652"><span class="field-unit">ms</span></div>
+    <div class="input-row wide"><label>Markersysteem (absoluut / delta)</label><input class="input-field" type="text" placeholder="bijv. Delta: 1R op ruisvloer, ΔM1 op draaggolf"></div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 5 — MEETWAARDEN INVULLEN                          -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel5">
+<div class="step-header">
+  <span class="step-num">5</span>
+  <h2>Meting — Meetwaarden invullen</h2>
+</div>
+
+<p>Vul hieronder de waarden in die je rechtstreeks afleest van het spectrum analyzer scherm. Gebruik de markers zorgvuldig. Noteer steeds of de waarden absoluut (dBm) of relatief (dBc of dB verschil) zijn.</p>
+
+<h3>Gemeten toestel 1</h3>
+<div class="input-card">
+  <div class="input-card-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Toestelgegevens</div>
+  <div class="input-grid">
+    <div class="input-row wide"><label>Merk en model</label><input class="input-field" type="text" placeholder="bijv. Yaesu FT-65"></div>
+    <div class="input-row wide"><label>Serienummer (optioneel)</label><input class="input-field" type="text" placeholder=""></div>
+    <div class="input-row wide"><label>Vermogensinstelling gebruikt voor meting</label><input class="input-field" type="text" placeholder="bijv. Low (500 mW nominaal)"></div>
+    <div class="input-row wide"><label>Modulatie</label><input class="input-field" type="text" placeholder="bijv. FM 2m, 145.500 MHz, geen audiomodulatie (carrier only)"></div>
+  </div>
+</div>
+
+<h3>Ruisvloer (noise floor)</h3>
+<div class="input-card">
+  <div class="input-card-title">📊 Ruisvloer meting</div>
+  <div class="prac-tip"><strong>Waarom de ruisvloer meten?</strong> De ruisvloer bepaalt de meetdrempel van je opstelling. Pieken die kleiner zijn dan de ruisvloer + ~3 dB zijn niet betrouwbaar meetbaar. Als een harmonische dichtbij de ruisvloer zit, is de waarde indicatief.</div>
+  <div class="input-grid">
+    <div class="input-row"><label>Ruisvloerniveau (gemeten op lege frequentie)</label><input class="input-field" type="text" id="m_noise" placeholder="−110,82"><span class="field-unit">dBm</span></div>
+    <div class="input-row wide"><label>Frequentie waar ruisvloer gemeten</label><input class="input-field" type="text" placeholder="bijv. 130 MHz (geen piek)"></div>
+    <div class="input-row"><label>Dynamisch bereik van opstelling (ref − ruisvloer)</label><input class="input-field calc" type="text" id="m_dynrange" placeholder="70,82"><span class="field-unit">dB</span></div>
+  </div>
+</div>
+
+<h3>Draaggolf (grondtoon)</h3>
+<div class="input-card">
+  <div class="input-card-title">📡 Draaggolf — Marker M1 of ΔM1</div>
+  <div class="input-grid">
+    <div class="input-row"><label>Gemeten frequentie draaggolf</label><input class="input-field" type="text" id="m_f0" placeholder="145,960"><span class="field-unit">MHz</span></div>
+    <div class="input-row"><label>Gemeten vermogen aan analyzer-ingang</label><input class="input-field" type="text" id="m_p0" placeholder="−37,73"><span class="field-unit">dBm</span></div>
+    <div class="input-row"><label>Berekend werkelijk zendvermogen (+ attenuatie)</label><input class="input-field calc" type="text" id="m_ptx" placeholder="+2,27"><span class="field-unit">dBm</span></div>
+    <div class="input-row"><label>Berekend werkelijk zendvermogen</label><input class="input-field calc" type="text" id="m_ptxmw" placeholder="1,69"><span class="field-unit">mW</span></div>
+    <div class="textarea-wrap" style="grid-column:1/-1">
+      <span class="textarea-label">Opmerking (bijv. afwijking van nominaal zendvermogen, kabelkwaliteit)</span>
+      <textarea class="prac-textarea" placeholder="Voer hier je observaties in...&#10;Voorbeeld: het gemeten zendvermogen wijkt af van het nominale spec (500 mW). Mogelijke oorzaken: minimumvermogensmodus, kabelverlies, impedantie-aanpassing..."></textarea>
+    </div>
+  </div>
+</div>
+
+<h3>Harmonischen en spurious emissies</h3>
+<div class="input-card">
+  <div class="input-card-title">📊 Invultabel — Meetwaarden per component</div>
+
+  <div class="table-wrap">
+    <table class="meas-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Verwachte freq. (n × f₀)</th>
+          <th>Gemeten freq. (MHz)</th>
+          <th>Δfreq. t.o.v. verwacht (kHz)</th>
+          <th>Gemeten niveau aan analyzer-ingang (dBm)</th>
+          <th>Afgelezen dBc (delta-marker)</th>
+          <th>Type (harm. / spur)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Draaggolf</strong></td>
+          <td class="norm-cell">f₀ = <input type="text" id="t_f0" style="width:70px" placeholder="145,960"> MHz</td>
+          <td><input type="text" class="input-field" style="width:80px" id="t_f0m" placeholder="145,960"></td>
+          <td class="norm-cell">0</td>
+          <td><input type="text" class="input-field" id="t_p0" placeholder="−37,73"></td>
+          <td class="norm-cell">0 dBc (ref.)</td>
+          <td class="norm-cell">—</td>
+        </tr>
+        <tr>
+          <td><strong>2e harmonische</strong></td>
+          <td class="norm-cell" id="t_f2exp">2 × f₀</td>
+          <td><input type="text" class="input-field" id="t_f2m" placeholder="291,600"></td>
+          <td><input type="text" class="input-field" id="t_f2d" placeholder="−320"></td>
+          <td><input type="text" class="input-field" id="t_p2" placeholder="−93,10"></td>
+          <td><input type="text" class="input-field" id="t_c2" placeholder="−55,37"></td>
+          <td><select id="t_t2"><option value="">—</option><option value="harm">Harmonische</option><option value="spur">Spurious</option></select></td>
+        </tr>
+        <tr>
+          <td><strong>3e harmonische</strong></td>
+          <td class="norm-cell" id="t_f3exp">3 × f₀</td>
+          <td><input type="text" class="input-field" id="t_f3m" placeholder="434,160"></td>
+          <td><input type="text" class="input-field" id="t_f3d" placeholder="−3720"></td>
+          <td><input type="text" class="input-field" id="t_p3" placeholder="−109,53"></td>
+          <td><input type="text" class="input-field" id="t_c3" placeholder="−71,80"></td>
+          <td><select id="t_t3"><option value="">—</option><option value="harm">Harmonische</option><option value="spur">Spurious</option></select></td>
+        </tr>
+        <tr>
+          <td>Extra piek 1</td>
+          <td class="norm-cell">—</td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><select><option value="">—</option><option value="harm">Harmonische</option><option value="spur">Spurious</option></select></td>
+        </tr>
+        <tr>
+          <td>Extra piek 2</td>
+          <td class="norm-cell">—</td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+          <td><select><option value="">—</option><option value="harm">Harmonische</option><option value="spur">Spurious</option></select></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 6 — BEREKENINGEN                                  -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel6">
+<div class="step-header">
+  <span class="step-num">6</span>
+  <h2>Berekeningen</h2>
+</div>
+
+<h3>6.1 Attenuatorcorrectie — werkelijk zendvermogen berekenen</h3>
+
+<div class="result-box">
+  <div class="result-box-title">Formule — Werkelijk vermogen aan antenne-uitgang</div>
+  <div class="result-formula">
+    P<sub>werkelijk</sub> (dBm) = P<sub>gemeten aan analyzer</sub> (dBm) + attenuatie (dB)
+    <br><br>
+    Voorbeeld: <span class="f-orange">−37,73 dBm</span> + <span class="f-teal">40 dB</span> = <span class="f-orange">+2,27 dBm</span>
+    <br>
+    Terugrekenen naar W: <span class="f-teal">10^(2,27/10)</span> / 1000 ≈ <span class="f-orange">1,69 mW</span>
+  </div>
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>⚠️ Afwijking van nominaal zendvermogen — altijd analyseren</div>
+  <p>Het terugberekende zendvermogen kan afwijken van de nominale spec (bijv. 500 mW voor een "Low Power" instelling). Mogelijke oorzaken zijn: gebruik van de laagste vermogenstrap (sommige toestellen hebben meerdere lage-vermogensstanden), impedantiemismatch aan de antennepoort, verlies in verbindingskabels of connectors, en meetonzekerheid van de attenuatoren zelf (typisch ±1–2 dB per attenuator). <strong>Noteer altijd het gemeten werkelijk vermogen, niet het nominale vermogen</strong>.</p>
+</div>
+
+<h3>6.2 dBc berekenen (indien geen delta-marker gebruikt)</h3>
+
+<div class="result-box">
+  <div class="result-box-title">Formule — dBc (relatieve niveaumaat)</div>
+  <div class="result-formula">
+    P (dBc) = P<sub>harmonische of spur</sub> (dBm) − P<sub>draaggolf</sub> (dBm)
+    <br><br>
+    Voorbeeld 2e harmonische:
+    <br>
+    <span class="f-orange">−93,10 dBm</span> − (<span class="f-teal">−37,73 dBm</span>) = <span class="f-orange">−55,37 dBc</span>
+    <br><br>
+    ⚠️ dBc is altijd <strong>negatief</strong> voor harmonischen/spurious. Controleer altijd het teken!
+  </div>
+</div>
+
+<div class="input-card">
+  <div class="input-card-title">Invul — dBc berekenen en controleren</div>
+  <div class="input-grid">
+    <div class="input-row"><label>Draaggolf niveau</label><input class="input-field" type="text" id="c_p0" placeholder="−37,73"><span class="field-unit">dBm</span></div>
+    <div class="input-row"><label>2e harmonische niveau</label><input class="input-field" type="text" id="c_p2" placeholder="−93,10"><span class="field-unit">dBm</span></div>
+    <div class="input-row"><label>Berekend dBc (2e harm.)</label><input class="input-field calc" type="text" id="c_c2" placeholder="−55,37"><span class="field-unit">dBc</span></div>
+    <div class="input-row"><label>3e harmonische/spur niveau</label><input class="input-field" type="text" id="c_p3" placeholder="−109,53"><span class="field-unit">dBm</span></div>
+    <div class="input-row"><label>Berekend dBc (3e harm./spur)</label><input class="input-field calc" type="text" id="c_c3" placeholder="−71,80"><span class="field-unit">dBc</span></div>
+  </div>
+  <div style="margin-top:14px;font-size:.85rem;color:var(--slate)">
+    Controle: klopt het berekende dBc met de delta-marker waarden uit Stap 5? Noteer eventuele afwijkingen.
+  </div>
+  <div class="textarea-wrap">
+    <span class="textarea-label">Verificatie en afwijkingen</span>
+    <textarea class="prac-textarea" placeholder="Komen berekende en afgelezen dBc-waarden overeen? Mogelijke afwijkingen: RBW-effect, markerplaatsing, ..."></textarea>
+  </div>
+</div>
+
+<h3>6.3 Lineaire factor berekenen</h3>
+<p>Hoeveel keer zwakker is de harmonische dan de draaggolf?</p>
+
+<div class="result-box">
+  <div class="result-box-title">Vermogensfactor uit dBc</div>
+  <div class="result-formula">
+    Factor = 10 ^ (|dBc| / 10)
+    <br><br>
+    Voorbeeld: −55,37 dBc → 10^(55,37/10) = 10^5,537 ≈ <span class="f-teal">344.000×</span> zwakker in vermogen
+    <br>
+    Voorbeeld: −71,80 dBc → 10^(71,80/10) = 10^7,18 ≈ <span class="f-teal">15.000.000×</span> zwakker
+  </div>
+</div>
+
+<div class="input-card">
+  <div class="input-card-title">Invul — Lineaire factor</div>
+  <div class="input-grid">
+    <div class="input-row"><label>dBc 2e harmonische</label><input class="input-field" type="text" id="lf_c2" placeholder="−55,37"><span class="field-unit">dBc</span></div>
+    <div class="input-row"><label>Factor (×) t.o.v. draaggolf</label><input class="input-field calc" type="text" id="lf_f2" placeholder="344 000"><span class="field-unit">× zwakker</span></div>
+    <div class="input-row"><label>dBc 3e harmonische/spur</label><input class="input-field" type="text" id="lf_c3" placeholder="−71,80"><span class="field-unit">dBc</span></div>
+    <div class="input-row"><label>Factor (×) t.o.v. draaggolf</label><input class="input-field calc" type="text" id="lf_f3" placeholder="15 100 000"><span class="field-unit">× zwakker</span></div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 7 — NORMTOETSING                                  -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel7">
+<div class="step-header">
+  <span class="step-num">7</span>
+  <h2>Normtoetsing</h2>
+</div>
+
+<div class="callout callout-key">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/></svg>🔑 De norm</div>
+  <p>Volgens <strong>ITU-R SM.329 Category B</strong>, geïmplementeerd via <strong>CEPT/ERC Rec. 74-01</strong> en opgenomen in <strong>ETSI EN 301 783</strong> (de geharmoniseerde norm voor commercieel verkrijgbare amateurradio-apparatuur onder de EU RED 2014/53/EU): alle ongewenste emissies in het spurious domein moeten minstens <strong>−60 dBc</strong> zijn ten opzichte van de draaggolf. Dit geldt voor zenders met een uitgangsver mogen ≤ 25 W.</p>
+</div>
+
+<!-- Normtoetsingstabel invulbaar -->
+<div class="input-card">
+  <div class="input-card-title">📋 Normtoetsingstabel — jouw meetwaarden vs. norm</div>
+  <div class="table-wrap">
+    <table class="meas-table">
+      <thead>
+        <tr>
+          <th>Emissie</th>
+          <th>Gemeten freq.</th>
+          <th>Gemeten dBc</th>
+          <th>Grens (norm)</th>
+          <th>Marge (dBc − grens)</th>
+          <th>Oordeel</th>
+          <th>Opmerking</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Draaggolf</td>
+          <td><input type="text" class="input-field" placeholder="MHz"></td>
+          <td class="norm-cell">0 dBc (ref.)</td>
+          <td class="norm-cell">—</td>
+          <td class="norm-cell">—</td>
+          <td><select><option>✅</option></select></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+        </tr>
+        <tr>
+          <td>2e harmonische</td>
+          <td><input type="text" class="input-field" placeholder="MHz"></td>
+          <td><input type="text" class="input-field" id="n_c2" placeholder="dBc"></td>
+          <td class="norm-cell">&lt; −60 dBc</td>
+          <td><input type="text" class="input-field calc" id="n_m2" placeholder="dB"></td>
+          <td><select id="n_v2"><option value="ok">✅ OK</option><option value="warn">⚠️ Grensgebied</option><option value="fail">❌ Overschrijding</option></select></td>
+          <td><input type="text" class="input-field" placeholder="Nuances, meetonzekerheid..."></td>
+        </tr>
+        <tr>
+          <td>3e harm. / spur</td>
+          <td><input type="text" class="input-field" placeholder="MHz"></td>
+          <td><input type="text" class="input-field" id="n_c3" placeholder="dBc"></td>
+          <td class="norm-cell">&lt; −60 dBc</td>
+          <td><input type="text" class="input-field calc" id="n_m3" placeholder="dB"></td>
+          <td><select id="n_v3"><option value="ok">✅ OK</option><option value="warn">⚠️ Grensgebied</option><option value="fail">❌ Overschrijding</option></select></td>
+          <td><input type="text" class="input-field" placeholder="Echte harmonische of spurious?"></td>
+        </tr>
+        <tr>
+          <td>Extra piek 1</td>
+          <td><input type="text" class="input-field" placeholder="MHz"></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td class="norm-cell">&lt; −60 dBc</td>
+          <td><input type="text" class="input-field calc" placeholder="dB"></td>
+          <td><select><option value="ok">✅ OK</option><option value="warn">⚠️ Grensgebied</option><option value="fail">❌ Overschrijding</option></select></td>
+          <td><input type="text" class="input-field" placeholder=""></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="prac-tip" style="margin-top:14px">
+    <strong>Grensgebied:</strong> Waarden tussen −60 dBc en −57 dBc liggen binnen de meetonzekerheid van een niet-gecalibreerde opstelling (typisch ±3–5 dB). Rapporteer als "marginaal" of "indicatief boven norm", niet als hard non-conform. Een officiële keuring vereist geijkte apparatuur in een EMC-kamer.
+  </div>
+</div>
+
+<div class="textarea-wrap">
+  <span class="textarea-label">Interpretatie normtoetsing — jouw bevindingen</span>
+  <textarea class="prac-textarea" style="min-height:110px" placeholder="Welke componenten voldoen aan de norm? Welke overschrijden ze? Hoe groot is de marge? Zijn er nuances die de resultaten beïnvloeden (meetonzekerheid, RBW, officiële CE-keuring)?"></textarea>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 8 — TREND & VERGELIJKING                          -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel8">
+<div class="step-header">
+  <span class="step-num">8</span>
+  <h2>Trend &amp; vergelijking</h2>
+</div>
+
+<h3>8.1 Meerdere toestellen vergelijken</h3>
+<p>De echte kracht van spectrum-analyse komt naar boven als je meerdere toestellen onder dezelfde omstandigheden meet en vergelijkt. Gebruik dezelfde attenuatie, dezelfde instellingen en dezelfde frequentie.</p>
+
+<div class="input-card">
+  <div class="input-card-title">📊 Vergelijkingstabel — meerdere toestellen</div>
+  <div class="table-wrap">
+    <table class="meas-table">
+      <thead>
+        <tr>
+          <th>Toestel</th>
+          <th>Draaggolf (dBm)</th>
+          <th>2e harm. (dBc)</th>
+          <th>Norm 2e</th>
+          <th>3e harm./spur (dBc)</th>
+          <th>Norm 3e</th>
+          <th>Algemeen oordeel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" class="input-field" placeholder="Toestel 1"></td>
+          <td><input type="text" class="input-field" placeholder="dBm"></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="text" class="input-field" placeholder="Toestel 2"></td>
+          <td><input type="text" class="input-field" placeholder="dBm"></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="text" class="input-field" placeholder="Toestel 3"></td>
+          <td><input type="text" class="input-field" placeholder="dBm"></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="text" class="input-field" placeholder="Toestel 4"></td>
+          <td><input type="text" class="input-field" placeholder="dBm"></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="text" class="input-field" placeholder="Toestel 5"></td>
+          <td><input type="text" class="input-field" placeholder="dBm"></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><input type="text" class="input-field" placeholder="dBc"></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+          <td><select><option>✅</option><option>⚠️</option><option>❌</option></select></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>8.2 Trends analyseren — denkvragen</h3>
+<div class="input-card" style="border-style:solid">
+  <div class="input-card-title">🔍 Trendanalyse</div>
+  <div style="display:flex;flex-direction:column;gap:18px">
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">T1. Rangschikking — beste tot slechtste harmonische suppressie</div>
+      <textarea class="prac-textarea" style="min-height:70px" placeholder="Rangschik de gemeten toestellen van beste naar slechtste spectrale zuiverheid. Beschrijf het patroon."></textarea>
+    </div>
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">T2. Correlatie met prijsklasse / CE-certificering</div>
+      <textarea class="prac-textarea" style="min-height:70px" placeholder="Is er een verband tussen prijs, CE-certificering en spectrale zuiverheid? Wat valt op?"></textarea>
+    </div>
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">T3. Abnormale patronen — 3e harmonische sterker dan 2e?</div>
+      <textarea class="prac-textarea" style="min-height:70px" placeholder="Als de 3e harmonische sterker is dan de 2e: wat zou dat kunnen verklaren? (hint: niet-lineariteitstype, filterontwerp, interne modulatieproducten?)"></textarea>
+    </div>
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">T4. Interferentierisico — welke band ligt in gevaar?</div>
+      <textarea class="prac-textarea" style="min-height:70px" placeholder="De 3e harmonische van 2m (144–146 MHz) ligt op 432–438 MHz, midden in de 70cm-amateurband. Wat is het risico voor andere 70cm-gebruikers als een toestel slecht presteert?"></textarea>
+    </div>
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">T5. Meetonzekerheid — wat verklaart afwijkingen van de norm?</div>
+      <textarea class="prac-textarea" style="min-height:70px" placeholder="Bij marginale waarden: welke factoren verklaren mogelijke afwijkingen van officiële keuringsresultaten? (hint: kalibratiecertificaten, EMC-kamer, RBW-correctie, ...)"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════ -->
+<!-- DEEL 9 — CONCLUSIE                                     -->
+<!-- ════════════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<div id="deel9">
+<div class="step-header">
+  <span class="step-num">9</span>
+  <h2>Conclusie &amp; zelfevaluatie</h2>
+</div>
+
+<div class="input-card" style="border-style:solid">
+  <div class="input-card-title">📝 Conclusie — jouw bevindingen als radioamateur</div>
+  <div style="display:flex;flex-direction:column;gap:18px">
+
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">C1. Samenvatting meetresultaten</div>
+      <textarea class="prac-textarea" style="min-height:100px" placeholder="Vat de meetresultaten samen. Welke toestellen voldoen aan de norm? Welke niet? Met welke marge? Benoem concrete dBc-waarden."></textarea>
+    </div>
+
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">C2. Verbinding met dB/dBm theorie</div>
+      <textarea class="prac-textarea" style="min-height:100px" placeholder="Beschrijf hoe de dB/dBm-concepten uit de cursus terugkomen in dit practicum. Denk aan: dBc als relatieve maat, dBm als absoluut niveau, attenuatorketen als optelling van dB-waarden, logaritmisch denken..."></textarea>
+    </div>
+
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">C3. Praktische leerpunten</div>
+      <textarea class="prac-textarea" style="min-height:100px" placeholder="Wat neem je mee uit dit practicum als radioamateur? Wat weet je nu dat je daarvoor niet wist? Wat zou je anders doen bij een volgende meting?"></textarea>
+    </div>
+
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">C4. Beperkingen van deze meting</div>
+      <textarea class="prac-textarea" style="min-height:80px" placeholder="Welke beperkingen heeft jouw meetopstelling? (meetonzekerheid, niet-gecalibreerde apparatuur, workshopomgeving vs. EMC-kamer, ...)"></textarea>
+    </div>
+
+    <div>
+      <div style="font-size:.85rem;font-weight:600;color:var(--text-dark);margin-bottom:6px">C5. Eindoordeel per gemeten toestel</div>
+      <div class="table-wrap"><table class="meas-table">
+        <thead><tr><th>Toestel</th><th>Algemeen oordeel</th><th>Toelichting (max. 1 zin)</th></tr></thead>
+        <tbody>
+          <tr><td><input type="text" class="input-field" placeholder="Toestel 1"></td><td><select><option value="">—</option><option>Goed — ruim binnen norm</option><option>Aanvaardbaar — binnen norm</option><option>Marginaal — grensgebied</option><option>Non-conform — boven norm</option></select></td><td><input type="text" class="input-field" placeholder=""></td></tr>
+          <tr><td><input type="text" class="input-field" placeholder="Toestel 2"></td><td><select><option value="">—</option><option>Goed — ruim binnen norm</option><option>Aanvaardbaar — binnen norm</option><option>Marginaal — grensgebied</option><option>Non-conform — boven norm</option></select></td><td><input type="text" class="input-field" placeholder=""></td></tr>
+          <tr><td><input type="text" class="input-field" placeholder="Toestel 3"></td><td><select><option value="">—</option><option>Goed — ruim binnen norm</option><option>Aanvaardbaar — binnen norm</option><option>Marginaal — grensgebied</option><option>Non-conform — boven norm</option></select></td><td><input type="text" class="input-field" placeholder=""></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Zelfevaluatie -->
+<div class="input-card" style="border-style:solid;border-color:rgba(34,197,94,.3);margin-top:20px">
+  <div class="input-card-title" style="color:var(--green)">✓ Zelfevaluatie — wat heb ik geleerd?</div>
+  <div style="display:flex;flex-direction:column;gap:8px;font-size:.88rem">
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik kan het verschil uitleggen tussen oscilloscoop en spectrum analyzer</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik begrijp waarom attenuatoren verplicht zijn en kan de vereiste attenuatie berekenen</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik kan harmonische frequenties berekenen uit de grondfrequentie</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik kan dBm-meetwaarden corrigeren voor attenuatie om werkelijk zendvermogen te berekenen</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik kan dBc berekenen en begrijp wat een negatieve waarde betekent</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik ken de norm (−60 dBc) en de documenthiërarchie (ITU-R → ETSI → RED/CE)</label>
+    <label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" style="width:16px;height:16px;accent-color:var(--teal)">Ik begrijp de beperkingen van een workshopmeting vs. een officiële CE-keuring</label>
+  </div>
+</div>
+
+<!-- Referentiegegevens -->
+<div class="summary-box" style="margin-top:24px">
+  <h3>Referentie — Meetwaarden WLD Workshop (15 mei 2026)</h3>
+  <p style="color:var(--slate-light);font-size:.85rem;margin-bottom:12px">Gemeten met Siglent SSA3021X · 2× 20 dB attenuator in serie · RBW 300 kHz · Span 120–450 MHz</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Toestel</th><th>Draaggolf</th><th>2e harm. (dBc)</th><th>3e harm./spur (dBc)</th><th>Norm 2e</th><th>Norm 3e</th></tr></thead>
+    <tbody>
+      <tr><td>Yaesu FT-65</td><td class="mono">−37,73 dBm</td><td class="mono">−55,37 dBc</td><td class="mono">−71,80 dBc</td><td style="color:var(--orange)">⚠️</td><td style="color:var(--green)">✅</td></tr>
+      <tr><td>Icom (model n.b.)</td><td class="mono">−39,72 dBm</td><td class="mono">−57,33 dBc</td><td class="mono">−69,35 dBc</td><td style="color:var(--orange)">⚠️</td><td style="color:var(--green)">✅</td></tr>
+      <tr><td>Retevis</td><td class="mono">−43,40 dBm</td><td class="mono">−61,01 dBc</td><td class="mono">−59,36 dBc</td><td style="color:var(--green)">✅</td><td style="color:var(--orange)">⚠️</td></tr>
+      <tr><td>Wouxun</td><td class="mono">−39,93 dBm</td><td class="mono">−59,95 dBc</td><td class="mono">−48,82 dBc</td><td style="color:var(--orange)">⚠️</td><td style="color:var(--orange)">❌</td></tr>
+      <tr><td>Baofeng</td><td class="mono">−43,39 dBm</td><td class="mono">−45,06 dBc</td><td class="mono">−36,52 dBc</td><td style="color:var(--orange)">❌</td><td style="color:var(--orange)">❌</td></tr>
+      <tr><td>Baofeng UV-5R *</td><td class="mono">−37,95 dBm</td><td class="mono">−38,13 dBc</td><td class="mono">−38,83 dBc</td><td style="color:var(--orange)">❌</td><td style="color:var(--orange)">❌</td></tr>
+    </tbody>
+  </table></div>
+  <p style="color:var(--slate-light);font-size:.78rem;margin-top:10px">* UV-5R: afwijkende meetinstellingen (Att 10 dB intern, RBW 1 MHz). Waarden indicatief. Norm: ITU-R SM.329 Cat. B / ETSI EN 301 783: &lt; −60 dBc. Meetonzekerheid ±3–5 dB. Geen officiële CE-keuring.</p>
+</div>
+
+<!-- Knoppen onderaan -->
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)">
+  <button onclick="window.print()" class="btn btn-outline">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Afdrukken / Print
+  </button>
+  <a href="../printables/spiekfiche.html" class="btn btn-ghost">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Spiekfiche
+  </a>
+  <a href="h26-fouten.html" class="btn btn-ghost">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/></svg>
+    H26 — Veelgemaakte fouten
+  </a>
+</div>
+</div><!-- /deel9 -->
+
+</div><!-- /main-inner -->
+</main>
+
+<footer class="app-footer">
+  <div class="footer-logo-row"><span class="footer-wld">WLD</span><div class="footer-sep"></div><div class="footer-info">ON6WL · Waaslandse Radio Amateurs · <a href="https://on6wl.be">on6wl.be</a></div></div>
+  <div class="footer-right">Practicum Spectrum-analyse · dB & dBm Cursus</div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const s = JSON.parse(localStorage.getItem('wld_dbcursus'));
+    if (s?.callsign) document.getElementById('hCallsign').textContent = s.callsign;
+    if (!s?.callsign) window.location.href = '../login.html';
+  } catch {}
+  renderSidebar(null);
+
+  // ── Veiligheidsberekening ────────────────────────────────
+  function updateSafety() {
+    const maxIn = parseFloat(document.getElementById('v_maxin')?.value);
+    const txPwr = parseFloat(document.getElementById('v_txpwr')?.value);
+    const att   = parseFloat(document.getElementById('v_att')?.value);
+    const inp   = document.getElementById('v_inp');
+    const margin= document.getElementById('v_margin');
+    const verdict=document.getElementById('v_verdict');
+    if (!isNaN(txPwr) && !isNaN(att)) {
+      const expected = txPwr - att;
+      if (inp) inp.value = expected.toFixed(2);
+      if (!isNaN(maxIn) && margin) {
+        const m = maxIn - expected;
+        margin.value = m.toFixed(1);
+        if (verdict) {
+          verdict.style.display = 'block';
+          if (m < 0) {
+            verdict.style.background = 'var(--red-dim)';
+            verdict.style.color = 'var(--orange)';
+            verdict.textContent = '❌ GEVAAR: ingangsvermogen overschrijdt analyzer-maximum! Vergroot de attenuatie.';
+          } else if (m < 10) {
+            verdict.style.background = 'rgba(255,193,7,.15)';
+            verdict.style.color = '#b45309';
+            verdict.textContent = '⚠️ Marge te klein (' + m.toFixed(1) + ' dB). Voeg minstens 10 dB extra attenuatie toe.';
+          } else {
+            verdict.style.background = 'var(--green-dim)';
+            verdict.style.color = '#15803d';
+            verdict.textContent = '✅ Veilig: marge = ' + m.toFixed(1) + ' dB. Analyzer is beschermd.';
+          }
+        }
+      }
+    }
+  }
+  ['v_maxin','v_txpwr','v_att'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateSafety);
+  });
+
+  // ── Draaggolf terugrekenen ───────────────────────────────
+  function updateCarrier() {
+    const p0 = parseFloat(document.getElementById('m_p0')?.value?.replace(',','.'));
+    const att = parseFloat(document.getElementById('v_att')?.value?.replace(',','.') || 40);
+    const noise = parseFloat(document.getElementById('m_noise')?.value?.replace(',','.'));
+    const ref = parseFloat(document.getElementById('n_ref')?.value?.replace(',','.') || -40);
+
+    if (!isNaN(p0) && !isNaN(att)) {
+      const ptx = p0 + att;
+      const ptxmw = Math.pow(10, ptx/10);
+      const ptxEl = document.getElementById('m_ptx');
+      const ptxmwEl = document.getElementById('m_ptxmw');
+      if (ptxEl) ptxEl.value = ptx.toFixed(2);
+      if (ptxmwEl) ptxmwEl.value = ptxmw < 1 ? ptxmw.toFixed(4) : ptxmw.toFixed(2);
+    }
+
+    if (!isNaN(p0) && !isNaN(noise)) {
+      const dr = p0 - noise;
+      const drEl = document.getElementById('m_dynrange');
+      if (drEl) drEl.value = dr.toFixed(1);
+    }
+  }
+  ['m_p0','m_noise','v_att'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateCarrier);
+  });
+
+  // ── dBc berekenen ────────────────────────────────────────
+  function updateDbcCalc() {
+    const p0 = parseFloat(document.getElementById('c_p0')?.value?.replace(',','.'));
+    const p2 = parseFloat(document.getElementById('c_p2')?.value?.replace(',','.'));
+    const p3 = parseFloat(document.getElementById('c_p3')?.value?.replace(',','.'));
+    if (!isNaN(p0) && !isNaN(p2)) {
+      const c2 = p2 - p0;
+      const c2El = document.getElementById('c_c2');
+      if (c2El) c2El.value = c2.toFixed(2);
+    }
+    if (!isNaN(p0) && !isNaN(p3)) {
+      const c3 = p3 - p0;
+      const c3El = document.getElementById('c_c3');
+      if (c3El) c3El.value = c3.toFixed(2);
+    }
+  }
+  ['c_p0','c_p2','c_p3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateDbcCalc);
+  });
+
+  // ── Lineaire factor berekenen ────────────────────────────
+  function updateLinearFactor() {
+    const c2 = parseFloat(document.getElementById('lf_c2')?.value?.replace(',','.'));
+    const c3 = parseFloat(document.getElementById('lf_c3')?.value?.replace(',','.'));
+    if (!isNaN(c2)) {
+      const f2 = Math.pow(10, Math.abs(c2)/10);
+      const f2El = document.getElementById('lf_f2');
+      if (f2El) f2El.value = Math.round(f2).toLocaleString('nl-BE');
+    }
+    if (!isNaN(c3)) {
+      const f3 = Math.pow(10, Math.abs(c3)/10);
+      const f3El = document.getElementById('lf_f3');
+      if (f3El) f3El.value = Math.round(f3).toLocaleString('nl-BE');
+    }
+  }
+  ['lf_c2','lf_c3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateLinearFactor);
+  });
+
+  // ── Normtoetsing marge berekenen ─────────────────────────
+  function updateNormCheck() {
+    const LIMIT = -60;
+    ['2','3'].forEach(n => {
+      const cEl = document.getElementById('n_c'+n);
+      const mEl = document.getElementById('n_m'+n);
+      const vEl = document.getElementById('n_v'+n);
+      if (!cEl || !mEl) return;
+      const c = parseFloat(cEl.value?.replace(',','.'));
+      if (isNaN(c)) return;
+      const margin = c - LIMIT; // negatief = beter dan norm (meer onderdrukking)
+      mEl.value = (margin > 0 ? '+' : '') + margin.toFixed(2);
+      if (vEl) {
+        if (c < -63) { vEl.value = '✅ OK'; }
+        else if (c <= -57) { vEl.value = '⚠️ Grensgebied'; }
+        else { vEl.value = '❌ Overschrijding'; }
+      }
+    });
+  }
+  ['n_c2','n_c3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateNormCheck);
+  });
+
+  // ── Harmonische frequenties tabel ────────────────────────
+  function updateHarmonicFreqs() {
+    const f0Input = document.getElementById('t_f0');
+    const f0m = document.getElementById('t_f0m');
+    if (!f0Input) return;
+    f0Input.addEventListener('input', function() {
+      const f0 = parseFloat(this.value.replace(',','.'));
+      if (!isNaN(f0)) {
+        const f2El = document.getElementById('t_f2exp');
+        const f3El = document.getElementById('t_f3exp');
+        if (f2El) f2El.textContent = (2*f0).toFixed(3) + ' MHz';
+        if (f3El) f3El.textContent = (3*f0).toFixed(3) + ' MHz';
+        if (f0m) f0m.value = f0.toFixed(3);
+      }
+    });
+  }
+  updateHarmonicFreqs();
+});
+</script>
+</body>
+</html>

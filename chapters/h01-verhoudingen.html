@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H01 · Verhoudingen — WLD dB & dBm Cursus</title>
+  <link rel="stylesheet" href="../assets/css/wld.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-logo">
+    <a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span class="header-logo-wld">WLD</span>
+      <div class="header-logo-sep"></div>
+    </a>
+    <span class="header-logo-title">
+      <span class="lang-block active" data-lang="nl">dB & dBm Cursus</span>
+      <span class="lang-block" data-lang="fr">Cours dB & dBm</span>
+      <span class="lang-block" data-lang="en">dB & dBm Course</span>
+    </span>
+  </div>
+  <div class="header-center">
+    <div class="header-progress-wrap">
+      <div class="header-progress-label">
+        <span data-i18n="progress">Voortgang</span>
+        <span class="header-progress-done">0 / 30</span>
+      </div>
+      <div class="header-progress-track"><div class="header-progress-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-callsign" id="hCallsign">—</span>
+    <div class="lang-switcher">
+      <button class="lang-switch-btn active" data-lang="nl">NL</button>
+      <button class="lang-switch-btn" data-lang="fr">FR</button>
+      <button class="lang-switch-btn" data-lang="en">EN</button>
+    </div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+  </div>
+</header>
+
+<nav class="app-sidebar"></nav>
+
+<main class="app-main">
+<div class="main-inner">
+
+<!-- ─── HOOFDSTUK HEADER ─────────────────────────────────── -->
+<div class="chapter-header">
+  <div class="ch-header-meta">
+    <div class="ch-breadcrumb">
+      <a href="../index.html">
+        <span class="lang-block active" data-lang="nl">Overzicht</span>
+        <span class="lang-block" data-lang="fr">Aperçu</span>
+        <span class="lang-block" data-lang="en">Overview</span>
+      </a>
+      <span>›</span>
+      <span class="lang-block active" data-lang="nl">Deel I</span>
+      <span class="lang-block" data-lang="fr">Partie I</span>
+      <span class="lang-block" data-lang="en">Part I</span>
+    </div>
+    <span class="ch-badge ch-badge-num">H01</span>
+    <span class="ch-badge ch-badge-level">
+      <span class="lang-block active" data-lang="nl">Beginner</span>
+      <span class="lang-block" data-lang="fr">Débutant</span>
+      <span class="lang-block" data-lang="en">Beginner</span>
+    </span>
+  </div>
+  <h1>
+    <span class="lang-block active" data-lang="nl">Verhoudingen: hoe vergelijken we getallen?</span>
+    <span class="lang-block" data-lang="fr">Rapports : comment comparons-nous des nombres&nbsp;?</span>
+    <span class="lang-block" data-lang="en">Ratios: how do we compare numbers?</span>
+  </h1>
+  <p class="intro">
+    <span class="lang-block active" data-lang="nl">Alles begint met een eenvoudige vraag: hoeveel groter is dit signaal dan dat signaal? De verhouding is de bouwsteen achter dB — begrijp je dit, dan begrijp je de rest vanzelf.</span>
+    <span class="lang-block" data-lang="fr">Tout commence par une question simple : combien de fois ce signal est-il plus fort que cet autre signal ? Le rapport est le fondement du dB — comprenez cela et tout le reste suivra naturellement.</span>
+    <span class="lang-block" data-lang="en">Everything starts with a simple question: how many times bigger is this signal than that signal? The ratio is the building block behind dB — understand this and everything else follows naturally.</span>
+  </p>
+  <svg class="ch-header-waves" viewBox="0 0 820 44" preserveAspectRatio="none">
+    <path class="rf-w3" fill="none" stroke="#00B4CC" stroke-width="1" d="M0,28 Q41,34 82,28 Q123,22 164,28 Q205,34 246,28 Q287,22 328,28 Q369,34 410,28 Q451,22 492,28 Q533,34 574,28 Q615,22 656,28 Q697,34 738,28 Q779,22 820,26"/>
+    <path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8" d="M0,34 Q20,40 41,34 Q61,28 82,34 Q102,40 123,34 Q143,28 164,34 Q184,40 205,34 Q225,28 246,34 Q266,40 287,34 Q307,28 328,34 Q348,40 369,34 Q389,28 410,34 Q430,40 451,34 Q471,28 492,34 Q512,40 533,34 Q553,28 574,34 Q594,40 615,34 Q635,28 656,34 Q676,40 697,34 Q717,28 738,34 Q758,40 779,34 Q799,28 820,32"/>
+  </svg>
+</div>
+
+<!-- ─── BODY ──────────────────────────────────────────────── -->
+<div class="chapter-body">
+
+<!-- LEERDOELEN -->
+<div class="leerdoelen">
+  <div class="leerdoelen-header">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <span data-i18n="objectives">Na dit hoofdstuk kun je</span>
+  </div>
+  <ul>
+    <li>
+      <span class="lang-block active" data-lang="nl">uitleggen wat een verhouding (ratio) is en waarom we ze gebruiken</span>
+      <span class="lang-block" data-lang="fr">expliquer ce qu'est un rapport (ratio) et pourquoi on l'utilise</span>
+      <span class="lang-block" data-lang="en">explain what a ratio is and why we use them</span>
+    </li>
+    <li>
+      <span class="lang-block active" data-lang="nl">het verschil benoemen tussen een absolute waarde en een verhouding</span>
+      <span class="lang-block" data-lang="fr">distinguer une valeur absolue d'un rapport</span>
+      <span class="lang-block" data-lang="en">distinguish between an absolute value and a ratio</span>
+    </li>
+    <li>
+      <span class="lang-block active" data-lang="nl">eenvoudige verhoudingen berekenen en interpreteren</span>
+      <span class="lang-block" data-lang="fr">calculer et interpréter des rapports simples</span>
+      <span class="lang-block" data-lang="en">calculate and interpret simple ratios</span>
+    </li>
+    <li>
+      <span class="lang-block active" data-lang="nl">begrijpen waarom verhoudingen de basis zijn van de decibel</span>
+      <span class="lang-block" data-lang="fr">comprendre pourquoi les rapports sont la base du décibel</span>
+      <span class="lang-block" data-lang="en">understand why ratios are the foundation of the decibel</span>
+    </li>
+  </ul>
+</div>
+
+<!-- SECTIE 1 -->
+<h2><span class="section-num">01</span>
+  <span class="lang-block active" data-lang="nl">Twee manieren om naar een getal te kijken</span>
+  <span class="lang-block" data-lang="fr">Deux façons de regarder un nombre</span>
+  <span class="lang-block" data-lang="en">Two ways to look at a number</span>
+</h2>
+
+<div class="lang-block active" data-lang="nl">
+  <p>Stel: je rijdt 200 km. Is dat veel of weinig? Als absolute waarde zegt dat weinig zonder context. Maar als je weet dat je normaal 100 km rijdt voor dezelfde rit, dan weet je meteen: dit is het <strong>dubbele</strong>. De verhouding tussen 200 en 100 is 2.</p>
+  <p>Dat is de kern van een verhouding: je vergelijkt twee getallen met elkaar door te <strong>delen</strong>. Het resultaat is een dimensieloos getal dat zegt "hoeveel groter of kleiner is het ene ten opzichte van het andere."</p>
+</div>
+<div class="lang-block" data-lang="fr">
+  <p>Supposons que vous conduisiez 200 km. Est-ce beaucoup ou peu ? En valeur absolue, cela ne veut rien dire sans contexte. Mais si vous savez que vous faites normalement 100 km pour le même trajet, vous comprenez immédiatement : c'est le <strong>double</strong>. Le rapport entre 200 et 100 est 2.</p>
+  <p>C'est l'essence d'un rapport : vous comparez deux nombres en les <strong>divisant</strong>. Le résultat est un nombre sans dimension qui dit "combien de fois l'un est-il plus grand ou plus petit que l'autre."</p>
+</div>
+<div class="lang-block" data-lang="en">
+  <p>Imagine you drive 200 km. Is that a lot or a little? As an absolute value, it says little without context. But if you know you normally drive 100 km for the same trip, you immediately understand: this is <strong>double</strong>. The ratio between 200 and 100 is 2.</p>
+  <p>That is the essence of a ratio: you compare two numbers by <strong>dividing</strong>. The result is a dimensionless number that says "how many times bigger or smaller is one compared to the other."</p>
+</div>
+
+<!-- FORMULE -->
+<div class="formula-block">
+  <div class="formula-label">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    <span class="lang-block active" data-lang="nl">Definitie — Verhouding (Ratio)</span>
+    <span class="lang-block" data-lang="fr">Définition — Rapport (Ratio)</span>
+    <span class="lang-block" data-lang="en">Definition — Ratio</span>
+  </div>
+  <div class="formula-main">
+    <span class="f-key">verhouding</span> <span class="f-op">=</span> waarde₁ <span class="f-op">÷</span> waarde₂
+  </div>
+  <div class="formula-vars">
+    <div class="formula-var">
+      <code>waarde₁</code>
+      <span class="lang-block active" data-lang="nl">het te beschrijven getal (bijv. uitgang)</span>
+      <span class="lang-block" data-lang="fr">le nombre à décrire (ex. sortie)</span>
+      <span class="lang-block" data-lang="en">the number being described (e.g. output)</span>
+    </div>
+    <div class="formula-var">
+      <code>waarde₂</code>
+      <span class="lang-block active" data-lang="nl">de referentie (bijv. ingang) — zelfde eenheid!</span>
+      <span class="lang-block" data-lang="fr">la référence (ex. entrée) — même unité !</span>
+      <span class="lang-block" data-lang="en">the reference (e.g. input) — same unit!</span>
+    </div>
+    <div class="formula-var">
+      <code>resultaat</code>
+      <span class="lang-block active" data-lang="nl">dimensieloos — de eenheden heffen elkaar op</span>
+      <span class="lang-block" data-lang="fr">sans dimension — les unités s'annulent</span>
+      <span class="lang-block" data-lang="en">dimensionless — the units cancel out</span>
+    </div>
+  </div>
+</div>
+
+<div class="callout callout-key">
+  <div class="callout-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span data-i18n="key_title">🔑 Kernregel</span>
+  </div>
+  <p>
+    <span class="lang-block active" data-lang="nl">Een verhouding beantwoordt altijd de vraag: <strong>"Hoeveel keer groter (of kleiner) is A dan B?"</strong> — niet "hoe groot is A?" dB werkt uitsluitend met verhoudingen.</span>
+    <span class="lang-block" data-lang="fr">Un rapport répond toujours à la question : <strong>"Combien de fois A est-il plus grand (ou plus petit) que B ?"</strong> — pas "quelle est la taille de A?" Le dB ne travaille qu'avec des rapports.</span>
+    <span class="lang-block" data-lang="en">A ratio always answers the question: <strong>"How many times bigger (or smaller) is A than B?"</strong> — not "how big is A?" dB works exclusively with ratios.</span>
+  </p>
+</div>
+
+<!-- SECTIE 2 -->
+<h2><span class="section-num">02</span>
+  <span class="lang-block active" data-lang="nl">Verhoudingen in de radioamateurpraktijk</span>
+  <span class="lang-block" data-lang="fr">Rapports dans la pratique radioamateur</span>
+  <span class="lang-block" data-lang="en">Ratios in amateur radio practice</span>
+</h2>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th><span class="lang-block active" data-lang="nl">Situatie</span><span class="lang-block" data-lang="fr">Situation</span><span class="lang-block" data-lang="en">Situation</span></th>
+        <th><span class="lang-block active" data-lang="nl">Vergelijking</span><span class="lang-block" data-lang="fr">Comparaison</span><span class="lang-block" data-lang="en">Comparison</span></th>
+        <th><span class="lang-block active" data-lang="nl">Verhouding</span><span class="lang-block" data-lang="fr">Rapport</span><span class="lang-block" data-lang="en">Ratio</span></th>
+        <th><span class="lang-block active" data-lang="nl">Betekenis</span><span class="lang-block" data-lang="fr">Signification</span><span class="lang-block" data-lang="en">Meaning</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="lang-block active" data-lang="nl">Zendvermogen</span><span class="lang-block" data-lang="fr">Puissance émise</span><span class="lang-block" data-lang="en">Transmit power</span></td>
+        <td>100 W / 50 W</td>
+        <td class="val">2</td>
+        <td><span class="lang-block active" data-lang="nl">Dubbel vermogen</span><span class="lang-block" data-lang="fr">Double puissance</span><span class="lang-block" data-lang="en">Double power</span></td>
+      </tr>
+      <tr>
+        <td><span class="lang-block active" data-lang="nl">Versterker</span><span class="lang-block" data-lang="fr">Amplificateur</span><span class="lang-block" data-lang="en">Amplifier</span></td>
+        <td>20 W / 5 W</td>
+        <td class="val">4</td>
+        <td><span class="lang-block active" data-lang="nl">Viervoud</span><span class="lang-block" data-lang="fr">Quadruple</span><span class="lang-block" data-lang="en">Quadrupled</span></td>
+      </tr>
+      <tr>
+        <td><span class="lang-block active" data-lang="nl">Kabelverlies</span><span class="lang-block" data-lang="fr">Perte câble</span><span class="lang-block" data-lang="en">Cable loss</span></td>
+        <td>50 W / 100 W</td>
+        <td class="val">0,5</td>
+        <td><span class="lang-block active" data-lang="nl">Halvering — verlies!</span><span class="lang-block" data-lang="fr">Moitié — perte!</span><span class="lang-block" data-lang="en">Halved — loss!</span></td>
+      </tr>
+      <tr>
+        <td><span class="lang-block active" data-lang="nl">Geen verschil</span><span class="lang-block" data-lang="fr">Pas de différence</span><span class="lang-block" data-lang="en">No difference</span></td>
+        <td>100 W / 100 W</td>
+        <td class="val">1</td>
+        <td><span class="lang-block active" data-lang="nl">Neutraal</span><span class="lang-block" data-lang="fr">Neutre</span><span class="lang-block" data-lang="en">Neutral</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTIE 3 -->
+<h2><span class="section-num">03</span>
+  <span class="lang-block active" data-lang="nl">De dB-schaal: een eerste blik</span>
+  <span class="lang-block" data-lang="fr">L'échelle dB : un premier aperçu</span>
+  <span class="lang-block" data-lang="en">The dB scale: a first look</span>
+</h2>
+
+<div class="lang-block active" data-lang="nl"><p>De decibel is niets anders dan een <strong>handige manier om een verhouding te noteren</strong>. In plaats van "factor 1000" zeg je "30 dB". In plaats van "factor 2" zeg je "+3 dB". De tabel hieronder toont de correspondentie:</p></div>
+<div class="lang-block" data-lang="fr"><p>Le décibel n'est rien d'autre qu'une <strong>façon pratique de noter un rapport</strong>. Au lieu de "facteur 1000", on dit "30 dB". Au lieu de "facteur 2", on dit "+3 dB". Le tableau ci-dessous montre la correspondance :</p></div>
+<div class="lang-block" data-lang="en"><p>The decibel is nothing more than a <strong>convenient way to express a ratio</strong>. Instead of "factor 1000" you say "30 dB". Instead of "factor 2" you say "+3 dB". The table below shows the correspondence:</p></div>
+
+<div class="db-scale">
+  <div class="db-scale-head">
+    <span>dB</span>
+    <span><span class="lang-block active" data-lang="nl">Visueel</span><span class="lang-block" data-lang="fr">Visuel</span><span class="lang-block" data-lang="en">Visual</span></span>
+    <span><span class="lang-block active" data-lang="nl">Verhouding · Betekenis</span><span class="lang-block" data-lang="fr">Rapport · Signification</span><span class="lang-block" data-lang="en">Ratio · Meaning</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val neg">−20 dB</span>
+    <div class="db-bar"><div class="db-bar-fill neg" style="width:90%"></div></div>
+    <span class="db-ratio">÷100 · <span class="lang-block active" data-lang="nl">honderd keer minder</span><span class="lang-block" data-lang="fr">cent fois moins</span><span class="lang-block" data-lang="en">one hundred times less</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val neg">−10 dB</span>
+    <div class="db-bar"><div class="db-bar-fill neg" style="width:60%"></div></div>
+    <span class="db-ratio">÷10 · <span class="lang-block active" data-lang="nl">tien keer minder</span><span class="lang-block" data-lang="fr">dix fois moins</span><span class="lang-block" data-lang="en">ten times less</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val neg">−3 dB</span>
+    <div class="db-bar"><div class="db-bar-fill neg" style="width:25%"></div></div>
+    <span class="db-ratio">÷2 · <span class="lang-block active" data-lang="nl">halvering</span><span class="lang-block" data-lang="fr">moitié</span><span class="lang-block" data-lang="en">halved</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val zero">0 dB</span>
+    <div class="db-bar"><div class="db-bar-fill" style="width:2%; background:var(--slate-light)"></div></div>
+    <span class="db-ratio">×1 · <span class="lang-block active" data-lang="nl">geen verschil</span><span class="lang-block" data-lang="fr">aucune différence</span><span class="lang-block" data-lang="en">no difference</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val pos">+3 dB</span>
+    <div class="db-bar"><div class="db-bar-fill pos" style="width:25%"></div></div>
+    <span class="db-ratio">×2 · <span class="lang-block active" data-lang="nl">verdubbeling</span><span class="lang-block" data-lang="fr">doublement</span><span class="lang-block" data-lang="en">doubled</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val pos">+6 dB</span>
+    <div class="db-bar"><div class="db-bar-fill pos" style="width:42%"></div></div>
+    <span class="db-ratio">×4 · <span class="lang-block active" data-lang="nl">viervoud</span><span class="lang-block" data-lang="fr">quadruple</span><span class="lang-block" data-lang="en">quadrupled</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val pos">+10 dB</span>
+    <div class="db-bar"><div class="db-bar-fill pos" style="width:60%"></div></div>
+    <span class="db-ratio">×10 · <span class="lang-block active" data-lang="nl">tienvoud</span><span class="lang-block" data-lang="fr">décuple</span><span class="lang-block" data-lang="en">tenfold</span></span>
+  </div>
+  <div class="db-scale-row">
+    <span class="db-val pos">+20 dB</span>
+    <div class="db-bar"><div class="db-bar-fill pos" style="width:90%"></div></div>
+    <span class="db-ratio">×100 · <span class="lang-block active" data-lang="nl">honderdvoud</span><span class="lang-block" data-lang="fr">centuple</span><span class="lang-block" data-lang="en">hundredfold</span></span>
+  </div>
+</div>
+
+<div class="callout callout-shack">
+  <div class="callout-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L22 4"/><path d="M12 4H22V14"/><rect x="2" y="14" width="8" height="6"/></svg>
+    <span data-i18n="shack_title">📻 In de shack</span>
+  </div>
+  <p>
+    <span class="lang-block active" data-lang="nl">Als je zendvermogen verdubbelt van 100 W naar 200 W, win je <strong>+3 dB</strong>. Als de ontvanger aan de andere kant een S-meter heeft, ziet die slechts een halve S-eenheid verschil. Dat is de realiteit van de logaritmische schaal.</span>
+    <span class="lang-block" data-lang="fr">Si vous doublez votre puissance d'émission de 100 W à 200 W, vous gagnez <strong>+3 dB</strong>. Si le destinataire a un S-mètre, il verra seulement une demi-unité S de différence. C'est la réalité de l'échelle logarithmique.</span>
+    <span class="lang-block" data-lang="en">If you double your transmit power from 100 W to 200 W, you gain <strong>+3 dB</strong>. If the receiving station has an S-meter, they'll see only half an S-unit of difference. That is the reality of the logarithmic scale.</span>
+  </p>
+</div>
+
+<!-- OEFENINGEN -->
+<hr class="section-divider">
+<div class="exercise-section">
+  <div class="exercise-section-title">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    <span data-i18n="exercises_title">Oefeningen</span>
+  </div>
+
+  <!-- OEF 1 -->
+  <div class="exercise">
+    <div class="ex-top">
+      <span class="ex-num">1.1</span>
+      <div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div>
+    </div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Station A zendt 100 W uit, station B zendt 400 W. Bereken de verhouding B/A. Wat betekent dit in woorden?</span>
+      <span class="lang-block" data-lang="fr">La station A émet 100 W, la station B émet 400 W. Calculez le rapport B/A. Qu'est-ce que cela signifie en mots ?</span>
+      <span class="lang-block" data-lang="en">Station A transmits 100 W, station B transmits 400 W. Calculate the ratio B/A. What does this mean in words?</span>
+    </div>
+    <button class="solution-btn" data-target="s1-1">
+      <span data-i18n="show_solution">▼ Toon oplossing</span>
+    </button>
+    <div class="solution-content" id="s1-1">
+      <span class="lang-block active" data-lang="nl"><strong>Verhouding = 400 W ÷ 100 W = 4</strong><br>De eenheden (W) vallen weg. Resultaat: het dimensieloze getal 4.<br>In woorden: station B zendt vier keer zoveel vermogen uit als station A.<br><br>💡 Later zie je: factor 4 = +6 dB (twee keer verdubbelen = +3 dB + +3 dB).</span>
+      <span class="lang-block" data-lang="fr"><strong>Rapport = 400 W ÷ 100 W = 4</strong><br>Les unités (W) s'annulent. Résultat : le nombre adimensionnel 4.<br>En mots : la station B émet quatre fois plus de puissance que la station A.<br><br>💡 Plus tard : facteur 4 = +6 dB (doublement deux fois = +3 dB + +3 dB).</span>
+      <span class="lang-block" data-lang="en"><strong>Ratio = 400 W ÷ 100 W = 4</strong><br>The units (W) cancel out. Result: the dimensionless number 4.<br>In words: station B transmits four times as much power as station A.<br><br>💡 Later you'll see: factor 4 = +6 dB (doubling twice = +3 dB + +3 dB).</span>
+    </div>
+  </div>
+
+  <!-- OEF 2 -->
+  <div class="exercise">
+    <div class="ex-top">
+      <span class="ex-num">1.2</span>
+      <div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div>
+    </div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Een coaxkabel laat 50% van het ingangsvermogen door. Wat is de verhouding P_uitgang / P_ingang? Is dit versterking of verlies?</span>
+      <span class="lang-block" data-lang="fr">Un câble coaxial laisse passer 50% de la puissance d'entrée. Quel est le rapport P_sortie / P_entrée ? S'agit-il d'un gain ou d'une perte ?</span>
+      <span class="lang-block" data-lang="en">A coaxial cable passes 50% of the input power. What is the ratio P_output / P_input? Is this gain or loss?</span>
+    </div>
+    <button class="solution-btn" data-target="s1-2"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s1-2">
+      <span class="lang-block active" data-lang="nl"><strong>Verhouding = 0,5</strong> — kleiner dan 1, dus: <strong>verlies</strong>.<br>De helft van het vermogen wordt als warmte gedissipeerd in de kabel.<br><br>⚠️ Later: verhouding 0,5 = −3 dB. Slechts 3 dB, maar dat is al <em>de helft</em> van je vermogen!</span>
+      <span class="lang-block" data-lang="fr"><strong>Rapport = 0,5</strong> — inférieur à 1, donc : <strong>perte</strong>.<br>La moitié de la puissance est dissipée sous forme de chaleur dans le câble.<br><br>⚠️ Plus tard : rapport 0,5 = −3 dB. Seulement 3 dB, mais c'est déjà <em>la moitié</em> de votre puissance !</span>
+      <span class="lang-block" data-lang="en"><strong>Ratio = 0.5</strong> — less than 1, therefore: <strong>loss</strong>.<br>Half of the power is dissipated as heat in the cable.<br><br>⚠️ Later: ratio 0.5 = −3 dB. Only 3 dB, but that's already <em>half</em> your power!</span>
+    </div>
+  </div>
+
+  <!-- OEF 3 -->
+  <div class="exercise">
+    <div class="ex-top">
+      <span class="ex-num">1.3</span>
+      <div class="ex-diff"><span class="lit">●</span><span class="lit">●</span><span>●</span></div>
+    </div>
+    <div class="ex-question">
+      <span class="lang-block active" data-lang="nl">Iemand zegt: "dB is gewoon een mooier woord voor procenten." Is dat correct? Leg uit waarom niet.</span>
+      <span class="lang-block" data-lang="fr">Quelqu'un dit : « le dB c'est juste un mot fantaisiste pour les pourcentages. » Est-ce correct ? Expliquez pourquoi non.</span>
+      <span class="lang-block" data-lang="en">Someone says: "dB is just a fancy word for percentages." Is that correct? Explain why not.</span>
+    </div>
+    <button class="solution-btn" data-target="s1-3"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="s1-3">
+      <span class="lang-block active" data-lang="nl"><strong>Niet correct</strong> — er zijn twee fundamentele verschillen:<br><br>1. <strong>Procenten zijn lineair, dB is logaritmisch.</strong> "10% meer" twee keer toepassen geeft 21%, niet 20%. In dB tel je gewoon op: +1 dB + +1 dB = +2 dB precies.<br><br>2. <strong>Dynamisch bereik.</strong> Van 10⁻¹³ W (ruis) tot 400 W (zendvermogen) = factor 4×10¹⁵. In procenten is dat onhanteerbaar. In dB: van −130 dBm tot +56 dBm = 186 dB. Leesbaar!</span>
+      <span class="lang-block" data-lang="fr"><strong>Pas correct</strong> — il y a deux différences fondamentales :<br><br>1. <strong>Les pourcentages sont linéaires, le dB est logarithmique.</strong> Appliquer "10% de plus" deux fois donne 21%, pas 20%. En dB, on additionne simplement : +1 dB + +1 dB = +2 dB exactement.<br><br>2. <strong>Plage dynamique.</strong> De 10⁻¹³ W (bruit) à 400 W (puissance émise) = facteur 4×10¹⁵. En pourcentages, c'est ingérable. En dB : de −130 dBm à +56 dBm = 186 dB. Lisible !</span>
+      <span class="lang-block" data-lang="en"><strong>Not correct</strong> — there are two fundamental differences:<br><br>1. <strong>Percentages are linear, dB is logarithmic.</strong> Applying "10% more" twice gives 21%, not 20%. In dB you simply add: +1 dB + +1 dB = +2 dB exactly.<br><br>2. <strong>Dynamic range.</strong> From 10⁻¹³ W (noise) to 400 W (transmit power) = factor 4×10¹⁵. In percentages that's unmanageable. In dB: from −130 dBm to +56 dBm = 186 dB. Readable!</span>
+    </div>
+  </div>
+</div>
+
+<!-- SAMENVATTING -->
+<div class="summary-box">
+  <h3 data-i18n="summary_title">Samenvatting</h3>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">Een <strong>verhouding</strong> vergelijkt twee waarden door te delen: verhouding = A ÷ B</span><span class="lang-block" data-lang="fr">Un <strong>rapport</strong> compare deux valeurs par division : rapport = A ÷ B</span><span class="lang-block" data-lang="en">A <strong>ratio</strong> compares two values by dividing: ratio = A ÷ B</span></li>
+    <li><span class="lang-block active" data-lang="nl">Het resultaat is <strong>dimensieloos</strong> — de eenheden heffen elkaar op</span><span class="lang-block" data-lang="fr">Le résultat est <strong>sans dimension</strong> — les unités s'annulent</span><span class="lang-block" data-lang="en">The result is <strong>dimensionless</strong> — the units cancel out</span></li>
+    <li><span class="lang-block active" data-lang="nl">Verhouding &gt; 1: versterking · = 1: neutraal · &lt; 1: verlies</span><span class="lang-block" data-lang="fr">Rapport &gt; 1 : gain · = 1 : neutre · &lt; 1 : perte</span><span class="lang-block" data-lang="en">Ratio &gt; 1: gain · = 1: neutral · &lt; 1: loss</span></li>
+    <li><span class="lang-block active" data-lang="nl">dB is een logaritmische manier om verhoudingen compact te noteren</span><span class="lang-block" data-lang="fr">dB est une façon logarithmique de noter les rapports de façon compacte</span><span class="lang-block" data-lang="en">dB is a logarithmic way to express ratios compactly</span></li>
+    <li><span class="lang-block active" data-lang="nl">dB is <strong>nooit</strong> een absolute maat — altijd een vergelijking</span><span class="lang-block" data-lang="fr">dB n'est <strong>jamais</strong> une mesure absolue — toujours une comparaison</span><span class="lang-block" data-lang="en">dB is <strong>never</strong> an absolute measure — always a comparison</span></li>
+  </ul>
+</div>
+
+<!-- GEHEUGENSTEUN -->
+<div class="memory-box">
+  <div class="memory-header">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+    <span data-i18n="memory_title">🧠 Onthoud dit</span>
+  </div>
+  <div class="memory-content">
+    <span class="lang-block active" data-lang="nl">dB beantwoordt altijd de vraag: <span>"Hoeveel keer?"</span><br>Niet "hoe groot?" maar: "hoe groot <span>vergeleken</span> met iets anders?"</span>
+    <span class="lang-block" data-lang="fr">dB répond toujours à la question : <span>« Combien de fois ? »</span><br>Pas « quelle taille ? » mais : « quelle taille <span>comparée</span> à autre chose ? »</span>
+    <span class="lang-block" data-lang="en">dB always answers the question: <span>"How many times?"</span><br>Not "how big?" but: "how big <span>compared</span> to something else?"</span>
+  </div>
+</div>
+
+<!-- VOLTOOI KNOP -->
+<div class="complete-area">
+  <p>
+    <span class="lang-block active" data-lang="nl">Klaar met dit hoofdstuk?</span>
+    <span class="lang-block" data-lang="fr">Chapitre terminé ?</span>
+    <span class="lang-block" data-lang="en">Finished this chapter?</span>
+  </p>
+  <button class="btn-complete" id="btn-complete" data-chid="h01">
+    <span data-i18n="mark_done">✓ Markeer als voltooid</span>
+  </button>
+</div>
+
+<!-- NAVIGATIE -->
+<div class="chapter-nav-footer">
+  <a href="../index.html" class="ch-nav-btn">
+    <span class="dir">
+      <span class="lang-block active" data-lang="nl">← Overzicht</span>
+      <span class="lang-block" data-lang="fr">← Aperçu</span>
+      <span class="lang-block" data-lang="en">← Overview</span>
+    </span>
+    <span class="name">
+      <span class="lang-block active" data-lang="nl">Terug naar startpagina</span>
+      <span class="lang-block" data-lang="fr">Retour à l'accueil</span>
+      <span class="lang-block" data-lang="en">Back to home</span>
+    </span>
+  </a>
+  <a href="h02-logaritmen.html" class="ch-nav-btn right">
+    <span class="dir">
+      <span class="lang-block active" data-lang="nl">Volgende →</span>
+      <span class="lang-block" data-lang="fr">Suivant →</span>
+      <span class="lang-block" data-lang="en">Next →</span>
+    </span>
+    <span class="name">
+      <span class="lang-block active" data-lang="nl">H02 · Logaritmen</span>
+      <span class="lang-block" data-lang="fr">H02 · Logarithmes</span>
+      <span class="lang-block" data-lang="en">H02 · Logarithms</span>
+    </span>
+  </a>
+</div>
+
+</div><!-- /chapter-body -->
+</div><!-- /main-inner -->
+</main>
+
+<footer class="app-footer">
+  <div class="footer-logo-row">
+    <span class="footer-wld">WLD</span>
+    <div class="footer-sep"></div>
+    <div class="footer-info">ON6WL · Waaslandse Radio Amateurs · <a href="https://on6wl.be">on6wl.be</a></div>
+  </div>
+  <div class="footer-right">dB & dBm Cursus · H01</div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/sidebar.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const s = JSON.parse(localStorage.getItem('wld_dbcursus'));
+    if (s?.callsign) document.getElementById('hCallsign').textContent = s.callsign;
+    if (!s?.callsign) window.location.href = '../login.html';
+  } catch {}
+  renderSidebar('h01');
+});
+</script>
+</body>
+</html>

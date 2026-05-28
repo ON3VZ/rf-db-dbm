@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WLD ON6WL — dB & dBm Cursus</title>
+  <link rel="stylesheet" href="assets/css/wld.css">
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────── -->
+<header class="app-header">
+  <div class="header-logo">
+    <span class="header-logo-wld">WLD</span>
+    <div class="header-logo-sep"></div>
+    <span class="header-logo-title" data-i18n-block>
+      <span class="lang-block active" data-lang="nl">dB & dBm Cursus</span>
+      <span class="lang-block" data-lang="fr">Cours dB & dBm</span>
+      <span class="lang-block" data-lang="en">dB & dBm Course</span>
+    </span>
+  </div>
+
+  <div class="header-center">
+    <div class="header-progress-wrap">
+      <div class="header-progress-label">
+        <span data-i18n="progress">Voortgang</span>
+        <span class="header-progress-done">0 / 30</span>
+      </div>
+      <div class="header-progress-track">
+        <div class="header-progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <span class="header-callsign" id="hCallsign">—</span>
+    <div class="lang-switcher">
+      <button class="lang-switch-btn active" data-lang="nl">NL</button>
+      <button class="lang-switch-btn" data-lang="fr">FR</button>
+      <button class="lang-switch-btn" data-lang="en">EN</button>
+    </div>
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+  </div>
+</header>
+
+<!-- ─── SIDEBAR ────────────────────────────────────────── -->
+<nav class="app-sidebar"></nav>
+
+<!-- ─── MAIN ────────────────────────────────────────────── -->
+<main class="app-main">
+<div class="main-inner">
+
+  <!-- HERO -->
+  <div class="dash-hero">
+    <div class="dash-hero-label">
+      <span class="lang-block active" data-lang="nl">RADIOAMATEURCLUB WLD · ON6WL · CURSUS</span>
+      <span class="lang-block" data-lang="fr">RADIOCLUB WLD · ON6WL · COURS</span>
+      <span class="lang-block" data-lang="en">RADIO AMATEUR CLUB WLD · ON6WL · COURSE</span>
+    </div>
+    <h1>
+      <span class="lang-block active" data-lang="nl">Begrijp <span style="color:var(--teal)">dB & dBm</span><br>van nul tot shack</span>
+      <span class="lang-block" data-lang="fr">Comprendre <span style="color:var(--teal)">dB & dBm</span><br>de zéro à la station</span>
+      <span class="lang-block" data-lang="en">Understand <span style="color:var(--teal)">dB & dBm</span><br>from zero to shack</span>
+    </h1>
+    <p class="dash-hero-sub">
+      <span class="lang-block active" data-lang="nl">Een volledig leertraject voor radioamateurs — van de wiskundige basis tot praktische RF-interpretatie. Geen voorkennis vereist.</span>
+      <span class="lang-block" data-lang="fr">Un parcours d'apprentissage complet pour radioamateurs — des bases mathématiques à l'interprétation RF pratique. Aucune connaissance préalable requise.</span>
+      <span class="lang-block" data-lang="en">A complete learning track for radio amateurs — from mathematical foundations to practical RF interpretation. No prior knowledge required.</span>
+    </p>
+    <div class="dash-hero-actions">
+      <a href="chapters/h01-verhoudingen.html" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span class="lang-block active" data-lang="nl">Start het leertraject</span>
+        <span class="lang-block" data-lang="fr">Commencer le cours</span>
+        <span class="lang-block" data-lang="en">Start learning</span>
+      </a>
+      <a href="printables/spiekfiche.html" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span class="lang-block active" data-lang="nl">Spiekfiche</span>
+        <span class="lang-block" data-lang="fr">Aide-mémoire</span>
+        <span class="lang-block" data-lang="en">Cheat sheet</span>
+      </a>
+    </div>
+    <!-- RF-golven -->
+    <svg class="dash-hero-waves" viewBox="0 0 820 60" preserveAspectRatio="none">
+      <path class="rf-w3" fill="none" stroke="#00B4CC" stroke-width="1"
+        d="M0,38 Q41,44 82,38 Q123,32 164,38 Q205,44 246,38 Q287,32 328,38 Q369,44 410,38 Q451,32 492,38 Q533,44 574,38 Q615,32 656,38 Q697,44 738,38 Q779,32 820,36"/>
+      <path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8"
+        d="M0,46 Q20,53 41,46 Q61,39 82,46 Q102,53 123,46 Q143,39 164,46 Q184,53 205,46 Q225,39 246,46 Q266,53 287,46 Q307,39 328,46 Q348,53 369,46 Q389,39 410,46 Q430,53 451,46 Q471,39 492,46 Q512,53 533,46 Q553,39 574,46 Q594,53 615,46 Q635,39 656,46 Q676,53 697,46 Q717,39 738,46 Q758,53 779,46 Q799,39 820,44"/>
+      <path class="rf-w2" fill="none" stroke="#00B4CC" stroke-width="1.3"
+        d="M0,54 Q27,59 55,54 Q82,49 110,54 Q137,59 164,54 Q191,49 219,54 Q246,59 273,54 Q300,49 328,54 Q355,59 382,54 Q410,49 437,54 Q464,59 492,54 Q519,49 547,54 Q574,59 601,54 Q628,49 656,54 Q683,59 710,54 Q738,49 765,54 Q793,59 820,54"/>
+    </svg>
+  </div>
+
+  <!-- VOORTGANG -->
+  <div class="progress-card">
+    <div class="progress-circle-wrap">
+      <div class="progress-circle">
+        <span class="progress-pct">0%</span>
+      </div>
+    </div>
+    <div class="progress-info">
+      <h3 class="lang-block active" data-lang="nl">Jouw voortgang</h3>
+      <h3 class="lang-block" data-lang="fr">Votre progression</h3>
+      <h3 class="lang-block" data-lang="en">Your progress</h3>
+      <p class="progress-count">0 van 30 voltooid</p>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEERPAD -->
+  <div class="leerpad-wrap">
+    <div class="leerpad-title">
+      <span class="lang-block active" data-lang="nl">LEERPAD</span>
+      <span class="lang-block" data-lang="fr">PARCOURS</span>
+      <span class="lang-block" data-lang="en">LEARNING PATH</span>
+    </div>
+    <div class="leerpad-stages">
+      <span class="stage">
+        <span class="lang-block active" data-lang="nl">📐 Fundamenten</span>
+        <span class="lang-block" data-lang="fr">📐 Fondements</span>
+        <span class="lang-block" data-lang="en">📐 Foundations</span>
+      </span>
+      <span class="stage-arrow">→</span>
+      <span class="stage">📊 Logaritmen / Logarithmes</span>
+      <span class="stage-arrow">→</span>
+      <span class="stage">📶 dB</span>
+      <span class="stage-arrow">→</span>
+      <span class="stage">📡 dBm</span>
+      <span class="stage-arrow">→</span>
+      <span class="stage">
+        <span class="lang-block active" data-lang="nl">🔧 Toepassingen</span>
+        <span class="lang-block" data-lang="fr">🔧 Applications</span>
+        <span class="lang-block" data-lang="en">🔧 Applications</span>
+      </span>
+      <span class="stage-arrow">→</span>
+      <span class="stage">
+        <span class="lang-block active" data-lang="nl">🎯 Synthese</span>
+        <span class="lang-block" data-lang="fr">🎯 Synthèse</span>
+        <span class="lang-block" data-lang="en">🎯 Synthesis</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- HOOFDSTUKKEN GRID — dynamisch per deel -->
+  <div id="chapters-container"></div>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer class="app-footer">
+  <div class="footer-logo-row">
+    <span class="footer-wld">WLD</span>
+    <div class="footer-sep"></div>
+    <div class="footer-info">
+      ON6WL · Waaslandse Radio Amateurs · Sinaai · <a href="https://on6wl.be">on6wl.be</a>
+    </div>
+  </div>
+  <div class="footer-right">
+    dB & dBm Cursus v1.0<br>
+    <span class="lang-block active" data-lang="nl">Lid van <a href="https://uba.be">UBA</a></span>
+    <span class="lang-block" data-lang="fr">Membre de <a href="https://uba.be">UBA</a></span>
+    <span class="lang-block" data-lang="en">Member of <a href="https://uba.be">UBA</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/sidebar.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Callsign in header
+  try {
+    const s = JSON.parse(localStorage.getItem('wld_dbcursus'));
+    if (s?.callsign) document.getElementById('hCallsign').textContent = s.callsign;
+    if (!s?.callsign) window.location.href = 'login.html';
+  } catch {}
+
+  renderSidebar(null);
+  buildChapterGrid();
+});
+
+function buildChapterGrid() {
+  const lang = (function() {
+    try { return JSON.parse(localStorage.getItem('wld_dbcursus'))?.lang || 'nl'; } catch { return 'nl'; }
+  })();
+
+  const state = (function() {
+    try { return JSON.parse(localStorage.getItem('wld_dbcursus')) || {}; } catch { return {}; }
+  })();
+
+  const DEELS = {
+    nl: { 0:'Oriëntatie', 1:'Deel I — Wiskundige fundamenten', 2:'Deel II — De decibel', 3:'Deel III — dBm & Eenheden', 4:'Deel IV — Antenneversterking', 5:'Deel V — Toepassingen', 6:'Deel VI — Meten & Interpreteren', 7:'Deel VII — Synthese' },
+    fr: { 0:'Orientation', 1:'Partie I — Fondements mathématiques', 2:'Partie II — Le décibel', 3:'Partie III — dBm & Unités', 4:'Partie IV — Gain d\'antenne', 5:'Partie V — Applications', 6:'Partie VI — Mesure & Interprétation', 7:'Partie VII — Synthèse' },
+    en: { 0:'Orientation', 1:'Part I — Mathematical Foundations', 2:'Part II — The Decibel', 3:'Part III — dBm & Units', 4:'Part IV — Antenna Gain', 5:'Part V — Applications', 6:'Part VI — Measuring & Interpreting', 7:'Part VII — Synthesis' },
+  };
+
+  const BADGEMAP = {
+    nl: { beginner:'Beginner', basis:'Basis', praktijk:'Praktijk', synthese:'Synthese', referentie:'Referentie' },
+    fr: { beginner:'Débutant', basis:'Base', praktijk:'Pratique', synthese:'Synthèse', referentie:'Référence' },
+    en: { beginner:'Beginner', basis:'Foundation', praktijk:'Practice', synthese:'Synthesis', referentie:'Reference' },
+  };
+
+  const CARD_DATA = [
+    { deel:0, id:'h00', badge:'beginner', desc:{ nl:'Hoe dit leertraject werkt en hoe je het optimaal gebruikt.', fr:'Comment fonctionne ce cours et comment l\'utiliser.', en:'How this course works and how to use it effectively.' }, full:true },
+    { deel:1, id:'h01', badge:'beginner', desc:{ nl:'Wat een verhouding is — de absolute basis van dB.', fr:'Qu\'est-ce qu\'un rapport — la base absolue du dB.', en:'What a ratio is — the absolute foundation of dB.' }, full:true },
+    { deel:1, id:'h02', badge:'beginner', desc:{ nl:'Logaritmen volledig uitgelegd — geen voorkennis vereist.', fr:'Logarithmes expliqués de zéro — sans prérequis.', en:'Logarithms explained from scratch — no prior knowledge needed.' }, full:true },
+    { deel:1, id:'h03', badge:'beginner', desc:{ nl:'Waarom logaritmisch denken? De kracht van schaalcompressie.', fr:'Pourquoi penser logarithmiquement ? La puissance de la compression d\'échelle.', en:'Why think logarithmically? The power of scale compression.' }, full:false },
+    { deel:2, id:'h04', badge:'beginner', desc:{ nl:'Formele definitie, waarom relatief, en een veelgemaakte schrijffout.', fr:'Définition formelle, pourquoi relatif, et une erreur d\'écriture courante.', en:'Formal definition, why relative, and a common writing mistake.' }, full:true },
+    { deel:2, id:'h05', badge:'beginner', desc:{ nl:'De kernformule 10·log₁₀ volledig uitgelegd met voorbeelden.', fr:'La formule clé 10·log₁₀ expliquée avec des exemples.', en:'The core formula 10·log₁₀ fully explained with examples.' }, full:false },
+    { deel:2, id:'h06', badge:'basis', desc:{ nl:'Waarom soms 20·log₁₀? Afleiding en impedantieconditie.', fr:'Pourquoi parfois 20·log₁₀ ? Dérivation et condition d\'impédance.', en:'Why sometimes 20·log₁₀? Derivation and impedance condition.' }, full:false },
+    { deel:2, id:'h07', badge:'beginner', desc:{ nl:'Wat een positieve of negatieve dB-waarde betekent.', fr:'Ce que signifie une valeur dB positive ou négative.', en:'What a positive or negative dB value means.' }, full:false },
+    { deel:2, id:'h08', badge:'beginner', desc:{ nl:'Vermenigvuldigingen worden optellingen — de kracht van dB.', fr:'Les multiplications deviennent des additions — la puissance du dB.', en:'Multiplications become additions — the power of dB.' }, full:false },
+    { deel:2, id:'h09', badge:'beginner', desc:{ nl:'Snel omrekenen zonder calculator via de 3- en 10-regel.', fr:'Conversion rapide sans calculatrice via la règle 3 et 10.', en:'Quick conversion without calculator using the 3 and 10 rule.' }, full:false },
+    { deel:3, id:'h10', badge:'beginner', desc:{ nl:'Definitie, referentie 1 mW, ankerpunten en 50 Ω-context.', fr:'Définition, référence 1 mW, points d\'ancrage et contexte 50 Ω.', en:'Definition, 1 mW reference, anchor points and 50 Ω context.' }, full:true },
+    { deel:3, id:'h11', badge:'beginner', desc:{ nl:'Volledige omrekeningsgids met interactieve calculator.', fr:'Guide de conversion complet avec calculateur interactif.', en:'Complete conversion guide with interactive calculator.' }, full:true },
+    { deel:3, id:'h12', badge:'beginner', desc:{ nl:'dBW en de relatie dBm − 30 = dBW.', fr:'dBW et la relation dBm − 30 = dBW.', en:'dBW and the relationship dBm − 30 = dBW.' }, full:false },
+    { deel:3, id:'h13', badge:'beginner', desc:{ nl:'Van QRP tot legaal maximum — waarden in context.', fr:'Du QRP au maximum légal — valeurs en contexte.', en:'From QRP to legal maximum — values in context.' }, full:false },
+    { deel:3, id:'h14', badge:'basis', desc:{ nl:'Waarom dBm + dBm optellen een fundamentele fout is.', fr:'Pourquoi additionner dBm + dBm est une erreur fondamentale.', en:'Why adding dBm + dBm is a fundamental mistake.' }, full:false },
+    { deel:4, id:'h15', badge:'basis', desc:{ nl:'Antenneversterking t.o.v. isotropisch uitgelegd.', fr:'Gain d\'antenne par rapport à isotropique expliqué.', en:'Antenna gain relative to isotropic explained.' }, full:false },
+    { deel:4, id:'h16', badge:'basis', desc:{ nl:'dBd vs. dBi: het verschil van 2,15 dB.', fr:'dBd vs. dBi : la différence de 2,15 dB.', en:'dBd vs. dBi: the 2.15 dB difference.' }, full:false },
+    { deel:4, id:'h17', badge:'basis', desc:{ nl:'dBc (draaggolf) en dBµV (spanningsniveaus) beknopt.', fr:'dBc (porteuse) et dBµV (niveaux de tension) en bref.', en:'dBc (carrier) and dBµV (voltage levels) briefly explained.' }, full:false },
+    { deel:5, id:'h18', badge:'praktijk', desc:{ nl:'Van eindtrap tot uitgestraald signaal in dBm.', fr:'De l\'étage final au signal rayonné en dBm.', en:'From power amplifier to radiated signal in dBm.' }, full:false },
+    { deel:5, id:'h19', badge:'praktijk', desc:{ nl:'Kabeltypen, verlieswaarden en praktische impact.', fr:'Types de câbles, valeurs de perte et impact pratique.', en:'Cable types, loss values and practical impact.' }, full:false },
+    { deel:5, id:'h20', badge:'praktijk', desc:{ nl:'Een volledige zend-ontvangst-keten stap voor stap doorrekenen.', fr:'Calculer une chaîne émission-réception étape par étape.', en:'Calculate a complete transmit-receive chain step by step.' }, full:false },
+    { deel:5, id:'h21', badge:'praktijk', desc:{ nl:'S9 = −73 dBm (HF), IARU-norm en beperkingen S-meter.', fr:'S9 = −73 dBm (HF), norme IARU et limites du S-mètre.', en:'S9 = −73 dBm (HF), IARU standard and S-meter limitations.' }, full:true },
+    { deel:5, id:'h22', badge:'praktijk', desc:{ nl:'Eenvoudig verbindingsbegroting opstellen in dBm.', fr:'Établir un bilan de liaison simple en dBm.', en:'Build a simple link budget in dBm.' }, full:false },
+    { deel:5, id:'h23', badge:'praktijk', desc:{ nl:'Waarom 100 W niet "twee keer beter" is dan 50 W.', fr:'Pourquoi 100 W n\'est pas "deux fois meilleur" que 50 W.', en:'Why 100 W is not "twice as good" as 50 W.' }, full:false },
+    { deel:6, id:'h24', badge:'basis', desc:{ nl:'Spectrum analyzer, vermogensmeter — hoe lees je correct?', fr:'Analyseur de spectre, wattmètre — comment lire correctement?', en:'Spectrum analyser, power meter — how to read correctly?' }, full:false },
+    { deel:6, id:'h25', badge:'basis', desc:{ nl:'S-meterkalibratie, IARU-definitie en meetbeperkingen.', fr:'Étalonnage S-mètre, définition IARU et limites de mesure.', en:'S-meter calibration, IARU definition and measurement limits.' }, full:false },
+    { deel:6, id:'h26', badge:'basis', desc:{ nl:'10 geclassificeerde fouten met correcties en zelftest.', fr:'10 erreurs classées avec corrections et auto-test.', en:'10 classified mistakes with corrections and self-test.' }, full:true },
+    { deel:7, id:'h27', badge:'synthese', desc:{ nl:'Van basisomrekening tot volledige RF-ketenberekening.', fr:'De la conversion de base au calcul de chaîne RF complet.', en:'From basic conversion to complete RF chain calculation.' }, full:false },
+    { deel:7, id:'h28', badge:'referentie', desc:{ nl:'Alle kernformules en regels op één printbaar A4.', fr:'Toutes les formules et règles clés sur un A4 imprimable.', en:'All key formulas and rules on one printable A4.' }, full:false },
+    { deel:7, id:'h29', badge:'synthese', desc:{ nl:'Test je kennis — volledige evaluatietest met oplossingen.', fr:'Testez vos connaissances — évaluation complète avec solutions.', en:'Test your knowledge — complete evaluation test with solutions.' }, full:false },
+  ];
+
+  const container = document.getElementById('chapters-container');
+  if (!container) return;
+
+  let currentDeel = -1;
+  let html = '';
+
+  CARD_DATA.forEach(ch => {
+    if (ch.deel !== currentDeel) {
+      if (currentDeel >= 0) html += '</div>';
+      currentDeel = ch.deel;
+      const dTitle = (DEELS[lang] || DEELS.nl)[ch.deel];
+      html += `<div class="section-title"><span class="section-title-num">0${ch.deel}</span>${dTitle}</div><div class="chapter-grid">`;
+    }
+
+    const title = (CHAPTER_TITLES[lang] || CHAPTER_TITLES.nl)[ch.id];
+    const desc  = ch.desc[lang] || ch.desc.nl;
+    const done  = !!state['done_' + ch.id];
+    const badge = (BADGEMAP[lang] || BADGEMAP.nl)[ch.badge];
+    const num   = ch.id.replace('h','H');
+
+    html += `<a href="chapters/${ch.id}.html" class="chapter-card${done?' done':''}${!ch.full?' stub':''}" data-chid="${ch.id}">
+      <div class="card-top">
+        <span class="card-num">${num}</span>
+        <span class="card-badge ${ch.badge}">${badge}</span>
+        ${done ? '<span class="card-status-done">✓</span>' : ''}
+      </div>
+      <h3>${title}</h3>
+      <p>${desc}</p>
+      ${!ch.full ? `<p style="margin-top:8px; font-size:0.75rem; color:var(--slate-light); font-style:italic;">${TEXTS_SOON[lang]||TEXTS_SOON.nl}</p>` : ''}
+    </a>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+const TEXTS_SOON = { nl:'In voorbereiding', fr:'En préparation', en:'Coming soon' };
+
+// Practicum card los toevoegen
+const pracDiv = document.createElement('div');
+pracDiv.style.cssText = 'margin-top:32px;background:linear-gradient(135deg,var(--navy),#1a0800);border:2px solid var(--orange);border-radius:var(--r-lg);padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;text-decoration:none;';
+pracDiv.innerHTML = `
+  <div style="font-size:2.5rem;flex-shrink:0">📡</div>
+  <div>
+    <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:4px">Bonus Practicum</div>
+    <div style="font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:4px">Spectrum-analyse van VHF/UHF handportables</div>
+    <div style="font-size:.88rem;color:var(--slate-light)">Geleid invulpracticum: meetopstelling → dBm/dBc → normtoetsing → conclusie</div>
+  </div>
+  <div style="margin-left:auto;flex-shrink:0"><span style="background:var(--orange);color:var(--white);padding:8px 18px;border-radius:var(--r-sm);font-size:.85rem;font-weight:700">Start →</span></div>
+`;
+pracDiv.onclick = () => window.location.href = 'chapters/h30-practicum.html';
+container.parentNode.appendChild(pracDiv);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H26 · Veelgemaakte fouten — WLD Cursus</title>
+  <link rel="stylesheet" href="../assets/css/wld.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="header-logo"><a href="../index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><span class="header-logo-wld">WLD</span><div class="header-logo-sep"></div></a><span class="header-logo-title"><span class="lang-block active" data-lang="nl">dB & dBm Cursus</span><span class="lang-block" data-lang="fr">Cours dB & dBm</span><span class="lang-block" data-lang="en">dB & dBm Course</span></span></div>
+  <div class="header-center"><div class="header-progress-wrap"><div class="header-progress-label"><span data-i18n="progress">Voortgang</span><span class="header-progress-done">0 / 30</span></div><div class="header-progress-track"><div class="header-progress-fill" style="width:0%"></div></div></div></div>
+  <div class="header-right"><span class="header-callsign" id="hCallsign">—</span><div class="lang-switcher"><button class="lang-switch-btn active" data-lang="nl">NL</button><button class="lang-switch-btn" data-lang="fr">FR</button><button class="lang-switch-btn" data-lang="en">EN</button></div><button class="menu-toggle" id="menu-toggle">☰</button></div>
+</header>
+<nav class="app-sidebar"></nav>
+<main class="app-main"><div class="main-inner">
+
+<div class="chapter-header">
+  <div class="ch-header-meta"><div class="ch-breadcrumb"><a href="../index.html"><span class="lang-block active" data-lang="nl">Overzicht</span><span class="lang-block" data-lang="fr">Aperçu</span><span class="lang-block" data-lang="en">Overview</span></a><span>›</span><span>Deel VI</span></div><span class="ch-badge ch-badge-num">H26</span></div>
+  <h1><span class="lang-block active" data-lang="nl">Veelgemaakte fouten en hoe je ze vermijdt</span><span class="lang-block" data-lang="fr">Erreurs fréquentes et comment les éviter</span><span class="lang-block" data-lang="en">Common mistakes and how to avoid them</span></h1>
+  <p class="intro"><span class="lang-block active" data-lang="nl">Een complete catalogus van de meest gemaakte fouten bij dB en dBm. Per fout: wat, waarom, en hoe je correct denkt.</span><span class="lang-block" data-lang="fr">Un catalogue complet des erreurs les plus fréquentes avec dB et dBm. Pour chaque erreur : quoi, pourquoi, et comment penser correctement.</span><span class="lang-block" data-lang="en">A complete catalogue of the most common mistakes with dB and dBm. For each mistake: what, why, and how to think correctly.</span></p>
+  <svg class="ch-header-waves" viewBox="0 0 820 44" preserveAspectRatio="none"><path class="rf-w1" fill="none" stroke="#00B4CC" stroke-width="1.8" d="M0,34 Q20,40 41,34 Q61,28 82,34 Q102,40 123,34 Q143,28 164,34 Q184,40 205,34 Q225,28 246,34 Q266,40 287,34 Q307,28 328,34 Q348,40 369,34 Q389,28 410,34 Q430,40 451,34 Q471,28 492,34 Q512,40 533,34 Q553,28 574,34 Q594,40 615,34 Q635,28 656,34 Q676,40 697,34 Q717,28 738,34 Q758,40 779,34 Q799,28 820,32"/></svg>
+</div>
+
+<div class="chapter-body">
+
+<!-- Fout 1 -->
+<h2><span class="section-num">F1</span><span class="lang-block active" data-lang="nl">dB en dBm door elkaar halen</span><span class="lang-block" data-lang="fr">Confondre dB et dBm</span><span class="lang-block" data-lang="en">Confusing dB and dBm</span></h2>
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Fout</span></div>
+  <p><span class="lang-block active" data-lang="nl">"Het ontvangen signaal is −73 <strong>dB</strong>" (men bedoelt dBm)</span><span class="lang-block" data-lang="fr">« Le signal reçu est −73 <strong>dB</strong> » (on veut dire dBm)</span><span class="lang-block" data-lang="en">"The received signal is −73 <strong>dB</strong>" (meaning dBm)</span></p>
+</div>
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-block active" data-lang="nl">Correct</span><span class="lang-block" data-lang="fr">Correct</span><span class="lang-block" data-lang="en">Correct</span></div>
+  <p><span class="lang-block active" data-lang="nl"><strong>dBm</strong> voor absolute vermogensniveaus (t.o.v. 1 mW). <strong>dB</strong> alleen voor verhoudingen, versterkingen en verliezen.</span><span class="lang-block" data-lang="fr"><strong>dBm</strong> pour les niveaux de puissance absolus (par rapport à 1 mW). <strong>dB</strong> uniquement pour les rapports, gains et pertes.</span><span class="lang-block" data-lang="en"><strong>dBm</strong> for absolute power levels (relative to 1 mW). <strong>dB</strong> only for ratios, gains and losses.</span></p>
+</div>
+
+<!-- Fout 2 -->
+<h2><span class="section-num">F2</span><span class="lang-block active" data-lang="nl">dBm + dBm optellen</span><span class="lang-block" data-lang="fr">Additionner dBm + dBm</span><span class="lang-block" data-lang="en">Adding dBm + dBm</span></h2>
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Fout</span></div>
+  <p><span class="lang-block active" data-lang="nl">0 dBm + 0 dBm = 0 dBm. <strong>FOUT!</strong></span><span class="lang-block" data-lang="fr">0 dBm + 0 dBm = 0 dBm. <strong>FAUX !</strong></span><span class="lang-block" data-lang="en">0 dBm + 0 dBm = 0 dBm. <strong>WRONG!</strong></span></p>
+</div>
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="lang-block active" data-lang="nl">Correct</span><span class="lang-block" data-lang="fr">Correct</span><span class="lang-block" data-lang="en">Correct</span></div>
+  <p><span class="lang-block active" data-lang="nl">0 dBm = 1 mW. 1 mW + 1 mW = 2 mW = 10·log₁₀(2) ≈ <strong>3 dBm</strong>. Altijd naar mW omzetten, optellen, terug naar dBm.</span><span class="lang-block" data-lang="fr">0 dBm = 1 mW. 1 mW + 1 mW = 2 mW = 10·log₁₀(2) ≈ <strong>3 dBm</strong>. Toujours convertir en mW, additionner, reconvertir en dBm.</span><span class="lang-block" data-lang="en">0 dBm = 1 mW. 1 mW + 1 mW = 2 mW = 10·log₁₀(2) ≈ <strong>3 dBm</strong>. Always convert to mW, add, convert back to dBm.</span></p>
+</div>
+
+<!-- Fout 3 -->
+<h2><span class="section-num">F3</span><span class="lang-block active" data-lang="nl">10·log vs. 20·log verwarren</span><span class="lang-block" data-lang="fr">Confondre 10·log et 20·log</span><span class="lang-block" data-lang="en">Confusing 10·log and 20·log</span></h2>
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Fout</span></div>
+  <p><span class="lang-block active" data-lang="nl">"Spanning verdubbelt → +3 dB." FOUT! Spanning verdubbelen = vermogen ×4 = <strong>+6 dB</strong>.</span><span class="lang-block" data-lang="fr">« La tension double → +3 dB. » FAUX ! Doubler la tension = puissance ×4 = <strong>+6 dB</strong>.</span><span class="lang-block" data-lang="en">"Voltage doubles → +3 dB." WRONG! Doubling voltage = power ×4 = <strong>+6 dB</strong>.</span></p>
+</div>
+<div class="table-wrap"><table>
+  <thead><tr><th><span class="lang-block active" data-lang="nl">Wat verdubbelt</span><span class="lang-block" data-lang="fr">Ce qui double</span><span class="lang-block" data-lang="en">What doubles</span></th><th>Formule</th><th>dB</th></tr></thead>
+  <tbody>
+    <tr><td><span class="lang-block active" data-lang="nl">Vermogen ×2</span><span class="lang-block" data-lang="fr">Puissance ×2</span><span class="lang-block" data-lang="en">Power ×2</span></td><td class="mono">10·log₁₀(2)</td><td class="mono green">+3 dB</td></tr>
+    <tr><td><span class="lang-block active" data-lang="nl">Spanning ×2 (= vermogen ×4)</span><span class="lang-block" data-lang="fr">Tension ×2 (= puissance ×4)</span><span class="lang-block" data-lang="en">Voltage ×2 (= power ×4)</span></td><td class="mono">20·log₁₀(2)</td><td class="mono green">+6 dB</td></tr>
+  </tbody>
+</table></div>
+
+<!-- Fout 4 -->
+<h2><span class="section-num">F4</span><span class="lang-block active" data-lang="nl">20·log zonder gelijke impedantie</span><span class="lang-block" data-lang="fr">20·log sans impédance égale</span><span class="lang-block" data-lang="en">20·log without equal impedance</span></h2>
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Fout</span></div>
+  <p><span class="lang-block active" data-lang="nl">20·log₁₀(V₁/V₂) gebruiken als in- en uitgangsimpedantie <strong>verschillend</strong> zijn.</span><span class="lang-block" data-lang="fr">Utiliser 20·log₁₀(V₁/V₂) quand les impédances d'entrée et de sortie sont <strong>différentes</strong>.</span><span class="lang-block" data-lang="en">Using 20·log₁₀(V₁/V₂) when input and output impedances are <strong>different</strong>.</span></p>
+</div>
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Correct</div>
+  <p><span class="lang-block active" data-lang="nl">20·log₁₀(V₁/V₂) is enkel geldig bij gelijke impedantie (Z₁ = Z₂). Bij ongelijke impedantie: gebruik altijd de vermogensformule 10·log₁₀(P₁/P₂) met P = V²/R per situatie berekend.</span><span class="lang-block" data-lang="fr">20·log₁₀(V₁/V₂) n'est valide qu'avec des impédances égales (Z₁ = Z₂). Avec des impédances différentes : utilisez toujours la formule de puissance 10·log₁₀(P₁/P₂) avec P = V²/R calculé pour chaque situation.</span><span class="lang-block" data-lang="en">20·log₁₀(V₁/V₂) is only valid with equal impedances (Z₁ = Z₂). With different impedances: always use the power formula 10·log₁₀(P₁/P₂) with P = V²/R calculated for each situation.</span></p>
+</div>
+
+<!-- Fout 5 -->
+<h2><span class="section-num">F5</span><span class="lang-block active" data-lang="nl">Lineair denken — dubbel vermogen = dubbel signaal</span><span class="lang-block" data-lang="fr">Pensée linéaire — double puissance = double signal</span><span class="lang-block" data-lang="en">Linear thinking — double power = double signal</span></h2>
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Fout</span></div>
+  <p><span class="lang-block active" data-lang="nl">"100 W is twee keer beter dan 50 W." +3 dB is slechts een halve S-eenheid verschil!</span><span class="lang-block" data-lang="fr">« 100 W est deux fois meilleur que 50 W. » +3 dB, c'est seulement une demi-unité S de différence !</span><span class="lang-block" data-lang="en">"100 W is twice as good as 50 W." +3 dB is only half an S-unit difference!</span></p>
+</div>
+
+<!-- Fout 6 -->
+<h2><span class="section-num">F6</span><span class="lang-block active" data-lang="nl">0 dB interpreteren als "niets"</span><span class="lang-block" data-lang="fr">Interpréter 0 dB comme « rien »</span><span class="lang-block" data-lang="en">Interpreting 0 dB as "nothing"</span></h2>
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Correct</div>
+  <p><span class="lang-block active" data-lang="nl"><strong>0 dB</strong> = verhouding 1 = gelijk — er ís vermogen, maar geen verschil. <strong>0 dBm</strong> = 1 mW vermogen (ook niet "niets"). Enkel −∞ dB zou "niets" betekenen.</span><span class="lang-block" data-lang="fr"><strong>0 dB</strong> = rapport 1 = égal — il y a de la puissance, mais pas de différence. <strong>0 dBm</strong> = 1 mW de puissance (pas non plus « rien »). Seul −∞ dB signifierait « rien ».</span><span class="lang-block" data-lang="en"><strong>0 dB</strong> = ratio 1 = equal — there IS power, just no difference. <strong>0 dBm</strong> = 1 mW power (also not "nothing"). Only −∞ dB would mean "nothing".</span></p>
+</div>
+
+<!-- Fout 7 -->
+<h2><span class="section-num">F7</span><span class="lang-block active" data-lang="nl">Formule zonder noemer schrijven</span><span class="lang-block" data-lang="fr">Écrire la formule sans dénominateur</span><span class="lang-block" data-lang="en">Writing the formula without denominator</span></h2>
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Fout</span></div>
+  <p><code>dB = 10·log₁₀(P)</code> — <span class="lang-block active" data-lang="nl">onvolledig! Waar is de referentie P₂?</span><span class="lang-block" data-lang="fr">incomplet ! Où est la référence P₂ ?</span><span class="lang-block" data-lang="en">incomplete! Where is reference P₂?</span></p>
+</div>
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Correct</div>
+  <p><span class="lang-block active" data-lang="nl">De correcte formule heeft altijd een teller én noemer: <code>N(dB) = 10·log₁₀(P₁/P₂)</code>. dB is per definitie een verhouding van twee grootheden.</span><span class="lang-block" data-lang="fr">La formule correcte comporte toujours un numérateur et un dénominateur : <code>N(dB) = 10·log₁₀(P₁/P₂)</code>. dB est par définition un rapport entre deux grandeurs.</span><span class="lang-block" data-lang="en">The correct formula always has a numerator and denominator: <code>N(dB) = 10·log₁₀(P₁/P₂)</code>. dB is by definition a ratio of two quantities.</span></p>
+</div>
+
+<!-- Fout 8 -->
+<h2><span class="section-num">F8</span><span class="lang-block active" data-lang="nl">dBi en dBd door elkaar halen</span><span class="lang-block" data-lang="fr">Confondre dBi et dBd</span><span class="lang-block" data-lang="en">Confusing dBi and dBd</span></h2>
+<div class="callout callout-warning">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg><span data-i18n="warning_title">⚠️ Fout</span></div>
+  <p><span class="lang-block active" data-lang="nl">"8 dBi vs. 6 dBd — mijn antenne is 2 dB beter" — NEEN! Andere referentieantennes!</span><span class="lang-block" data-lang="fr">« 8 dBi vs. 6 dBd — mon antenne est 2 dB meilleure » — NON ! Antennes de référence différentes !</span><span class="lang-block" data-lang="en">"8 dBi vs. 6 dBd — my antenna is 2 dB better" — NO! Different reference antennas!</span></p>
+</div>
+<div class="callout callout-tip">
+  <div class="callout-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Correct</div>
+  <p><span class="lang-block active" data-lang="nl">dBi = dBd + 2,15 dB. Dus 6 dBd = 8,15 dBi. De 6 dBd-antenne is eigenlijk iets beter dan de 8 dBi! Altijd naar dezelfde referentie omzetten vóór vergelijking.</span><span class="lang-block" data-lang="fr">dBi = dBd + 2,15 dB. Donc 6 dBd = 8,15 dBi. L'antenne 6 dBd est en fait légèrement meilleure que la 8 dBi ! Toujours convertir à la même référence avant comparaison.</span><span class="lang-block" data-lang="en">dBi = dBd + 2.15 dB. So 6 dBd = 8.15 dBi. The 6 dBd antenna is actually slightly better than the 8 dBi! Always convert to the same reference before comparing.</span></p>
+</div>
+
+<!-- OVERZICHTSTABEL -->
+<h2><span class="section-num">09</span><span class="lang-block active" data-lang="nl">Overzicht: fouten en correcties</span><span class="lang-block" data-lang="fr">Synthèse : erreurs et corrections</span><span class="lang-block" data-lang="en">Overview: mistakes and corrections</span></h2>
+
+<div class="table-wrap"><table>
+  <thead><tr><th>#</th><th><span class="lang-block active" data-lang="nl">Fout</span><span class="lang-block" data-lang="fr">Erreur</span><span class="lang-block" data-lang="en">Mistake</span></th><th><span class="lang-block active" data-lang="nl">Correct</span><span class="lang-block" data-lang="fr">Correct</span><span class="lang-block" data-lang="en">Correct</span></th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td class="red-text"><span class="lang-block active" data-lang="nl">−73 dB voor absoluut niveau</span><span class="lang-block" data-lang="fr">−73 dB pour niveau absolu</span><span class="lang-block" data-lang="en">−73 dB for absolute level</span></td><td class="green"><span class="lang-block active" data-lang="nl">Schrijf altijd dBm</span><span class="lang-block" data-lang="fr">Toujours écrire dBm</span><span class="lang-block" data-lang="en">Always write dBm</span></td></tr>
+    <tr><td>2</td><td class="red-text"><span class="lang-block active" data-lang="nl">dBm + dBm optellen</span><span class="lang-block" data-lang="fr">Additionner dBm + dBm</span><span class="lang-block" data-lang="en">Adding dBm + dBm</span></td><td class="green"><span class="lang-block active" data-lang="nl">Naar mW, optellen, terug</span><span class="lang-block" data-lang="fr">En mW, additionner, reconvertir</span><span class="lang-block" data-lang="en">To mW, add, convert back</span></td></tr>
+    <tr><td>3</td><td class="red-text"><span class="lang-block active" data-lang="nl">Spanning ×2 = +3 dB</span><span class="lang-block" data-lang="fr">Tension ×2 = +3 dB</span><span class="lang-block" data-lang="en">Voltage ×2 = +3 dB</span></td><td class="green"><span class="lang-block active" data-lang="nl">Spanning ×2 = +6 dB</span><span class="lang-block" data-lang="fr">Tension ×2 = +6 dB</span><span class="lang-block" data-lang="en">Voltage ×2 = +6 dB</span></td></tr>
+    <tr><td>4</td><td class="red-text"><span class="lang-block active" data-lang="nl">20·log bij ongelijke Z</span><span class="lang-block" data-lang="fr">20·log avec Z inégaux</span><span class="lang-block" data-lang="en">20·log with unequal Z</span></td><td class="green"><span class="lang-block active" data-lang="nl">Vermogensformule gebruiken</span><span class="lang-block" data-lang="fr">Utiliser formule puissance</span><span class="lang-block" data-lang="en">Use power formula</span></td></tr>
+    <tr><td>5</td><td class="red-text"><span class="lang-block active" data-lang="nl">×2 vermogen = dubbel signaal</span><span class="lang-block" data-lang="fr">×2 puissance = signal double</span><span class="lang-block" data-lang="en">×2 power = double signal</span></td><td class="green"><span class="lang-block active" data-lang="nl">×2 = +3 dB ≈ ½ S-eenheid</span><span class="lang-block" data-lang="fr">×2 = +3 dB ≈ ½ unité S</span><span class="lang-block" data-lang="en">×2 = +3 dB ≈ ½ S-unit</span></td></tr>
+    <tr><td>6</td><td class="red-text"><span class="lang-block active" data-lang="nl">0 dB = geen vermogen</span><span class="lang-block" data-lang="fr">0 dB = pas de puissance</span><span class="lang-block" data-lang="en">0 dB = no power</span></td><td class="green"><span class="lang-block active" data-lang="nl">0 dB = gelijk · 0 dBm = 1 mW</span><span class="lang-block" data-lang="fr">0 dB = égal · 0 dBm = 1 mW</span><span class="lang-block" data-lang="en">0 dB = equal · 0 dBm = 1 mW</span></td></tr>
+    <tr><td>7</td><td class="red-text"><code>dB = 10·log(P)</code></td><td class="green"><code>dB = 10·log(P₁/P₂)</code></td></tr>
+    <tr><td>8</td><td class="red-text"><span class="lang-block active" data-lang="nl">dBi en dBd direct vergelijken</span><span class="lang-block" data-lang="fr">Comparer dBi et dBd directement</span><span class="lang-block" data-lang="en">Comparing dBi and dBd directly</span></td><td class="green"><span class="lang-block active" data-lang="nl">dBi = dBd + 2,15 dB</span><span class="lang-block" data-lang="fr">dBi = dBd + 2,15 dB</span><span class="lang-block" data-lang="en">dBi = dBd + 2.15 dB</span></td></tr>
+  </tbody>
+</table></div>
+
+<!-- ZELFTEST -->
+<hr class="section-divider">
+<div class="exercise-section">
+  <div class="exercise-section-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span class="lang-block active" data-lang="nl">Zelftest — vind de fout</span><span class="lang-block" data-lang="fr">Auto-test — trouvez l'erreur</span><span class="lang-block" data-lang="en">Self-test — find the mistake</span></div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">Z1</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question"><span class="lang-block active" data-lang="nl">"Ik voeg een versterker van +10 dB toe aan mijn 50 W station. Nieuw vermogen: 50 + 10 = 60 W." Wat is fout?</span><span class="lang-block" data-lang="fr">« J'ajoute un amplificateur de +10 dB à ma station de 50 W. Nouvelle puissance : 50 + 10 = 60 W. » Qu'est-ce qui est faux ?</span><span class="lang-block" data-lang="en">"I add a +10 dB amplifier to my 50 W station. New power: 50 + 10 = 60 W." What is wrong?</span></div>
+    <button class="solution-btn" data-target="sz1"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="sz1">
+      <span class="lang-block active" data-lang="nl"><strong>Twee fouten:</strong><br>1. Je kunt W en dB niet optellen (fout F8 - mengen lineair/log)<br>2. +10 dB is geen +10 W maar ×10 in vermogen<br><br>Correct: 50 W = 47 dBm. 47 dBm + 10 dB = 57 dBm = 500 W — niet 60 W!</span>
+      <span class="lang-block" data-lang="fr"><strong>Deux erreurs :</strong><br>1. On ne peut pas additionner W et dB (erreur F8 - mélange linéaire/log)<br>2. +10 dB n'est pas +10 W mais ×10 en puissance<br><br>Correct : 50 W = 47 dBm. 47 dBm + 10 dB = 57 dBm = 500 W — pas 60 W !</span>
+      <span class="lang-block" data-lang="en"><strong>Two mistakes:</strong><br>1. You cannot add W and dB (mistake F8 - mixing linear/log)<br>2. +10 dB is not +10 W but ×10 in power<br><br>Correct: 50 W = 47 dBm. 47 dBm + 10 dB = 57 dBm = 500 W — not 60 W!</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="ex-top"><span class="ex-num">Z2</span><div class="ex-diff"><span class="lit">●</span><span>●</span><span>●</span></div></div>
+    <div class="ex-question"><span class="lang-block active" data-lang="nl">"Twee antennes: A = 8 dBi, B = 6 dBd. Antenne A is 2 dB beter." Correct of niet?</span><span class="lang-block" data-lang="fr">« Deux antennes : A = 8 dBi, B = 6 dBd. L'antenne A est 2 dB meilleure. » Correct ou non ?</span><span class="lang-block" data-lang="en">"Two antennas: A = 8 dBi, B = 6 dBd. Antenna A is 2 dB better." Correct or not?</span></div>
+    <button class="solution-btn" data-target="sz2"><span data-i18n="show_solution">▼ Toon oplossing</span></button>
+    <div class="solution-content" id="sz2">
+      <span class="lang-block active" data-lang="nl"><strong>Niet correct!</strong><br>6 dBd = 6 + 2,15 = 8,15 dBi<br>Antenne B (8,15 dBi) is dus 0,15 dB beter dan antenne A (8 dBi). Precies het omgekeerde van wat beweerd werd!</span>
+      <span class="lang-block" data-lang="fr"><strong>Pas correct !</strong><br>6 dBd = 6 + 2,15 = 8,15 dBi<br>L'antenne B (8,15 dBi) est donc 0,15 dB meilleure que l'antenne A (8 dBi). Exactement l'opposé de ce qui était affirmé !</span>
+      <span class="lang-block" data-lang="en"><strong>Not correct!</strong><br>6 dBd = 6 + 2.15 = 8.15 dBi<br>Antenna B (8.15 dBi) is therefore 0.15 dB better than antenna A (8 dBi). Exactly the opposite of what was claimed!</span>
+    </div>
+  </div>
+</div>
+
+<div class="summary-box">
+  <h3 data-i18n="summary_title">Samenvatting</h3>
+  <ul>
+    <li><span class="lang-block active" data-lang="nl">Gebruik <strong>dBm</strong> voor absolute niveaus, <strong>dB</strong> voor verhoudingen</span><span class="lang-block" data-lang="fr">Utilisez <strong>dBm</strong> pour les niveaux absolus, <strong>dB</strong> pour les rapports</span><span class="lang-block" data-lang="en">Use <strong>dBm</strong> for absolute levels, <strong>dB</strong> for ratios</span></li>
+    <li><span class="lang-block active" data-lang="nl">dBm + dBm = FOUT — altijd naar mW omzetten</span><span class="lang-block" data-lang="fr">dBm + dBm = ERREUR — toujours convertir en mW</span><span class="lang-block" data-lang="en">dBm + dBm = ERROR — always convert to mW</span></li>
+    <li><span class="lang-block active" data-lang="nl">Spanning ×2 = +6 dB (niet +3 dB) · 20·log enkel bij gelijke Z</span><span class="lang-block" data-lang="fr">Tension ×2 = +6 dB (pas +3 dB) · 20·log uniquement avec Z égaux</span><span class="lang-block" data-lang="en">Voltage ×2 = +6 dB (not +3 dB) · 20·log only with equal Z</span></li>
+    <li><span class="lang-block active" data-lang="nl">dBi = dBd + 2,15 dB — vergelijk altijd op dezelfde basis</span><span class="lang-block" data-lang="fr">dBi = dBd + 2,15 dB — toujours comparer sur la même base</span><span class="lang-block" data-lang="en">dBi = dBd + 2.15 dB — always compare on the same basis</span></li>
+  </ul>
+</div>
+
+<div class="complete-area">
+  <p><span class="lang-block active" data-lang="nl">Klaar?</span><span class="lang-block" data-lang="fr">Terminé ?</span><span class="lang-block" data-lang="en">Done?</span></p>
+  <button class="btn-complete" id="btn-complete" data-chid="h26"><span data-i18n="mark_done">✓ Markeer als voltooid</span></button>
+</div>
+<div class="chapter-nav-footer">
+  <a href="h25-s-meter.html" class="ch-nav-btn"><span class="dir">← Vorige</span><span class="name">H25</span></a>
+  <a href="h27-oefenreeks.html" class="ch-nav-btn right"><span class="dir">Volgende →</span><span class="name">H27</span></a>
+</div>
+
+</div></div></main>
+<footer class="app-footer"><div class="footer-logo-row"><span class="footer-wld">WLD</span><div class="footer-sep"></div><div class="footer-info">ON6WL · <a href="https://on6wl.be">on6wl.be</a></div></div><div class="footer-right">H26</div></footer>
+<script src="../assets/js/app.js"></script><script src="../assets/js/sidebar.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{try{const s=JSON.parse(localStorage.getItem('wld_dbcursus'));if(s?.callsign)document.getElementById('hCallsign').textContent=s.callsign;if(!s?.callsign)window.location.href='../login.html';}catch{}renderSidebar('h26');});</script>
+</body></html>

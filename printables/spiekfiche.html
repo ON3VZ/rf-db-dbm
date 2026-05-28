@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spiekfiche dB & dBm — WLD ON6WL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#050D1A;--teal:#00B4CC;--teal-dk:#0A2342;--white:#FFF;--bg:#F0F4F8;--text:#1A2332;--slate:#6B7A99;--line:#DEE2E6;--orange:#FF6B35;--green:#22C55E}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.5}
+    .npb{position:fixed;top:16px;right:16px;background:var(--teal);color:#fff;border:none;border-radius:4px;padding:10px 20px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;z-index:999}
+    .npb:hover{background:var(--teal-dk)}
+    .page{width:210mm;min-height:297mm;margin:0 auto;padding:10mm 12mm;display:grid;grid-template-columns:1fr 1fr;gap:5mm;background:white}
+
+    .hdr{grid-column:1/-1;background:var(--navy);border-radius:6px;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
+    .hdr-wld{font-family:"Arial Black",Impact,sans-serif;font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-2px;line-height:1}
+    .hdr-logo{display:flex;align-items:center;gap:10px}
+    .hdr-bar{width:2px;height:36px;background:var(--teal);border-radius:1px}
+    .hdr-it{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--teal);text-transform:uppercase}
+    .hdr-ib{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.7)}
+    .hdr-title{font-size:1.1rem;font-weight:700;color:#fff;text-align:right}
+    .hdr-sub{font-size:.7rem;color:rgba(255,255,255,.5);text-align:right}
+
+    .card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:6px;padding:10px 13px}
+    .card.full{grid-column:1/-1}
+    .card.orange{border-left-color:var(--orange)}
+    .ct{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate);margin-bottom:8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+
+    .fm{font-family:"JetBrains Mono",Consolas,monospace;font-size:.95rem;font-weight:700;color:var(--teal);background:rgba(0,180,204,.08);border:1px solid rgba(0,180,204,.25);border-radius:4px;padding:7px 10px;margin:4px 0;line-height:1.9}
+    .fm .ref{font-size:.72rem;color:var(--slate);font-weight:400}
+
+    table{width:100%;border-collapse:collapse;font-size:.78rem}
+    th{background:var(--navy);color:var(--teal);padding:4px 7px;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    td{padding:4px 7px;border-bottom:1px solid var(--line);vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    tr:nth-child(even) td{background:var(--bg)}
+    .m{font-family:"JetBrains Mono",monospace;color:var(--teal);font-weight:700;font-size:.78rem;white-space:nowrap}
+    .an td{font-weight:700;background:rgba(0,180,204,.1)!important}
+    .gn{color:var(--green);font-weight:600}
+    .rd{color:var(--orange);font-weight:600}
+
+    .rrow{display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--line);font-size:.8rem}
+    .rrow:last-child{border-bottom:none}
+    .rdb{font-family:"JetBrains Mono",monospace;font-weight:700;min-width:55px;font-size:.88rem}
+    .rdb.p{color:var(--green)}.rdb.n{color:var(--orange)}.rdb.z{color:var(--slate)}
+    .rbar{flex:1;height:7px;background:var(--line);border-radius:100px;overflow:hidden}
+    .rfill{height:100%;border-radius:100px}
+    .fp{background:linear-gradient(90deg,var(--teal),var(--green))}
+    .fn{background:linear-gradient(90deg,var(--orange),#ff9a6c)}
+    .rratio{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--slate);text-align:right;min-width:65px}
+
+    .fg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+    .fi{background:rgba(255,107,53,.07);border:1px solid rgba(255,107,53,.25);border-radius:4px;padding:5px 7px;font-size:.71rem;line-height:1.4}
+    .fi strong{color:var(--orange);display:block;margin-bottom:2px}
+    .fi span{color:var(--green)}
+
+    .ftr{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line);font-size:.65rem;color:var(--slate)}
+    .fl{display:flex;align-items:center;gap:6px}
+    .fw{font-family:"Arial Black",Impact,sans-serif;font-size:.9rem;font-weight:900;color:var(--navy)}
+    .fs{width:1px;height:14px;background:var(--teal)}
+
+    @media print{body,page{background:#fff}.npb{display:none}.page{width:100%;padding:8mm 10mm}}
+  </style>
+</head>
+<body>
+<button class="npb" onclick="window.print()">🖨 Afdrukken / Print</button>
+<div class="page">
+
+  <div class="hdr">
+    <div class="hdr-logo">
+      <div class="hdr-wld">WLD</div>
+      <div class="hdr-bar"></div>
+      <div><div class="hdr-it">ON6WL · Waaslandse Radio Amateurs · on6wl.be</div><div class="hdr-ib">Cursus dB &amp; dBm voor Radioamateurs</div></div>
+    </div>
+    <div><div class="hdr-title">Spiekfiche — Formules &amp; Referentie</div><div class="hdr-sub">NL · FR · EN · v1.0</div></div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Kernformules / Formules clés / Key formulas</div>
+    <div class="fm">N(dB) = 10 · log₁₀(<strong>P₁ / P₂</strong>)<div class="ref">Vermogen / Puissance / Power ratio</div></div>
+    <div class="fm">N(dB) = 20 · log₁₀(<strong>V₁ / V₂</strong>)<div class="ref">Spanning bij Z₁=Z₂ / Voltage if Z₁=Z₂</div></div>
+    <div class="fm">P(dBm) = 10 · log₁₀(<strong>P in mW</strong>)<div class="ref">Absoluut niveau / Niveau absolu / Absolute level</div></div>
+    <div class="fm">P(mW) = 10 ^ (<strong>dBm / 10</strong>)<div class="ref">dBm → mW (dan ÷1000 voor W)</div></div>
+  </div>
+
+  <div class="card">
+    <div class="ct">dB Sleutelwaarden — Vermogen / Power</div>
+    <div class="rrow"><span class="rdb n">−20 dB</span><div class="rbar"><div class="rfill fn" style="width:90%"></div></div><span class="rratio">÷100</span></div>
+    <div class="rrow"><span class="rdb n">−10 dB</span><div class="rbar"><div class="rfill fn" style="width:60%"></div></div><span class="rratio">÷10</span></div>
+    <div class="rrow"><span class="rdb n">−6 dB</span><div class="rbar"><div class="rfill fn" style="width:42%"></div></div><span class="rratio">÷4</span></div>
+    <div class="rrow"><span class="rdb n">−3 dB</span><div class="rbar"><div class="rfill fn" style="width:22%"></div></div><span class="rratio">÷2 halvering</span></div>
+    <div class="rrow"><span class="rdb z">&nbsp;0 dB</span><div class="rbar"><div class="rfill" style="width:2%;background:var(--slate)"></div></div><span class="rratio">×1 gelijk</span></div>
+    <div class="rrow"><span class="rdb p">+3 dB</span><div class="rbar"><div class="rfill fp" style="width:22%"></div></div><span class="rratio">×2 dubbel</span></div>
+    <div class="rrow"><span class="rdb p">+6 dB</span><div class="rbar"><div class="rfill fp" style="width:42%"></div></div><span class="rratio">×4</span></div>
+    <div class="rrow"><span class="rdb p">+7 dB</span><div class="rbar"><div class="rfill fp" style="width:50%"></div></div><span class="rratio">×5</span></div>
+    <div class="rrow"><span class="rdb p">+10 dB</span><div class="rbar"><div class="rfill fp" style="width:60%"></div></div><span class="rratio">×10</span></div>
+    <div class="rrow"><span class="rdb p">+20 dB</span><div class="rbar"><div class="rfill fp" style="width:90%"></div></div><span class="rratio">×100</span></div>
+  </div>
+
+  <div class="card">
+    <div class="ct">dBm ↔ Watt referentietabel</div>
+    <table>
+      <thead><tr><th>dBm</th><th>mW</th><th>W</th></tr></thead>
+      <tbody>
+        <tr><td class="m">−93 dBm</td><td>5 pW</td><td>5×10⁻¹²</td></tr>
+        <tr><td class="m">−73 dBm</td><td>50 pW</td><td>5×10⁻¹¹</td></tr>
+        <tr><td class="m">−30 dBm</td><td>1 µW</td><td>10⁻⁶</td></tr>
+        <tr class="an"><td class="m">0 dBm</td><td><strong>1 mW</strong></td><td>0,001</td></tr>
+        <tr><td class="m">+20 dBm</td><td>100 mW</td><td>0,1</td></tr>
+        <tr><td class="m">+27 dBm</td><td>500 mW</td><td>0,5</td></tr>
+        <tr class="an"><td class="m">+30 dBm</td><td>1 000 mW</td><td><strong>1 W</strong></td></tr>
+        <tr><td class="m">+37 dBm</td><td>5 000</td><td>5</td></tr>
+        <tr><td class="m">+40 dBm</td><td>10 000</td><td>10</td></tr>
+        <tr><td class="m">+47 dBm</td><td>50 000</td><td>50</td></tr>
+        <tr><td class="m">+50 dBm</td><td>100 000</td><td>100</td></tr>
+        <tr><td class="m">+56 dBm</td><td>400 000</td><td>400</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="ct">S-meter (IARU R1 1981) &amp; Antennes</div>
+    <table>
+      <thead><tr><th>S</th><th>HF (&lt;30MHz)</th><th>VHF/UHF</th></tr></thead>
+      <tbody>
+        <tr><td>S1</td><td class="m">−121 dBm</td><td class="m">−141 dBm</td></tr>
+        <tr><td>S5</td><td class="m">−97 dBm</td><td class="m">−117 dBm</td></tr>
+        <tr><td>S7</td><td class="m">−85 dBm</td><td class="m">−105 dBm</td></tr>
+        <tr class="an"><td><strong>S9</strong></td><td class="m">−73 dBm</td><td class="m">−93 dBm</td></tr>
+        <tr><td>S9+10</td><td class="m">−63 dBm</td><td class="m">−83 dBm</td></tr>
+        <tr><td>S9+20</td><td class="m">−53 dBm</td><td class="m">−73 dBm</td></tr>
+        <tr><td>S9+30</td><td class="m">−43 dBm</td><td class="m">−63 dBm</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:7px;font-size:.72rem;color:var(--slate)">1 S = 6 dB = ×4 vermogen = ×2 spanning</div>
+    <div style="margin-top:7px;border-top:1px solid var(--line);padding-top:6px">
+      <table>
+        <thead><tr><th>Eenheid</th><th>Ref.</th><th>Relatie</th></tr></thead>
+        <tbody>
+          <tr><td class="m">dBi</td><td>Isotropisch</td><td class="m">= dBd + 2,15</td></tr>
+          <tr><td class="m">dBd</td><td>Dipool</td><td class="m">= dBi − 2,15</td></tr>
+          <tr><td class="m">dBc</td><td>Draaggolf</td><td>t.o.v. carrier</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card full orange">
+    <div class="ct">Rekenregels &amp; Veelgemaakte fouten</div>
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:12px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:2.1;color:var(--teal)">
+          dBm + dB = dBm ✓<br>
+          dBm − dBm = dB ✓<br>
+          <span style="color:var(--orange)">dBm + dBm = FOUT ✗</span><br>
+          <span style="color:var(--text)">0 dBm = 1 mW</span><br>
+          <span style="color:var(--text)">30 dBm = 1 W</span><br>
+          <span style="color:var(--text)">+10 dB = ×10</span><br>
+          <span style="color:var(--text)">+3 dB ≈ ×2</span>
+        </div>
+      </div>
+      <div class="fg">
+        <div class="fi"><strong>dB ≠ dBm</strong>Absoluut niveau? <span>Schrijf dBm!</span></div>
+        <div class="fi"><strong>dBm+dBm FOUT</strong>Naar mW, <span>optellen, terug</span></div>
+        <div class="fi"><strong>Spanning ×2</strong>Niet +3 maar <span>+6 dB!</span></div>
+        <div class="fi"><strong>20·log</strong>Enkel bij <span>Z₁=Z₂!</span></div>
+        <div class="fi"><strong>×2 vmg ≠ ×2 signaal</strong>×2 = <span>+3dB ≈ ½S</span></div>
+        <div class="fi"><strong>dBi vs dBd</strong>dBi = dBd <span>+2,15 dB</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div class="fl"><div class="fw">WLD</div><div class="fs"></div><span>ON6WL · Waaslandse Radio Amateurs · on6wl.be · Lid van UBA</span></div>
+    <span>dB &amp; dBm Cursus v1.0 · 2025</span>
+  </div>
+
+</div>
+</body>
+</html>
