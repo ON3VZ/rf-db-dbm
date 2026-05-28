@@ -405,122 +405,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* ── Zwevende sneltoetsenbalk ───────────────────────────── */
-function injectQuickBar() {
-  // Bepaal relatief pad (zijn we in /chapters/ of root?)
-  const inChapters = window.location.pathname.includes('/chapters/');
-  const base = inChapters ? '../' : '';
-
-  // Quick-bar HTML
-  const bar = document.createElement('div');
-  bar.className = 'quick-bar';
-  bar.innerHTML = `
-    <a href="${base}printables/spiekfiche.html" target="_blank" class="quick-btn quick-btn-spiek" title="Spiekfiche openen">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      <span class="lang-block active" data-lang="nl">Spiekfiche</span>
-      <span class="lang-block" data-lang="fr">Aide-mémoire</span>
-      <span class="lang-block" data-lang="en">Cheat sheet</span>
-    </a>
-    <button class="quick-btn quick-btn-pdf" onclick="showPdfModal()" title="Handboek downloaden">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      <span class="lang-block active" data-lang="nl">PDF Handboek</span>
-      <span class="lang-block" data-lang="fr">Manuel PDF</span>
-      <span class="lang-block" data-lang="en">PDF Manual</span>
-    </button>
-  `;
-  document.body.appendChild(bar);
-
-  // Modal HTML
-  const modal = document.createElement('div');
-  modal.id = 'pdf-modal';
-  modal.className = 'modal-overlay';
-  modal.innerHTML = `
-    <div class="modal-card">
-      <div class="modal-icon">📄</div>
-      <div class="modal-title lang-block active" data-lang="nl">Handboek downloaden</div>
-      <div class="modal-title lang-block" data-lang="fr">Télécharger le manuel</div>
-      <div class="modal-title lang-block" data-lang="en">Download manual</div>
-
-      <div class="modal-body lang-block active" data-lang="nl">
-        <strong>⚠️ Opmerking voor de lezer</strong><br><br>
-        Dit handboek bevat uitgebreide technische uitleg over <strong>dB, dBm, logaritmen en RF-meting</strong>.
-        Het document is bedoeld als naslagwerk bij de online cursus.<br><br>
-        <strong>Let op bij het openen:</strong>
-        <ul>
-          <li>Het bestand wordt aangeboden in <strong>.docx</strong> formaat (Word)</li>
-          <li>Je hebt Microsoft Word, LibreOffice of Google Docs nodig om het te openen</li>
-          <li>Het document bevat <strong>formules in wiskundige notatie</strong> — sommige weergaven tonen deze anders</li>
-          <li>Voor de beste weergave: gebruik Microsoft Word of LibreOffice Writer</li>
-          <li>Dit document is <strong>uitsluitend in het Nederlands</strong> opgesteld</li>
-        </ul>
-      </div>
-      <div class="modal-body lang-block" data-lang="fr">
-        <strong>⚠️ Remarque pour le lecteur</strong><br><br>
-        Ce manuel contient des explications techniques sur <strong>dB, dBm, logarithmes et mesures RF</strong>.
-        Il est destiné à être utilisé comme référence pour le cours en ligne.<br><br>
-        <strong>Note :</strong> Ce document est <strong>uniquement en néerlandais</strong>. Utilisez le cours en ligne pour la version française.
-      </div>
-      <div class="modal-body lang-block" data-lang="en">
-        <strong>⚠️ Notice to the reader</strong><br><br>
-        This manual contains detailed technical explanations on <strong>dB, dBm, logarithms and RF measurement</strong>.
-        It is intended as a reference document alongside the online course.<br><br>
-        <strong>Note:</strong> This document is <strong>in Dutch only</strong>. Use the online course for English content.
-      </div>
-
-      <div class="modal-actions">
-        <button class="modal-btn-cancel" onclick="closePdfModal()">
-          <span class="lang-block active" data-lang="nl">Annuleren</span>
-          <span class="lang-block" data-lang="fr">Annuler</span>
-          <span class="lang-block" data-lang="en">Cancel</span>
-        </button>
-        <a href="${base}downloads/WLD-ON6WL-dBdBm-Handboek-v1.docx" download class="modal-btn-confirm" onclick="closePdfModal()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span class="lang-block active" data-lang="nl">Download handboek</span>
-          <span class="lang-block" data-lang="fr">Télécharger</span>
-          <span class="lang-block" data-lang="en">Download manual</span>
-        </a>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  // Sluit bij klik buiten card
-  modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); });
-}
-
-function showPdfModal() {
-  const m = document.getElementById('pdf-modal');
-  if (m) {
-    m.classList.add('visible');
-    setLang(currentLang); // taallagen opnieuw toepassen in modal
-  }
-}
-function closePdfModal() {
-  const m = document.getElementById('pdf-modal');
-  if (m) m.classList.remove('visible');
-}
-
-// Injecteer de bar zodra DOM klaar is
-document.addEventListener('DOMContentLoaded', () => {
-  injectQuickBar();
-});
-
 /* ── Resource-balk & PDF-modal ─────────────────────────────── */
 function buildResourceBar() {
-  if (document.querySelector('.resource-bar')) return; // Voorkom dubbele bar
+  if (document.querySelector('.resource-bar')) return;
   const isChapter = window.location.pathname.includes('/chapters/');
   const base = isChapter ? '../' : '';
+  const lang = (function(){ try{ return JSON.parse(localStorage.getItem('wld_dbcursus')||'{}').lang||'nl'; }catch{return 'nl';} })();
+  const L = {
+    nl: { label:'Snelle toegang:', cheat:'📄 Spiekfiche', pdf:'📥 Handboek PDF', prog:'📊 Voortgang' },
+    fr: { label:'Accès rapide :', cheat:'📄 Aide-mémoire', pdf:'📥 Manuel PDF', prog:'📊 Progression' },
+    en: { label:'Quick access:', cheat:'📄 Cheat sheet', pdf:'📥 Manual PDF', prog:'📊 Progress' },
+  }[lang] || { label:'Snelle toegang:', cheat:'📄 Spiekfiche', pdf:'📥 Handboek PDF', prog:'📊 Voortgang' };
+
   const bar = document.createElement('div');
   bar.className = 'resource-bar';
-  const lang = (JSON.parse(localStorage.getItem('wld_dbcursus')||'{}').lang) || 'nl';
-  const labels = {
-    nl: { quick:'Snelle toegang:', cheat:'📄 Spiekfiche', pdf:'📥 Handboek PDF', prog:'📊 Voortgang' },
-    fr: { quick:'Accès rapide :', cheat:'📄 Aide-mémoire', pdf:'📥 Manuel PDF', prog:'📊 Progression' },
-    en: { quick:'Quick access:', cheat:'📄 Cheat sheet', pdf:'📥 Manual PDF', prog:'📊 Progress' },
-  };
-  const L = labels[lang] || labels.nl;
   bar.innerHTML = `
-    <span class="resource-bar-label">${L.quick}</span>
+    <span class="resource-bar-label">${L.label}</span>
     <a href="${base}printables/spiekfiche.html" class="rb-btn rb-btn-teal" target="_blank">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       ${L.cheat}
@@ -529,17 +429,19 @@ function buildResourceBar() {
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       ${L.pdf}
     </button>
-    <a href="${base}index.html#voortgang" class="rb-btn rb-btn-slate">
+    <a href="${base}index.html" class="rb-btn rb-btn-slate">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       ${L.prog}
     </a>`;
   document.body.appendChild(bar);
-  // Ruimte onderaan de content
   const main = document.querySelector('.app-main');
   if (main) main.style.paddingBottom = '54px';
 }
 
 function buildPdfModal() {
+  if (document.getElementById('pdfModal')) return;
+  const isChapter = window.location.pathname.includes('/chapters/');
+  const base = isChapter ? '../' : '';
   const modal = document.createElement('div');
   modal.className = 'pdf-modal-overlay';
   modal.id = 'pdfModal';
@@ -547,25 +449,30 @@ function buildPdfModal() {
     <div class="pdf-modal">
       <h2>📥 Handboek downloaden</h2>
       <div class="pdf-modal-warn">
-        <strong>⚠️ Let op voordat je downloadt:</strong><br>
-        Dit handboek is opgesteld als didactisch hulpmiddel voor radioamateurs. 
-        Het bevat <strong>geen gecertificeerde keuringsresultaten</strong>. 
-        Meetwaarden in het practicum zijn indicatief en afkomstig van workshopmetingen 
-        met niet-gecalibreerde apparatuur. Ze zijn <strong>niet juridisch bindend</strong> 
-        en kunnen <strong>niet gebruikt worden als officieel conformiteitsbewijs</strong> 
-        (CE-keuring, type-goedkeuring of regelgevingsdocument). 
-        Raadpleeg een erkend EMC-laboratorium voor officiële keuringen.
+        <strong>⚠️ Triggerwaarschuwing — lees dit voor je downloadt:</strong><br><br>
+        Dit handboek bevat meetresultaten van een <strong>spectrum-analyse practicum</strong>.
+        De gemeten waarden zijn indicatief en afkomstig van workshopmetingen met
+        niet-gecalibreerde apparatuur in een niet-afgeschermde omgeving.<br><br>
+        Ze zijn <strong>niet juridisch bindend</strong>, kunnen
+        <strong>niet gebruikt worden als officieel conformiteitsbewijs</strong>
+        (CE-keuring, type-goedkeuring of regelgevingsdocument) en vervangen
+        <strong>geen officiële EMC-keuring</strong> in een erkend laboratorium.
       </div>
       <div class="pdf-modal-body">
-        Het Word-handboek (DOCX) bevat alle 30 hoofdstukken in het Nederlands, 
-        inclusief formules, tabellen, oefeningen en oplossingen.<br><br>
-        <strong>Versie:</strong> 1.0 · WLD ON6WL · on6wl.be
+        Het PDF-handboek bevat alle 30 hoofdstukken in het Nederlands,
+        inclusief formules, tabellen, oefeningen met oplossingen en spiekfiche.<br><br>
+        <strong>Versie:</strong> 1.0 &nbsp;·&nbsp; <strong>WLD ON6WL</strong> &nbsp;·&nbsp; on6wl.be
       </div>
       <div class="pdf-modal-btns">
-        <a href="" + base + "downloads/WLD-ON6WL-dBdBm-Handboek-v1.docx" 
+        <a href="${base}downloads/WLD-ON6WL-dBdBm-Handboek-v1.pdf"
            class="pdf-dl-btn" download onclick="closePdfModal()">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Handboek downloaden (DOCX)
+          Download PDF (Handboek)
+        </a>
+        <a href="${base}downloads/WLD-ON6WL-dBdBm-Handboek-v1.docx"
+           class="pdf-dl-btn" style="background:var(--teal-dark);font-size:.78rem" download onclick="closePdfModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Download DOCX (Word)
         </a>
         <button class="pdf-cancel-btn" onclick="closePdfModal()">Annuleren</button>
       </div>
