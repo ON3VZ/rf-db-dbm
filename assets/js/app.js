@@ -403,6 +403,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.lang-switch-btn').forEach(btn => {
     btn.addEventListener('click', () => setLang(btn.dataset.lang));
   });
+
+  // Resource-balk en PDF-modal
+  buildResourceBar();
+  buildPdfModal();
 });
 
 /* ── Resource-balk & PDF-modal ─────────────────────────────── */
@@ -474,18 +478,15 @@ function buildPdfModal() {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           Download DOCX (Word)
         </a>
-        <button class="pdf-cancel-btn" onclick="closePdfModal()">Annuleren</button>
+        <button class="pdf-cancel-btn" id="pdfCancelBtn">Annuleren</button>
       </div>
     </div>`;
   document.body.appendChild(modal);
   modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); });
+  // Annuleren knop via addEventListener (werkt altijd, ook na innerHTML inject)
+  modal.querySelector('#pdfCancelBtn')?.addEventListener('click', closePdfModal);
 }
 
 function openPdfModal()  { document.getElementById('pdfModal')?.classList.add('open'); }
 function closePdfModal() { document.getElementById('pdfModal')?.classList.remove('open'); }
 
-// Voeg toe aan DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-  buildResourceBar();
-  buildPdfModal();
-});

@@ -1304,48 +1304,17 @@ code {
 }
 
 /* ── Zwevende sneltoetsenbalk (spiekfiche + PDF) ───────── */
-.quick-bar {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 500;
-}
-.quick-btn {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 11px 18px 11px 14px;
-  border-radius: var(--r-md);
-  font-family: var(--font);
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.22);
-  transition: transform 0.18s, box-shadow 0.18s;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-}
-.quick-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 28px rgba(0,0,0,0.28);
   text-decoration: none;
 }
-.quick-btn-spiek {
   background: var(--teal);
   color: var(--white);
 }
-.quick-btn-pdf {
   background: var(--navy);
   color: var(--teal);
   border: 1.5px solid rgba(0,180,204,0.35);
 }
-.quick-btn-pdf:hover { color: var(--white); }
-.quick-btn svg { flex-shrink: 0; }
 
 /* Modal overlay voor trigger warning */
 .modal-overlay {
@@ -1401,11 +1370,8 @@ code {
 .modal-btn-confirm:hover { background: var(--teal-dark); }
 
 @media (max-width: 640px) {
-  .quick-bar { bottom: 16px; right: 16px; }
-  .quick-btn { padding: 10px 14px; font-size: 0.78rem; }
 }
 @media print {
-  .quick-bar, .modal-overlay { display: none !important; }
 }
 
 /* ── Globale resource-balk (spiekfiche + PDF) ──────────────── */
