@@ -411,36 +411,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* ── Resource-balk & PDF-modal ─────────────────────────────── */
 function buildResourceBar() {
-  if (document.querySelector('.resource-bar')) return;
+  // Knoppen zitten nu IN de header — geen aparte balk meer
+  // Voeg knoppen toe aan .header-right als ze er nog niet zijn
+  if (document.getElementById('habSpiek')) return;
+  const headerRight = document.querySelector('.header-right');
+  if (!headerRight) return;
+
+  const lang = (function(){
+    try{ return JSON.parse(localStorage.getItem('wld_dbcursus')||'{}').lang||'nl'; }catch{return 'nl';}
+  })();
+
   const isChapter = window.location.pathname.includes('/chapters/');
   const base = isChapter ? '../' : '';
-  const lang = (function(){ try{ return JSON.parse(localStorage.getItem('wld_dbcursus')||'{}').lang||'nl'; }catch{return 'nl';} })();
-  const L = {
-    nl: { label:'Snelle toegang:', cheat:'📄 Spiekfiche', pdf:'📥 Handboek PDF', prog:'📊 Voortgang' },
-    fr: { label:'Accès rapide :', cheat:'📄 Aide-mémoire', pdf:'📥 Manuel PDF', prog:'📊 Progression' },
-    en: { label:'Quick access:', cheat:'📄 Cheat sheet', pdf:'📥 Manual PDF', prog:'📊 Progress' },
-  }[lang] || { label:'Snelle toegang:', cheat:'📄 Spiekfiche', pdf:'📥 Handboek PDF', prog:'📊 Voortgang' };
 
-  const bar = document.createElement('div');
-  bar.className = 'resource-bar';
-  bar.innerHTML = `
-    <span class="resource-bar-label">${L.label}</span>
-    <a href="${base}printables/spiekfiche.html" class="rb-btn rb-btn-teal" target="_blank">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      ${L.cheat}
-    </a>
-    <button class="rb-btn rb-btn-orange" onclick="openPdfModal()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      ${L.pdf}
-    </button>
-    <a href="${base}index.html" class="rb-btn rb-btn-slate">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      ${L.prog}
-    </a>`;
-  document.body.appendChild(bar);
-  const main = document.querySelector('.app-main');
-  if (main) main.style.paddingBottom = '54px';
+  const labels = {
+    nl: ['📄 Spiekfiche','📥 Handboek PDF'],
+    fr: ['📄 Aide-mémoire','📥 Manuel PDF'],
+    en: ['📄 Cheat sheet','📥 Manual PDF'],
+  };
+  const L = labels[lang] || labels.nl;
+
+  // Spiekfiche knop
+  const spiek = document.createElement('a');
+  spiek.id = 'habSpiek';
+  spiek.href = base + 'printables/spiekfiche.html';
+  spiek.target = '_blank';
+  spiek.className = 'header-action-btn hab-teal';
+  spiek.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span class="hab-label">${L[0]}</span>`;
+
+  // PDF knop
+  const pdf = document.createElement('button');
+  pdf.id = 'habPdf';
+  pdf.className = 'header-action-btn hab-orange';
+  pdf.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span class="hab-label">${L[1]}</span>`;
+  pdf.addEventListener('click', openPdfModal);
+
+  // Voeg in vóór de menu-toggle knop
+  const toggle = headerRight.querySelector('.menu-toggle');
+  if (toggle) {
+    headerRight.insertBefore(spiek, toggle);
+    headerRight.insertBefore(pdf, toggle);
+  } else {
+    headerRight.appendChild(spiek);
+    headerRight.appendChild(pdf);
+  }
 }
+
 
 function buildPdfModal() {
   if (document.getElementById('pdfModal')) return;
@@ -453,39 +469,38 @@ function buildPdfModal() {
     <div class="pdf-modal">
       <h2>📥 Handboek downloaden</h2>
       <div class="pdf-modal-warn">
-        <strong>⚠️ Triggerwaarschuwing — lees dit voor je downloadt:</strong><br><br>
-        Dit handboek bevat meetresultaten van een <strong>spectrum-analyse practicum</strong>.
-        De gemeten waarden zijn indicatief en afkomstig van workshopmetingen met
-        niet-gecalibreerde apparatuur in een niet-afgeschermde omgeving.<br><br>
-        Ze zijn <strong>niet juridisch bindend</strong>, kunnen
-        <strong>niet gebruikt worden als officieel conformiteitsbewijs</strong>
-        (CE-keuring, type-goedkeuring of regelgevingsdocument) en vervangen
-        <strong>geen officiële EMC-keuring</strong> in een erkend laboratorium.
+        <strong>⚠️ Triggerwaarschuwing</strong><br><br>
+        Dit handboek bevat meetresultaten van een spectrum-analyse practicum.
+        De waarden zijn <strong>indicatief</strong> en afkomstig van workshopmetingen
+        met niet-gecalibreerde apparatuur.
+        Ze zijn <strong>niet juridisch bindend</strong> en kunnen
+        <strong>niet dienen als officieel conformiteitsbewijs</strong>
+        (CE-keuring of type-goedkeuring).
       </div>
       <div class="pdf-modal-body">
-        Het PDF-handboek bevat alle 30 hoofdstukken in het Nederlands,
-        inclusief formules, tabellen, oefeningen met oplossingen en spiekfiche.<br><br>
-        <strong>Versie:</strong> 1.0 &nbsp;·&nbsp; <strong>WLD ON6WL</strong> &nbsp;·&nbsp; on6wl.be
+        Alle 30 hoofdstukken in het Nederlands, met formules, tabellen,
+        oefeningen en oplossingen.<br>
+        <strong>WLD ON6WL</strong> · Versie 1.0 · on6wl.be
       </div>
       <div class="pdf-modal-btns">
         <a href="${base}downloads/WLD-ON6WL-dBdBm-Handboek-v1.pdf"
-           class="pdf-dl-btn" download onclick="closePdfModal()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PDF (Handboek)
+           class="pdf-dl-btn" download>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
         </a>
         <a href="${base}downloads/WLD-ON6WL-dBdBm-Handboek-v1.docx"
-           class="pdf-dl-btn" style="background:var(--teal-dark);font-size:.78rem" download onclick="closePdfModal()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          Download DOCX (Word)
+           class="pdf-dl-btn docx" download>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Download DOCX
         </a>
         <button class="pdf-cancel-btn" id="pdfCancelBtn">Annuleren</button>
       </div>
     </div>`;
   document.body.appendChild(modal);
   modal.addEventListener('click', e => { if (e.target === modal) closePdfModal(); });
-  // Annuleren knop via addEventListener (werkt altijd, ook na innerHTML inject)
-  modal.querySelector('#pdfCancelBtn')?.addEventListener('click', closePdfModal);
+  modal.querySelector('#pdfCancelBtn').addEventListener('click', closePdfModal);
 }
+
 
 function openPdfModal()  { document.getElementById('pdfModal')?.classList.add('open'); }
 function closePdfModal() { document.getElementById('pdfModal')?.classList.remove('open'); }

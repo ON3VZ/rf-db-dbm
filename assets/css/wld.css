@@ -1374,62 +1374,40 @@ code {
 @media print {
 }
 
-/* ── Globale resource-balk (spiekfiche + PDF) ──────────────── */
-.resource-bar {
-  position: fixed;
-  bottom: 0; left: var(--sidebar-w); right: 0;
-  background: var(--navy);
-  border-top: 1px solid rgba(0,180,204,.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 8px 24px;
-  z-index: 150;
-  flex-wrap: wrap;
-}
-.resource-bar-label {
-  font-size: .7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--slate);
-  margin-right: 4px;
-}
-.rb-btn {
+ }
+
+/* ── Header actieknoppen (spiekfiche + PDF) ─────────────────── */
+.header-action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
+  gap: 5px;
+  padding: 5px 11px;
   border-radius: var(--r-sm);
   font-family: var(--font);
-  font-size: .78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
   transition: all var(--t);
   text-decoration: none;
   border: 1px solid;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
-.rb-btn-teal {
+.header-action-btn:hover { text-decoration: none; transform: translateY(-1px); }
+.hab-teal {
   background: var(--teal-dim);
   border-color: rgba(0,180,204,.4);
   color: var(--teal);
 }
-.rb-btn-teal:hover { background: var(--teal); color: var(--white); text-decoration: none; }
-.rb-btn-orange {
+.hab-teal:hover { background: var(--teal); color: var(--white); }
+.hab-orange {
   background: rgba(255,107,53,.12);
   border-color: rgba(255,107,53,.4);
   color: var(--orange);
 }
-.rb-btn-orange:hover { background: var(--orange); color: var(--white); text-decoration: none; }
-.rb-btn-slate {
-  background: rgba(107,122,153,.12);
-  border-color: rgba(107,122,153,.3);
-  color: var(--slate-light);
-}
-.rb-btn-slate:hover { background: var(--slate); color: var(--white); text-decoration: none; }
-/* PDF-modal */
+.hab-orange:hover { background: var(--orange); color: var(--white); }
+
+/* ── PDF modal ───────────────────────────────────────────────── */
 .pdf-modal-overlay {
   display: none;
   position: fixed; inset: 0;
@@ -1442,13 +1420,13 @@ code {
 .pdf-modal {
   background: var(--white);
   border-radius: var(--r-lg);
-  padding: 36px 40px;
-  max-width: 480px;
+  padding: 32px 36px;
+  max-width: 460px;
   width: 90%;
   box-shadow: 0 24px 64px rgba(0,0,0,.6);
 }
 .pdf-modal h2 {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 12px;
@@ -1459,48 +1437,51 @@ code {
   background: var(--red-dim);
   border: 1.5px solid rgba(255,107,53,.4);
   border-radius: var(--r-sm);
-  padding: 14px 18px;
-  font-size: .88rem;
+  padding: 12px 16px;
+  font-size: .85rem;
   color: #7a2d00;
   line-height: 1.6;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .pdf-modal-warn strong { color: var(--orange); }
-.pdf-modal-body { font-size: .9rem; color: var(--text-dark); line-height: 1.65; margin-bottom: 22px; }
-.pdf-modal-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.pdf-modal-body { font-size: .88rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 20px; }
+.pdf-modal-btns { display: flex; gap: 8px; flex-wrap: wrap; }
 .pdf-dl-btn {
   flex: 1;
-  padding: 10px 18px;
+  padding: 9px 16px;
   background: var(--teal);
   color: var(--white);
   border: none;
   border-radius: var(--r-sm);
   font-family: var(--font);
-  font-size: .88rem;
+  font-size: .85rem;
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 6px;
   transition: background var(--t);
 }
 .pdf-dl-btn:hover { background: var(--teal-dark); color: var(--white); text-decoration: none; }
+.pdf-dl-btn.docx { background: var(--teal-dark); font-size: .78rem; }
+.pdf-dl-btn.docx:hover { background: #051828; }
 .pdf-cancel-btn {
-  padding: 10px 18px;
+  padding: 9px 16px;
   background: var(--bg-light);
   color: var(--slate);
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
   font-family: var(--font);
-  font-size: .88rem;
+  font-size: .85rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--t);
 }
 .pdf-cancel-btn:hover { background: var(--line); }
+
 @media (max-width: 960px) {
-  .resource-bar { left: 0; }
+  .header-action-btn span.hab-label { display: none; }
 }
-@media print { .resource-bar, .pdf-modal-overlay { display: none !important; } }
+@media print { .pdf-modal-overlay { display: none !important; } }
