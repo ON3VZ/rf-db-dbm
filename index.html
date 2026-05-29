@@ -278,8 +278,9 @@ function buildChapterGrid() {
     const done  = !!state['done_' + ch.id];
     const badge = (BADGEMAP[lang] || BADGEMAP.nl)[ch.badge];
     const num   = ch.id.replace('h','H');
-
-    html += `<a href="chapters/${ch.id}.html" class="chapter-card${done?' done':''}${!ch.full?' stub':''}" data-chid="${ch.id}">
+    const _FILES = {h00:'h00-orientatie.html',h01:'h01-verhoudingen.html',h02:'h02-logaritmen.html',h03:'h03-logaritmische-schaal.html',h04:'h04-wat-is-db.html',h05:'h05-vermogensverhouding.html',h06:'h06-spanning-stroom.html',h07:'h07-versterking-verlies.html',h08:'h08-ketens.html',h09:'h09-mentaal-rekenen.html',h10:'h10-dbm-definitie.html',h11:'h11-omrekenen.html',h12:'h12-dbw.html',h13:'h13-typische-waarden.html',h14:'h14-dbm-optellen.html',h15:'h15-dbi.html',h16:'h16-dbd.html',h17:'h17-dbc-dbuv.html',h18:'h18-zendvermogen.html',h19:'h19-kabelverlies.html',h20:'h20-rf-ketens.html',h21:'h21-ontvangst.html',h22:'h22-link-budget.html',h23:'h23-shack-betekenis.html',h24:'h24-meten.html',h25:'h25-s-meter.html',h26:'h26-fouten.html',h27:'h27-oefenreeks.html',h28:'h28-samenvattingen.html',h29:'h29-eindtest.html',h30:'h30-practicum.html'};
+    const chFile = _FILES[ch.id] || (ch.id + '.html');
+    html += `<a href="chapters/${chFile}" class="chapter-card${done?' done':''}${!ch.full?' stub':''}" data-chid="${ch.id}">
       <div class="card-top">
         <span class="card-num">${num}</span>
         <span class="card-badge ${ch.badge}">${badge}</span>
@@ -296,20 +297,7 @@ function buildChapterGrid() {
 
 const TEXTS_SOON = { nl:'In voorbereiding', fr:'En préparation', en:'Coming soon' };
 
-// Practicum card los toevoegen
-const pracDiv = document.createElement('div');
-pracDiv.style.cssText = 'margin-top:32px;background:linear-gradient(135deg,var(--navy),#1a0800);border:2px solid var(--orange);border-radius:var(--r-lg);padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;text-decoration:none;';
-pracDiv.innerHTML = `
-  <div style="font-size:2.5rem;flex-shrink:0">📡</div>
-  <div>
-    <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:4px">Bonus Practicum</div>
-    <div style="font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:4px">Spectrum-analyse van VHF/UHF handportables</div>
-    <div style="font-size:.88rem;color:var(--slate-light)">Geleid invulpracticum: meetopstelling → dBm/dBc → normtoetsing → conclusie</div>
-  </div>
-  <div style="margin-left:auto;flex-shrink:0"><span style="background:var(--orange);color:var(--white);padding:8px 18px;border-radius:var(--r-sm);font-size:.85rem;font-weight:700">Start →</span></div>
-`;
-pracDiv.onclick = () => window.location.href = 'chapters/h30-practicum.html';
-container.parentNode.appendChild(pracDiv);
+
 
 </script>
 </body>
